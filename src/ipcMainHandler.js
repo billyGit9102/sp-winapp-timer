@@ -18,7 +18,7 @@ function ipcMainHandlerInit(mainWindow){
         console.log("timer:expand",expand);
     });
     
-    ipcMain.on('appLoadDone', function(e){
+    ipcMain.on('appLoadDone', function(){
         console.log("appLoadDone");
         if(expand){
             set_sizeExpand(mainWindow);
