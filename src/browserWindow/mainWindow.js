@@ -48,7 +48,10 @@ let createWindow=()=>{
     mainWindow = null
   })
   mainWindow.webContents.once('dom-ready', () => {  mainWindow.webContents.send('appStart'); });
-
+  
+  
+  
+  
   return mainWindow;
 
 }
