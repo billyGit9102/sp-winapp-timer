@@ -7,7 +7,7 @@
 const {app} = require('electron');
 const  {createWindow}=require('./src/browserWindow/mainWindow');
 
-const  {ipcMainHandlerInit}=require('./src/ipcMainHandler').default;
+const  {ipcMainHandlerInit}=require('./src/ipcMainHandler');
 
 
 let mainWindow;
@@ -27,4 +27,3 @@ app.on('window-all-closed', function () {
     app.quit();
   }
 })
-//console.log(mainWindow);
