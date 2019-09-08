@@ -7,8 +7,8 @@
 // const {app, BrowserWindow, ipcMain, Tray, Menu} = require('electron');
 const {app, ipcMain} = require('electron');
 //const Tray = electron.Tray;
-const  { createWindow }=require('./src/mainWindow');
-const {set_sizeExpand, set_sizeMini} = require('./src/sizefunc');
+const  {createWindow}=require('./src/browserWindow/mainWindow');
+const {set_sizeExpand, set_sizeMini} = require('./src/browserWindow/sizefunc');
 
 let mainWindow;
 
@@ -17,6 +17,7 @@ let mainWindow;
 // Some APIs can only be used after this event occurs.
 app.on('ready', () => setTimeout(()=>{
   mainWindow=createWindow();
+  console.log(mainWindow);
 }, 3000));
 
 // Quit when all windows are closed.
@@ -43,10 +44,13 @@ ipcMain.on('timer:expand', function(e, expand){
 });
 ipcMain.on('appLoadDone', function(e){
   console.log("appLoadDone");
+  
+  //console.log(mainWindow);
+
   if(expand){
-    set_sizeExpand(mainWindow);
+    //set_sizeExpand(mainWindow);
   }else{
-    set_sizeMini(mainWindow);
+    //set_sizeMini(mainWindow);
   }
 
 });
