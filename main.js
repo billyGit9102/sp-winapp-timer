@@ -16,6 +16,7 @@ let mainWindow;
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on('ready', () => setTimeout(()=>{
+  console.log("createWindow");
   mainWindow=createWindow();
   console.log(mainWindow);
 }, 3000));
