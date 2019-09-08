@@ -1,0 +1,7 @@
+https://github.com/billyGit9102/winapp-timer
+
+v1.0.2
+add save resize value at window expand resize
+
+v1.0.1
+start

@@ -6,9 +6,7 @@
 
 const {app} = require('electron');
 const  {createWindow}=require('./src/browserWindow/mainWindow');
-
 const  {ipcMainHandlerInit}=require('./src/ipcMainHandler');
-
 
 let mainWindow;
 
