@@ -9,10 +9,10 @@ function set_sizeExpand(mainWindow){
     mainWindow.on('resize', saveSize);
 }
 function set_sizeMini(mainWindow){
+    mainWindow.removeListener('resize', saveSize);
     mainWindow.setResizable(true);
     mainWindow.setSize(winW_mini,winH_mini);
     mainWindow.setResizable(false);
-    mainWindow.removeListener('resize', saveSize);
 }
 
 module.exports = {
