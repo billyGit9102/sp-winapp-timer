@@ -19,13 +19,8 @@ let createWindow=()=>{
     }
   })
   mainWindow.loadURL("http://bf2c.info/sp/project/ci-doing-timer-v4/doing_timer/start/home?abc");
-  
 
-  console.log("in createWindow");
-  console.log(mainWindow);
-  
-  traySetting();
-  console.log("in createWindow");
+  traySetting(mainWindow);
 
   //mainWindow.webContents.openDevTools()
 
