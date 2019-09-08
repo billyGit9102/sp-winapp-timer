@@ -4,9 +4,7 @@
 *  - recieve expand to control size
 * ========================================== */
 
-// const {app, BrowserWindow, ipcMain, Tray, Menu} = require('electron');
 const {app, ipcMain} = require('electron');
-//const Tray = electron.Tray;
 const  {createWindow}=require('./src/browserWindow/mainWindow');
 const {set_sizeExpand, set_sizeMini} = require('./src/browserWindow/sizefunc');
 
