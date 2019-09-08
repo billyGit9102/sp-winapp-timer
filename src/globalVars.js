@@ -10,6 +10,7 @@ let winW=()=>{
     }else{
         sizeW=600
     }
+    sizeW=sizeW<200?200:sizeW;
     return sizeW;
 }
 
@@ -20,6 +21,7 @@ let winH=()=>{
     }else{
         sizeH=600
     }
+    sizeH=sizeH<350?350:sizeH;
     return sizeH;
 }
 
