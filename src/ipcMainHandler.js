@@ -19,16 +19,12 @@ function ipcMainHandlerInit(mainWindow){
     });
     
     ipcMain.on('appLoadDone', function(e){
-    console.log("appLoadDone");
-    
-    //console.log(mainWindow);
-
+        console.log("appLoadDone");
         if(expand){
             set_sizeExpand(mainWindow);
         }else{
             set_sizeMini(mainWindow);
         }
-
     });
 
 }
