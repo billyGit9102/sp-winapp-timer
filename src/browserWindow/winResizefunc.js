@@ -5,7 +5,7 @@ const {saveSize} = require('./saveLoadSize');
 
 function set_sizeExpand(mainWindow){
     mainWindow.setResizable(true);
-    mainWindow.setSize(winW,winH);
+    mainWindow.setSize(winW(),winH);
     mainWindow.on('resize', saveSize);
 }
 function set_sizeMini(mainWindow){

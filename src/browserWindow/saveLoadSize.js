@@ -1,7 +1,9 @@
 'use strict';
 
 const fs = require('fs');
-const {dataSizePath} = require('../globalVars');
+const {dataSizePath,winH} = require('./../globalVars');
+
+console.log("winH=",winH);
 
 function saveSize(e){
     console.log("window resize");
@@ -18,7 +20,9 @@ function saveSize(e){
     });
 }
 function loadSize(){
-    let rawdata = fs.readFileSync(dataSizePath);
+    //const {dataSizePath} = require('../globalVars');
+    console.log("dataSizePath=",dataSizePath);
+    let rawdata = fs.readFileSync("./data-largeSize.json");
     let size = JSON.parse(rawdata);
     return size;
 }

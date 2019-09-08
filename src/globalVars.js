@@ -1,20 +1,21 @@
 //const {winW, winH, winW_mini, winH_mini} = require('./globalVars');
 const fs = require('fs');
-//const {loadSize} = require('./saveLoadSize');
+const {loadSize} = require('./browserWindow/saveLoadSize');
 
-//let dataSizePath="./data-largeSize.json"
+const dataSizePath="./data-largeSize.json";
 
-let winW=600;
-// >{
-//     //console.log(fs.existsSync(dataSizePath));
+let winW=()=>{
+    //console.log(fs.existsSync("./data-largeSize.json"));
+    let sizeW;
+    if (fs.existsSync("./data-largeSize.json")){ 
+        sizeW=loadSize().width        
+    }else{
+        sizeW=600
+    }
+    console.log(sizeW);
+    return sizeW;
+}
 
-//     // if (fs.existsSync(dataSizePath)){       
-//     //     return loadSize().width;
-//     // }else{
-//     //     return 600;
-//     // }
-//     return 600;
-// }
 let winH=600;
 let winW_mini=150;
 let winH_mini=60;
@@ -26,5 +27,7 @@ module.exports = {
     winW, 
     winH,
     winW_mini,
-    winH_mini,ca
+    winH_mini,
+    dataSizePath,
+    ca
 };
