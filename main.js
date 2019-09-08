@@ -18,7 +18,7 @@ let mainWindow;
 app.on('ready', () => setTimeout(()=>{
   console.log("createWindow");
   mainWindow=createWindow();
-  console.log(mainWindow);
+  //console.log(mainWindow);
 }, 3000));
 
 // Quit when all windows are closed.
@@ -49,9 +49,9 @@ ipcMain.on('appLoadDone', function(e){
   //console.log(mainWindow);
 
   if(expand){
-    //set_sizeExpand(mainWindow);
+    set_sizeExpand(mainWindow);
   }else{
-    //set_sizeMini(mainWindow);
+    set_sizeMini(mainWindow);
   }
 
 });
