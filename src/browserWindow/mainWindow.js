@@ -1,6 +1,6 @@
 const {BrowserWindow} = require('electron');
 const {winW, winH, winW_mini, winH_mini} = require('../globalVars');
-const {set_sizeExpand, set_sizeMini} = require('./sizefunc');
+const {set_sizeExpand, set_sizeMini} = require('./winResizefunc');
 const {traySetting} = require('./traySetting');
 
 let createWindow=()=>{

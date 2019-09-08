@@ -6,7 +6,7 @@
 
 const {app, ipcMain} = require('electron');
 const  {createWindow}=require('./src/browserWindow/mainWindow');
-const {set_sizeExpand, set_sizeMini} = require('./src/browserWindow/sizefunc');
+const {set_sizeExpand, set_sizeMini} = require('./src/browserWindow/winResizefunc');
 
 let mainWindow;
 
