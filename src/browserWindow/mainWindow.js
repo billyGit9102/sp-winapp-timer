@@ -7,7 +7,7 @@ let createWindow=()=>{
   
   let mainWindow = new BrowserWindow({
     width: winW(),
-    height: winH,
+    height: winH(),
     frame: false,
     alwaysOnTop: true,
     skipTaskbar:true,
