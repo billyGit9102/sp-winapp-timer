@@ -10,7 +10,7 @@ function saveSize(e){
     };
     let data = JSON.stringify(winSize, null, 2);
 
-    fs.writeFile('data-largeSize.json', data, (err) => {
+    fs.writeFile(dataSizePath, data, (err) => {
         if (err) throw err;
         console.log('Data written to file');
     });
