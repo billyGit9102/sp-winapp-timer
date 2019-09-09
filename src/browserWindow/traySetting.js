@@ -43,10 +43,10 @@ function trayInit(mainWindow){
     // const ctxMenu = Menu.buildFromTemplate(template);
 
     //tray.setContextMenu(ctxMenu);
-    tray.setToolTip('WinApp Timer');
+    tray.setToolTip('Winapp Timer');
 
     mainWindow.on('closed', function () {
-        console.log("tray main win close")
+        tray.destroy()
     })
 
 }
