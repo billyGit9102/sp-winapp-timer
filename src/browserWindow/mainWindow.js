@@ -1,7 +1,7 @@
 const {BrowserWindow} = require('electron');
 const {winW, winH} = require('../globalVars');
 const {set_sizeMini} = require('./winResizefunc');
-const {traySetting} = require('./traySetting');
+const {trayInit} = require('./traySetting');
 
 let createWindow=()=>{
   
@@ -18,7 +18,7 @@ let createWindow=()=>{
   })
   mainWindow.loadURL("http://bf2c.info/sp/project/ci-doing-timer-v4/doing_timer/start/home?abc");
 
-  traySetting(mainWindow);
+  trayInit(mainWindow);
 
   //mainWindow.webContents.openDevTools()
 
