@@ -1,4 +1,4 @@
-const {Tray, Menu} = require('electron');
+const {Tray, Menu,app} = require('electron');
 const path=require('path');
 const iconPath = path.join(__dirname, '../../icon/img-300x300.jpg');
 
@@ -10,43 +10,28 @@ function trayInit(mainWindow){
     tray.on('double-click',function(){
         mainWindow.show();
     })
-    // let template = [
-    //     {
-    //         label: 'Audio',
-    //         submenu:[
-    //             {
-    //                 label:'Low',
-    //                 type:'radio',
-    //                 checked: true
-    //             },
-    //             {
-    //                 label:'High',
-    //                 type:'radio'
-    //             }
-    //         ]
-    //     },
-    //     {
-    //         label: 'Video',
-    //         submenu:[
-    //             {
-    //                 label:'Low',
-    //                 type:'radio',
-    //                 checked: true
-    //             },
-    //             {
-    //                 label:'High',
-    //                 type:'radio'
-    //             }
-    //         ]
-    //     }
-    // ]
-    // const ctxMenu = Menu.buildFromTemplate(template);
-
-    //tray.setContextMenu(ctxMenu);
+    let template = [
+        {
+            label: 'Open',
+            click:()=>{
+                mainWindow.show();
+            }
+        },
+        {
+            label: 'Close',
+            click:()=>{
+                mainWindow.destroy();
+            }
+        }
+    ]
+    const ctxMenu = Menu.buildFromTemplate(template);
+    tray.setContextMenu(ctxMenu);
+    
     tray.setToolTip('Winapp Timer');
 
-    mainWindow.on('closed', function () {
-        tray.destroy()
+    app.on('window-all-closed', function () {
+        //console.log("app in tray call tray destroy")
+        tray.destroy();
     })
 
 }
