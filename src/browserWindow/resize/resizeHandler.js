@@ -1,6 +1,5 @@
 const {ipcMain} = require('electron');
 const {set_sizeExpand, set_sizeMini} = require('./winResizefunc');
-const {saveSize} = require('../saveLoadSize');
 
 const resizeHandlerInit=(mainWindow)=>{
     let expand=true;
