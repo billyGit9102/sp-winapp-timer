@@ -1,5 +1,5 @@
 const fs = require('fs');
-const {dataSizePath} = require('../globalVars-path');
+const dataSizePath="./data-winLargeSize.json";
 
 function saveSize(e){
     console.log("window resize");
@@ -15,10 +15,18 @@ function saveSize(e){
         console.log('Data written to file');
     });
 }
-function loadSize(){
-    //const {dataSizePath} = require('../globalVars');
-    let rawdata = fs.readFileSync(dataSizePath);
-    let size = JSON.parse(rawdata);
+function loadSize(){    
+    let size;
+    if (fs.existsSync(dataSizePath)){ 
+        let rawdata = fs.readFileSync(dataSizePath);
+        size = JSON.parse(rawdata);    
+    }else{
+        size={};
+        size.width=600;        
+        size.height=600;
+    }
+    size.width=size.width<200?200:size.width;
+    size.height=size.height<350?350:size.height;
     return size;
 }
 
