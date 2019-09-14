@@ -1,7 +1,7 @@
 //const {set_sizeExpand, set_sizeMini} = require('./winResizefunc');
 
-const {winW, winH, winW_mini, winH_mini} = require('../globalVars');
-const {saveSize} = require('./saveLoadSize');
+const {winW, winH, winW_mini, winH_mini} = require('../../globalVars');
+const {saveSize} = require('../saveLoadSize');
 
 function set_sizeExpand(mainWindow){
     console.log("set_sizeExpand");
