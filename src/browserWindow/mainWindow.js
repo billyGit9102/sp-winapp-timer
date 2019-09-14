@@ -21,7 +21,7 @@ let createWindow=()=>{
 
   trayInit(mainWindow);
   resizeHandlerInit(mainWindow);
-  //mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
 
   /* ---------------------------------------------------- *
   *  ■ use blur to control size, use in on blur, on minimize

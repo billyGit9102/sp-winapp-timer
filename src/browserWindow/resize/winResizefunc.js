@@ -7,12 +7,14 @@ function set_sizeExpand(mainWindow){
     console.log("set_sizeExpand");
     mainWindow.setResizable(true);
     mainWindow.setSize(winW(),winH());
+    //prevent multiple saveSize
+    mainWindow.removeListener('resize', saveSize);
     mainWindow.addListener('resize', saveSize);
+    //console.log(mainWindow._events.resize);
+    console.log(Array(mainWindow._events.resize).indexOf(saveSize));
 }
 function set_sizeMini(mainWindow){
     console.log("set_sizeMini");
-    mainWindow.removeListener('resize', saveSize);
-    mainWindow.removeListener('resize', saveSize);
     mainWindow.removeListener('resize', saveSize);
     mainWindow.setResizable(true);
     mainWindow.setSize(winW_mini,winH_mini);

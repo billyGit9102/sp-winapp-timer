@@ -6,16 +6,14 @@
 
 const {app} = require('electron');
 const  {createWindow}=require('./src/browserWindow/mainWindow');
-//const  {ipcMainHandlerInit}=require('./src/ipcMainHandler');
 
 let mainWindow;
 
 app.on('ready', () => setTimeout(()=>{
   console.log("createWindow");
   mainWindow=createWindow();
-  //ipcMainHandlerInit(mainWindow);
+  mainWindow.isVisible;
 }, 3000));
-
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
