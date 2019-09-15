@@ -22,7 +22,7 @@ let createWindow=()=>{
   
   trayInit(mainWindow);
   resizeHandlerInit(mainWindow);
-  mainWindow.webContents.openDevTools()
+  //mainWindow.webContents.openDevTools()
 
   let winBlur=()=>{   
     mainWindow.webContents.send('timer:blur');
