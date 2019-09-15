@@ -1,2 +1,4 @@
-github link
+github link 
 https://github.com/billyGit9102/winapp-timer
+
+modify 20190915
