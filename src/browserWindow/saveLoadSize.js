@@ -1,9 +1,13 @@
+//const {loadSize,saveSize} = require('./browserWindow/saveLoadSize');
+
 const fs = require('fs');
 const dataSizePath="./data-winLargeSize.json";
+const minExpandWidth=200;
+const minExpandHeight=350;
 
 function saveSize(e){
-    console.log("window resize");
-    console.log(e.sender.getSize());
+    //console.log("window resize");
+    //console.log(e.sender.getSize());
     let winSize = { 
         width: e.sender.getSize()[0],
         height: e.sender.getSize()[1]
@@ -25,8 +29,8 @@ function loadSize(){
         size.width=600;        
         size.height=600;
     }
-    size.width=size.width<200?200:size.width;
-    size.height=size.height<350?350:size.height;
+    size.width=size.width<minExpandWidth?minExpandWidth:size.width;
+    size.height=size.height<minExpandHeight?minExpandHeight:size.height;
     return size;
 }
 

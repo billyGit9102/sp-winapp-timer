@@ -1,18 +1,14 @@
 /* ========================================== *
-*  - create browser window
-*  - use blur to control size
-*  - recieve expand to control size
+*  - create browser window here
 * ========================================== */
 
 const {app} = require('electron');
 const  {createWindow}=require('./src/browserWindow/mainWindow');
 
-let mainWindow;
-
 app.on('ready', () => setTimeout(()=>{
   console.log("createWindow");
-  mainWindow=createWindow();
-  mainWindow.isVisible;
+  //create mainWindow
+  createWindow();
 }, 3000));
 
 // Quit when all windows are closed.
@@ -22,4 +18,4 @@ app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') {
     app.quit();
   }
-})
+});
