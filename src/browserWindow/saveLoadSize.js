@@ -9,8 +9,8 @@ function saveSize(e){
     //console.log("window resize");
     //console.log(e.sender.getSize());
     let winSize = { 
-        width: e.sender.getSize()[0],
-        height: e.sender.getSize()[1]
+        width: e.getSize()[0],
+        height: e.getSize()[1]
     };
     let data = JSON.stringify(winSize, null, 2);
 

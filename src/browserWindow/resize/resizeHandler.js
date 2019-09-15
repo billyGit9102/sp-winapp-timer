@@ -1,8 +1,10 @@
 const {ipcMain} = require('electron');
-const {set_sizeExpand, set_sizeMini} = require('./winResizefunc');
+const {set_sizeExpand, set_sizeMini,set_reizeMainWindowVar} = require('./winResizefunc');
+
 
 const resizeHandlerInit=(mainWindow)=>{
     let expand=true;
+    set_reizeMainWindowVar(mainWindow);
     
     //mainwindow resize smaller when on blur
     function winBlur(){

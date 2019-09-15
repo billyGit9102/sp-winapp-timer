@@ -1,8 +1,8 @@
 const {BrowserWindow} = require('electron');
 const {winW, winH} = require('../globalVars');
-
 const {resizeHandlerInit} = require('./resize/resizeHandler');
 const {trayInit} = require('./traySetting');
+
 let mainWindow;
 
 let createWindow=()=>{
@@ -24,9 +24,6 @@ let createWindow=()=>{
   resizeHandlerInit(mainWindow);
   mainWindow.webContents.openDevTools()
 
-  /* ---------------------------------------------------- *
-  *  ■ use blur to control size, use in on blur, on minimize
-  * ----------------------------------------------------- */
   function winBlur(){   
     mainWindow.webContents.send('timer:blur');
     //prevent slow connection problem
@@ -46,7 +43,6 @@ let createWindow=()=>{
   mainWindow.webContents.once('dom-ready', () => {  mainWindow.webContents.send('appStart'); });
   
   return mainWindow;
-
 }
 
 module.exports = {
