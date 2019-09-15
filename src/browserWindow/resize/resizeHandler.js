@@ -1,6 +1,10 @@
+/* ========================================== *
+*  - win blur resize to min
+*  - handle html expand event
+* ========================================== */
+
 const {ipcMain} = require('electron');
 const {set_sizeExpand, set_sizeMini,set_reizeMainWindowVar} = require('./winResizefunc');
-
 
 const resizeHandlerInit=(mainWindow)=>{
     let expand=true;
@@ -25,15 +29,11 @@ const resizeHandlerInit=(mainWindow)=>{
     ipcMain.on('appLoadDone', ()=>{
         console.log("appLoadDone");
         if(expand){
-            
             set_sizeExpand(mainWindow);
         }else{
             set_sizeMini(mainWindow);
         }
     });
-
-
-
 }
 
 module.exports = {
