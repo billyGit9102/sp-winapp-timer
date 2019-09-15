@@ -3,10 +3,11 @@ const {winW, winH} = require('../globalVars');
 
 const {resizeHandlerInit} = require('./resize/resizeHandler');
 const {trayInit} = require('./traySetting');
+let mainWindow;
 
 let createWindow=()=>{
   
-  let mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     width: winW(),
     height: winH(),
     frame: false,
@@ -28,19 +29,21 @@ let createWindow=()=>{
   * ----------------------------------------------------- */
   function winBlur(){   
     mainWindow.webContents.send('timer:blur');
-    //mainWindow.webContents.once('dom-ready', () => {  mainWindow.webContents.send('appStart'); });
+    //prevent slow connection problem
+    mainWindow.webContents.once('dom-ready', () => {  mainWindow.webContents.send('appStart'); });
   }
   mainWindow.on('blur', winBlur);
 
   mainWindow.on('maximize', function () {
-    console.log("window max");
+    //console.log("window max");
     mainWindow.webContents.send('timer:max');
   })
 
   mainWindow.on('closed', function () {
     mainWindow = null
   })
-  //mainWindow.webContents.once('dom-ready', () => {  mainWindow.webContents.send('appStart'); });
+  //prevent slow connection problem
+  mainWindow.webContents.once('dom-ready', () => {  mainWindow.webContents.send('appStart'); });
   
   return mainWindow;
 
