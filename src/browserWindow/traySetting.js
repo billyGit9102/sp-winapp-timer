@@ -3,7 +3,7 @@
 * ========================================== */
 const {Tray, Menu,app} = require('electron');
 const path=require('path');
-const iconPath = path.join(__dirname, '../../icon/img-300x300.jpg');
+const iconPath = path.join(__dirname, '../../icon/179590.png');
 
 let tray=null;
 
