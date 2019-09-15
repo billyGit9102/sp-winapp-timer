@@ -24,19 +24,19 @@ let createWindow=()=>{
   resizeHandlerInit(mainWindow);
   mainWindow.webContents.openDevTools()
 
-  function winBlur(){   
+  let winBlur=()=>{   
     mainWindow.webContents.send('timer:blur');
     //prevent slow connection problem
     mainWindow.webContents.once('dom-ready', () => {  mainWindow.webContents.send('appStart'); });
   }
   mainWindow.on('blur', winBlur);
 
-  mainWindow.on('maximize', function () {
+  mainWindow.on('maximize', ()=>{
     //console.log("window max");
     mainWindow.webContents.send('timer:max');
   })
 
-  mainWindow.on('closed', function () {
+  mainWindow.on('closed', ()=>{
     mainWindow = null
   })
   //prevent slow connection problem

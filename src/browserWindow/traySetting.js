@@ -7,10 +7,10 @@ const iconPath = path.join(__dirname, '../../icon/img-300x300.jpg');
 
 let tray=null;
 
-function trayInit(mainWindow){
+let trayInit=(mainWindow)=>{
 
     tray=new Tray(iconPath);
-    tray.on('double-click',function(){
+    tray.on('double-click',()=>{
         mainWindow.show();
     })
     let template = [
@@ -32,7 +32,7 @@ function trayInit(mainWindow){
     
     tray.setToolTip('Winapp Timer');
 
-    app.on('window-all-closed', function () {
+    app.on('window-all-closed', ()=> {
         //console.log("app in tray call tray destroy")
         tray.destroy();
     })

@@ -3,13 +3,14 @@
 const {winW, winH, winW_mini, winH_mini} = require('../../globalVars');
 const {saveSize} = require('../saveLoadSize');
 
-let saveSizeWrap;
 let mainWindow;
-function set_reizeMainWindowVar(mW){
+let set_reizeMainWindowVar=(mW)=>{
     mainWindow=mW;
 }
-function set_sizeExpand(mainWindow){
-
+let saveSizeWrap=()=>{
+    saveSize(mainWindow);
+}
+let set_sizeExpand=(mainWindow)=>{
     console.log("set_sizeExpand");
     mainWindow.setResizable(true);
     mainWindow.setSize(winW(),winH());
@@ -18,12 +19,8 @@ function set_sizeExpand(mainWindow){
     mainWindow.addListener('resize', saveSizeWrap);
     //console.log(mainWindow._events.resize);
     console.log(Array(mainWindow._events.resize).indexOf(saveSize));
-
 }
-saveSizeWrap=()=>{
-    saveSize(mainWindow);
-}
-function set_sizeMini(mainWindow){
+let set_sizeMini=(mainWindow)=>{
     console.log("set_sizeMini");
     mainWindow.removeListener('resize', saveSizeWrap);
     mainWindow.setResizable(true);

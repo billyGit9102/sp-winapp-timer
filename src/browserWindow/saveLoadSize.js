@@ -5,7 +5,7 @@ const dataSizePath="./data-winLargeSize.json";
 const minExpandWidth=200;
 const minExpandHeight=350;
 
-function saveSize(e){
+let saveSize=(e)=>{
     //console.log("window resize");
     //console.log(e.sender.getSize());
     let winSize = { 
@@ -19,7 +19,7 @@ function saveSize(e){
         console.log('Data written to file');
     });
 }
-function loadSize(){    
+let loadSize=()=>{    
     let size;
     if (fs.existsSync(dataSizePath)){ 
         let rawdata = fs.readFileSync(dataSizePath);

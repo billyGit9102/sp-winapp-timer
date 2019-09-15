@@ -7,13 +7,13 @@ const resizeHandlerInit=(mainWindow)=>{
     set_reizeMainWindowVar(mainWindow);
     
     //mainwindow resize smaller when on blur
-    function winBlur(){
+    let winBlur=()=>{
         set_sizeMini(mainWindow);
     }
     mainWindow.on('blur', winBlur);
     
     //handle html event
-    ipcMain.on('timer:expand', function(e, expand){
+    ipcMain.on('timer:expand', (e, expand)=>{
         if(expand){
             set_sizeExpand(mainWindow);            
         }else{
@@ -22,7 +22,7 @@ const resizeHandlerInit=(mainWindow)=>{
         console.log("timer:expand",expand);
     });
     
-    ipcMain.on('appLoadDone', function(){
+    ipcMain.on('appLoadDone', ()=>{
         console.log("appLoadDone");
         if(expand){
             
