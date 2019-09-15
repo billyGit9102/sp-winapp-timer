@@ -16,7 +16,7 @@ let saveSize=(e)=>{
 
     fs.writeFile(dataSizePath, data, (err) => {
         if (err) throw err;
-        console.log('Data written to file');
+        //console.log('Data written to file');
     });
 }
 let loadSize=()=>{    
