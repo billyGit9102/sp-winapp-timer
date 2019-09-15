@@ -6,7 +6,7 @@ const {app} = require('electron');
 const  {createWindow}=require('./src/browserWindow/mainWindow');
 
 app.on('ready', () => setTimeout(()=>{
-  console.log("createWindow");
+  //console.log("createWindow");
   //create mainWindow
   createWindow();
 }, 3000));

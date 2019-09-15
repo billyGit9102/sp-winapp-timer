@@ -11,17 +11,15 @@ let saveSizeWrap=()=>{
     saveSize(mainWindow);
 }
 let set_sizeExpand=(mainWindow)=>{
-    console.log("set_sizeExpand");
+    //console.log("set_sizeExpand");
     mainWindow.setResizable(true);
     mainWindow.setSize(winW(),winH());
     //prevent multiple saveSize
     mainWindow.removeListener('resize', saveSizeWrap);
     mainWindow.addListener('resize', saveSizeWrap);
-    //console.log(mainWindow._events.resize);
-    console.log(Array(mainWindow._events.resize).indexOf(saveSize));
 }
 let set_sizeMini=(mainWindow)=>{
-    console.log("set_sizeMini");
+    //console.log("set_sizeMini");
     mainWindow.removeListener('resize', saveSizeWrap);
     mainWindow.setResizable(true);
     mainWindow.setSize(winW_mini,winH_mini);
