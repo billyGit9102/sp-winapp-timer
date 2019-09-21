@@ -13,12 +13,12 @@ let createWindow=()=>{
     frame: false,
     alwaysOnTop: true,
     skipTaskbar:true,
+    minimizable:false,
     webPreferences: {
       nodeIntegration: true
     }
   })
   mainWindow.loadURL("http://bf2c.info/sp/project/ci-doing-timer-v4/doing_timer/start/home?abc");
-  mainWindow.setMinimizable(false);
   
   trayInit(mainWindow);
   resizeHandlerInit(mainWindow);
