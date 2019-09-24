@@ -1,4 +1,3 @@
-const { watch } = require('gulp');
 const {watchJs}= require('./gulp/watchJs');
 const {watchHtml}= require('./gulp/watchHtml');
 const {watchScss}= require('./gulp/watchScss');
