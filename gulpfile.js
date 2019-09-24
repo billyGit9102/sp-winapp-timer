@@ -1,41 +1,19 @@
-const { src, dest,watch, series } = require('gulp');
-const fileinclude = require('gulp-file-include');
-const sass = require('gulp-sass');
-const autoprefixer = require("autoprefixer");
-const postcss = require("gulp-postcss");
+const { watch } = require('gulp');
+const {watchJs}= require('./gulp/watchJs');
+const {watchHtml}= require('./gulp/watchHtml');
+const {watchScss}= require('./gulp/watchScss');
 
-function compileScss() {
-    // body omitted
-    console.log("watching scss")
-    return src('./src/scss/styles.scss')
-    .pipe(sass().on('error', sass.logError))    
-    .pipe(postcss([autoprefixer()]))
-    .pipe(dest('./dist/'));
-}
-function compileHtml(cb) {
-    // place code for your default task here
-    console.log("watch html")
-    src(['./src/html/index.html'])
-    .pipe(fileinclude({
-      prefix: '@@',
-      basepath: '@file'
-    }))
-    .pipe(dest('./'));
-
-    cb();
-}
 function watchSrc() {
     console.log("watching src");
-    watch(['./src/scss/**/*.scss'], compileScss);
-    watch(['./src/html/**/*.html'], compileHtml)
+    watchJs();
+    watchHtml();
+    watchScss();
 }
-
 function defaultTask(cb) {
     // place code for your default task here
     console.log("start")
     cb();
 }
-
 
 exports.default = defaultTask;
 exports.gw=watchSrc;
