@@ -1,0 +1,33 @@
+$timerSecH:33px;
+#timer-section{
+    position: relative; background-color: #303030;
+    #timer{ height: 33px; box-sizing: border-box; color: #fff;
+            font-size:1.2rem; text-align: center; line-height: $timerSecH; margin-left: $timerSecH; margin-right: $timerSecH}
+
+    #expander{
+        width: $timerSecH; height: $timerSecH;  position: absolute;left: 0px; cursor: pointer; 
+        text-align: center; display: flex;justify-content:center;align-items:center;
+
+        span#arrow{display: block; width: 12px; height: 7px; 
+            background: url(../img/arrow-down.png) center center no-repeat; transition: transform ease-out .15s; opacity: .4;}
+    } 
+
+    #menu{
+        width: $timerSecH; height: $timerSecH; position: absolute; right: 0;
+    }
+}
+body.expand{
+    #timer-section #expander span#arrow{ transform: rotateZ(180deg); margin-bottom: 2px;}
+}
+body.timerAlert{
+    #timer-section{
+        animation-name: mymove;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+    }
+}
+@keyframes mymove {
+    0% {background-color:#000 }
+    50% {background-color:red}
+    100% {background-color:#000 }
+}

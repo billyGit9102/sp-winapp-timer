@@ -1,0 +1,69 @@
+@import "root";
+@import "timer-section";
+$mini_height:33px; 
+
+
+input{width: 100%; box-sizing: border-box; padding: 4px 5px; border: none;  outline: none; }
+textarea{width: 100%; box-sizing: border-box; padding: 4px 5px; height: 110px;resize: none;display: block;
+    border: none;  outline: none; overflow-y: hidden;
+}
+
+.textarea-container{ padding-bottom: 5px;border-bottom: solid 1px #ccc;padding-right: 0px;}
+.expand{
+    #main-textarea-wrapper{ height: calc(100% - 110px);}
+    .textarea-container{
+        height: calc(100%/ 2);
+    } 
+} 
+.textarea-container textarea{height: 100%}
+
+#setTimeContainer{
+    margin-bottom: 10px; margin-top: 5px; padding: 5px 15px;
+    label{display: inline-block;width: 45px; box-sizing: border-box}
+    #endTime{ width: calc(100% - 45px); box-sizing: border-box; border: none; border-bottom:solid 1px #ccc }
+}
+  
+
+
+
+
+#button{ text-align: center }
+
+.hide{display: none !important}
+.show{display: inline-block !important;}
+#stop,#pause,#start,#resume{ color:#FFF; text-decoration:none; width:50px; height:18px;display:inline-block }
+#stop span,#start span,#pause span,#resume span{position:relative;top:2px; text-align: center}
+#stop:hover,#pause:hover,#start:hover,#resume:hover{ background-color:#F90}
+
+#stop{margin-right:5px; background-color:#ff0000;
+}
+#start{ background-color:#1c4a9e;
+}
+#pause{ background-color:#090;display:none;
+}
+#resume{ background-color:#1c4a9e; display:none;
+}
+// #button{ width:105px; margin:0 auto; font-size:10px; position: static;}
+
+// #stop span,#start span,#pause span,#resume span{ position:relative; top:2px;}
+
+// #stop { position:static; top:46px; right:0}
+// #start,#pause,#resume{top:28px; position:static}
+
+
+// hidden area
+#curDoing{background-color: #484848; text-align: center; color: #c5c5c5;padding: 6px 5px; }
+body.expand{
+    textarea.hide-scrollbar{ overflow-y: scroll}
+    #toolsbar{display: block;}
+    #curDoing{ display: none;}
+}
+
+ 
+#sizeMenu{ position: absolute; top:0px; right:0px; z-index:10; width: 100vw; height: 100vh; max-width:100%;
+    max-height:100%;box-sizing: border-box; padding-top: 30px;
+    a{ color:#000; display:block; padding:5px 10px; text-decoration:none;background-color:#CCC; height: 50%; width: 50%; float: left; box-sizing: border-box;        
+        &.active{ background-color: red; color: white}
+        &:hover{ background-color:#666; color:#FFF;}
+    }
+}
