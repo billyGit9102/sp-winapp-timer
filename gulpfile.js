@@ -1,6 +1,6 @@
 const {watchJs}= require('./gulp/watchJs');
-const {watchHtml}= require('./gulp/watchHtml');
-const {watchScss}= require('./gulp/watchScss');
+const {watchHtml,compileHtml}= require('./gulp/watchHtml');
+const {watchScss,compileScss}= require('./gulp/watchScss');
 
 function watchSrc() {
     console.log("watching src");
@@ -16,3 +16,5 @@ function defaultTask(cb) {
 
 exports.default = defaultTask;
 exports.gw=watchSrc;
+exports.compileScss=compileScss;
+exports.compileHtml=compileHtml;

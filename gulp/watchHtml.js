@@ -16,5 +16,5 @@ function watchHtml(){
 }
 
 module.exports = {
-    watchHtml
+    watchHtml,compileHtml
 }

@@ -14,5 +14,5 @@ function watchScss(){
     return watch(['./src/scss/**/*.scss'], compileScss);
 }
 module.exports = {
-    watchScss
+    watchScss,compileScss
 }

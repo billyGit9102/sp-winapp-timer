@@ -1,0 +1,220 @@
+html {
+  font-size: calc(1em * .625);
+  overflow-y: hidden; }
+
+body {
+  font-family: Verdana, Geneva, sans-serif;
+  margin: 0;
+  font-size: 1.2rem;
+  border: solid 1px #484848;
+  overflow: hidden;
+  height: 70px; }
+
+html, body {
+  height: 100%;
+  box-sizing: border-box; }
+
+div, textarea {
+  box-sizing: border-box; }
+
+#wrapper {
+  position: relative;
+  height: 100%;
+  border: solid 2px #484848;
+  height: 58px;
+  overflow: hidden; }
+
+.expand #wrapper {
+  height: 100%;
+  min-height: 348px; }
+
+#timer-section {
+  position: relative;
+  background-color: #303030; }
+  #timer-section #timer {
+    height: 33px;
+    box-sizing: border-box;
+    color: #fff;
+    font-size: 1.2rem;
+    text-align: center;
+    line-height: 33px;
+    margin-left: 33px;
+    margin-right: 33px; }
+  #timer-section #expander {
+    width: 33px;
+    height: 33px;
+    position: absolute;
+    left: 0px;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    #timer-section #expander span#arrow {
+      display: block;
+      width: 12px;
+      height: 7px;
+      background: url(../img/arrow-down.png) center center no-repeat;
+      transition: transform ease-out .15s;
+      opacity: .4; }
+  #timer-section #menu {
+    width: 33px;
+    height: 33px;
+    position: absolute;
+    right: 0; }
+
+body.expand #timer-section #expander span#arrow {
+  transform: rotateZ(180deg);
+  margin-bottom: 2px; }
+
+body.timerAlert #timer-section {
+  -webkit-animation-name: mymove;
+          animation-name: mymove;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite; }
+
+@-webkit-keyframes mymove {
+  0% {
+    background-color: #000; }
+  50% {
+    background-color: red; }
+  100% {
+    background-color: #000; } }
+
+@keyframes mymove {
+  0% {
+    background-color: #000; }
+  50% {
+    background-color: red; }
+  100% {
+    background-color: #000; } }
+
+input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 4px 5px;
+  border: none;
+  outline: none; }
+
+textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 4px 5px;
+  height: 110px;
+  resize: none;
+  display: block;
+  border: none;
+  outline: none;
+  overflow-y: hidden; }
+
+.textarea-container {
+  padding-bottom: 5px;
+  border-bottom: solid 1px #ccc;
+  padding-right: 0px; }
+
+.expand #main-textarea-wrapper {
+  height: calc(100% - 110px); }
+
+.expand .textarea-container {
+  height: calc(100%/ 2); }
+
+.textarea-container textarea {
+  height: 100%; }
+
+#setTimeContainer {
+  margin-bottom: 10px;
+  margin-top: 5px;
+  padding: 5px 15px; }
+  #setTimeContainer label {
+    display: inline-block;
+    width: 45px;
+    box-sizing: border-box; }
+  #setTimeContainer #endTime {
+    width: calc(100% - 45px);
+    box-sizing: border-box;
+    border: none;
+    border-bottom: solid 1px #ccc; }
+
+#button {
+  text-align: center; }
+
+.hide {
+  display: none !important; }
+
+.show {
+  display: inline-block !important; }
+
+#stop, #pause, #start, #resume {
+  color: #FFF;
+  text-decoration: none;
+  width: 50px;
+  height: 18px;
+  display: inline-block; }
+
+#stop span, #start span, #pause span, #resume span {
+  position: relative;
+  top: 2px;
+  text-align: center; }
+
+#stop:hover, #pause:hover, #start:hover, #resume:hover {
+  background-color: #F90; }
+
+#stop {
+  margin-right: 5px;
+  background-color: #ff0000; }
+
+#start {
+  background-color: #1c4a9e; }
+
+#pause {
+  background-color: #090;
+  display: none; }
+
+#resume {
+  background-color: #1c4a9e;
+  display: none; }
+
+#curDoing {
+  background-color: #484848;
+  text-align: center;
+  color: #c5c5c5;
+  padding: 6px 5px; }
+
+body.expand textarea.hide-scrollbar {
+  overflow-y: scroll; }
+
+body.expand #toolsbar {
+  display: block; }
+
+body.expand #curDoing {
+  display: none; }
+
+#sizeMenu {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 10;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+  max-height: 100%;
+  box-sizing: border-box;
+  padding-top: 30px; }
+  #sizeMenu a {
+    color: #000;
+    display: block;
+    padding: 5px 10px;
+    text-decoration: none;
+    background-color: #CCC;
+    height: 50%;
+    width: 50%;
+    float: left;
+    box-sizing: border-box; }
+    #sizeMenu a.active {
+      background-color: red;
+      color: white; }
+    #sizeMenu a:hover {
+      background-color: #666;
+      color: #FFF; }

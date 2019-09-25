@@ -8,12 +8,12 @@ function compileBrowserify(){
     .pipe(dest('build/'))
 }
 function compileES6js(){
-    return src('src/**/*.js')
+    return src('src/js/**/*.js')
     .pipe(babel()) 
-    .pipe(dest('output/'));
+    .pipe(dest('dist/js/'));
 }
 function watchJs(){
-    return watch(['src/**/*.js'], series(compileES6js,compileBrowserify));
+    return watch(['src/js/**/*.js'], series(compileES6js,compileBrowserify));
 }
 module.exports = {
     watchJs
