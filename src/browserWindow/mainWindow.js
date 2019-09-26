@@ -18,11 +18,12 @@ let createWindow=()=>{
       nodeIntegration: true
     }
   })
-  mainWindow.loadURL("http://bf2c.info/sp/project/ci-doing-timer-v4/doing_timer/start/home?abc");
-  
+  mainWindow.loadFile("./index.html");
+  console.log(mainWindow.webContents.getURL());
+  //http://bf2c.info/sp/project/ci-doing-timer-v4/doing_timer/start/home?abc
   trayInit(mainWindow);
   resizeHandlerInit(mainWindow);
-  //mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools();
 
   let winBlur=()=>{   
     mainWindow.webContents.send('timer:blur');
