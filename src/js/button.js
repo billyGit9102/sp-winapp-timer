@@ -1,12 +1,13 @@
 import { activeSound } from './sound';
 import { currentTime } from './utility-function/currentTime';
-const buttonInit=(timerControl)=>{
+import  { base_url,type } from './globalVar_html.js';
+const buttonInit=(timerControl,soundTri)=>{
     $("#endTime").on("change", function() {
         var v = $(this).val()
         if (v == "") {
             $(this).val(0)
         }
-        $.post("<?php echo base_url('doing_timer/set_ticks/') . $type ?>", {
+        $.post(base_url+'doing_timer/set_ticks/'+type, {
             "ticks": timerControl.getTicks(),
             "endTime": $("#endTime").val()
         }, function(respones) {})
@@ -43,7 +44,7 @@ const buttonInit=(timerControl)=>{
     })
     var press_stop = false;
     $("#stop").on("click", function() {
-        $.post("<?php echo base_url('doing_timer/done/') . $type ?>", {}, function(respones) {
+        $.post(base_url+'doing_timer/done/'+type, {}, function(respones) {
             var ct = timerControl.getCurrentTime();
             if (ct != "0s" && !press_stop) {
                 press_stop = true;
@@ -79,7 +80,7 @@ function done_timer(){
     var content=$("#timeMark").val();
     //console.log("content-change="+content)
     $.ajax({
-        url: "http://bf2c.info/sp/project/ci-doing-timer-v5/doing_timer/set_content/"+window.timerType,
+        url: base_url+"doing_timer/set_content/"+type,
         data: {'content':content},
         type: "POST",
         success:function(response){

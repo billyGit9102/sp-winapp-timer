@@ -171,7 +171,88 @@ var DoingTimer = function DoingTimer(option) {
 
 
 exports.DoingTimer = DoingTimer;
-},{"./utility-function/extend":7}],2:[function(require,module,exports){
+},{"./utility-function/extend":11}],2:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.SoundTrigger = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+// JavaScript Document
+var SoundTrigger = function SoundTrigger(endTime) {
+  var _this = this;
+
+  _classCallCheck(this, SoundTrigger);
+
+  _defineProperty(this, "endTime", void 0);
+
+  _defineProperty(this, "handleTicksChange", function (e) {
+    //console.log("handleTicksChange");
+    console.log(_this.endTime);
+    var x = e.detail.ticks;
+    var checkStart = x / 1000 / 3 == 1 ? true : false;
+    var checkProcess = x / 1000 % 15 == 0 ? true : false;
+    var check1Min = x / 1000 % 60 == 0 ? true : false;
+    var check2Min = x / 1000 % 120 == 0 ? true : false;
+    var check5Min = x / 1000 % 300 == 0 ? true : false;
+    var checkEnd = x / 1000 % _this.endTime == 0 ? true : false;
+    console.log("endTime=" + _this.endTime);
+    console.log(_this);
+
+    if (checkEnd) {
+      console.log("SoundTrigger-checkEnd");
+      document.dispatchEvent(new CustomEvent("sound:End"));
+    }
+
+    if (x / 1000 % 60 == 59) {
+      console.log("SoundTrigger-59s");
+      document.dispatchEvent(new CustomEvent("sound:10s"));
+    }
+
+    if (checkStart) {
+      console.log("SoundTrigger-checkStart");
+      document.dispatchEvent(new CustomEvent("sound:start"));
+    }
+
+    if (checkProcess && !check1Min && !check2Min && !check5Min && !checkEnd) {
+      console.log("SoundTrigger-sound:process");
+      document.dispatchEvent(new CustomEvent("sound:process"));
+    }
+
+    if (check1Min && !check2Min && !check5Min && !checkEnd) {
+      console.log("SoundTrigger-1min");
+      document.dispatchEvent(new CustomEvent("sound:1min"));
+    }
+
+    if (check2Min && !check5Min && !checkEnd) {
+      console.log("SoundTrigger-2min");
+      document.dispatchEvent(new CustomEvent("sound:2min"));
+    }
+
+    if (check5Min && !checkEnd) {
+      console.log("SoundTrigger-5min");
+      document.dispatchEvent(new CustomEvent("sound:5min"));
+    }
+  });
+
+  _defineProperty(this, "setEndTime", function (e) {
+    _this.endTime = e * 60;
+    console.log("set end Time:SoundTrigger", _this.endTime);
+  });
+
+  this.endTime = endTime * 60;
+  document.addEventListener("timer:ticksChange", this.handleTicksChange);
+  console.log("soundTimer start", this.endTime);
+  console.log(this.endTime);
+};
+
+exports.SoundTrigger = SoundTrigger;
+},{}],3:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -183,7 +264,9 @@ var _sound = require("./sound");
 
 var _currentTime = require("./utility-function/currentTime");
 
-var buttonInit = function buttonInit(timerControl) {
+var _globalVar_html = require("./globalVar_html.js");
+
+var buttonInit = function buttonInit(timerControl, soundTri) {
   $("#endTime").on("change", function () {
     var v = $(this).val();
 
@@ -191,7 +274,7 @@ var buttonInit = function buttonInit(timerControl) {
       $(this).val(0);
     }
 
-    $.post("<?php echo base_url('doing_timer/set_ticks/') . $type ?>", {
+    $.post(_globalVar_html.base_url + 'doing_timer/set_ticks/' + _globalVar_html.type, {
       "ticks": timerControl.getTicks(),
       "endTime": $("#endTime").val()
     }, function (respones) {});
@@ -227,7 +310,7 @@ var buttonInit = function buttonInit(timerControl) {
   });
   var press_stop = false;
   $("#stop").on("click", function () {
-    $.post("<?php echo base_url('doing_timer/done/') . $type ?>", {}, function (respones) {
+    $.post(_globalVar_html.base_url + 'doing_timer/done/' + _globalVar_html.type, {}, function (respones) {
       var ct = timerControl.getCurrentTime();
 
       if (ct != "0s" && !press_stop) {
@@ -265,7 +348,7 @@ function done_timer() {
   var content = $("#timeMark").val(); //console.log("content-change="+content)
 
   $.ajax({
-    url: "http://bf2c.info/sp/project/ci-doing-timer-v5/doing_timer/set_content/" + window.timerType,
+    url: _globalVar_html.base_url + "doing_timer/set_content/" + _globalVar_html.type,
     data: {
       'content': content
     },
@@ -303,7 +386,70 @@ function done_timer() {
 //         return;
 //     }
 // });
-},{"./sound":5,"./utility-function/currentTime":6}],3:[function(require,module,exports){
+},{"./globalVar_html.js":6,"./sound":8,"./utility-function/currentTime":10}],4:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ipcRendererInit = void 0;
+
+/* ========================================== *
+*  
+*  1. handle expand button click event
+*  2. response to electron main window event
+*  
+* ========================================== */
+var electron = window.require('electron');
+
+var ipcRenderer = electron.ipcRenderer;
+/* ---------------------------------------------------- *
+*  1. handle expand button click event
+* ----------------------------------------------------- */
+
+var ipcRendererInit = function ipcRendererInit() {
+  var bodyele = document.getElementsByTagName("body")[0];
+  var is_expand = true;
+
+  function toggleExpand_handle(e) {
+    e.preventDefault();
+    console.log("is_expand", is_expand);
+    is_expand = bodyele.classList.contains("expand");
+
+    if (is_expand) {
+      bodyele.classList.remove("expand"); //bodyele.className="";
+    } else {
+      bodyele.classList.add("expand"); //bodyele.className="expand";
+    }
+
+    is_expand = bodyele.classList.contains("expand");
+    ipcRenderer.send('timer:expand', is_expand);
+    console.log("expand btn click");
+  }
+
+  document.getElementById('expander').addEventListener('click', toggleExpand_handle); //document.getElementById('curDoing').addEventListener('focus', toggleExpand_handle);
+
+  /* ---------------------------------------------------- *
+  *  2. response to electron main window timer:blur event
+  * ----------------------------------------------------- */
+
+  ipcRenderer.on('timer:blur', function (e, item) {
+    console.log('timer:blur'); //bodyele.className="";
+
+    bodyele.classList.remove("expand");
+  });
+  ipcRenderer.on('timer:max', function (e, item) {
+    console.log('timer:max');
+    bodyele.classList.add("max");
+    bodyele.classList.add("expand");
+  });
+  ipcRenderer.on('appStart', function (e) {
+    console.log('appStart'); //bodyele.className="expand";
+  });
+};
+
+exports.ipcRendererInit = ipcRendererInit;
+},{}],5:[function(require,module,exports){
 "use strict";
 
 var _soundHandler = require("./sound-handler");
@@ -312,22 +458,50 @@ var _Doingtimer = require("./Doingtimer");
 
 var _button = require("./button");
 
+var _titleContent = require("./title-content");
+
+var _globalVar_html = require("./globalVar_html.js");
+
+var _electron = require("./electron.js");
+
+var _SoundTrigger = require("./SoundTrigger.js");
+
+var electron = window.require('electron');
+
+var ipcRenderer = electron.ipcRenderer;
+
 (function ($) {
-  $.get("http://bf2c.info/sp/project/ci-doing-timer-v5/doing_timer/start/home", function (data) {
+  ipcRenderer.send('appLoadDone');
+  console.log('appLoadDone:sent');
+  $.get(_globalVar_html.base_url + '/doing_timer/start/' + _globalVar_html.type, function (data) {
     $(".result").html(data); //console.log(data.endTime );
 
     $("#doingNote").val(data.title);
     $("#timeMark").val(data.content);
     $("#endTime").val(data.endTime);
+    var timerControl = new _Doingtimer.DoingTimer({
+      target: document.getElementById("timer"),
+      startTime: 500
+    });
+    var soundTri = new _SoundTrigger.SoundTrigger(document.getElementById("endTime").value);
+    (0, _titleContent.titleContentInit)();
+    (0, _electron.ipcRendererInit)();
+    (0, _soundHandler.soundHandleInit)(timerControl);
+    (0, _button.buttonInit)(timerControl, soundTri);
   }, "json");
-  var timerControl = new _Doingtimer.DoingTimer({
-    target: document.getElementById("timer"),
-    startTime: 500
-  });
-  (0, _soundHandler.soundHandleInit)(timerControl);
-  (0, _button.buttonInit)(timerControl);
 })(jQuery); //--end (function ($) {
-},{"./Doingtimer":1,"./button":2,"./sound-handler":4}],4:[function(require,module,exports){
+},{"./Doingtimer":1,"./SoundTrigger.js":2,"./button":3,"./electron.js":4,"./globalVar_html.js":6,"./sound-handler":7,"./title-content":9}],6:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.type = exports.base_url = void 0;
+var base_url = "http://bf2c.info/sp/project/ci-doing-timer-v5/";
+exports.base_url = base_url;
+var type = "home";
+exports.type = type;
+},{}],7:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -337,6 +511,8 @@ exports.soundHandleInit = void 0;
 
 var _sound = require("./sound");
 
+var _globalVar_html = require("./globalVar_html.js");
+
 var soundHandleInit = function soundHandleInit(timerControl) {
   $(document).on("sound:start", function () {
     console.log("sound:start");
@@ -345,7 +521,7 @@ var soundHandleInit = function soundHandleInit(timerControl) {
     _sound.soundProcess.play();
   });
   $(document).on("sound:process", function () {
-    $.post("<?php echo base_url('doing_timer/set_ticks/') . $type ?>", {
+    $.post(_globalVar_html.base_url + 'doing_timer/set_ticks/' + _globalVar_html.type, {
       "ticks": timerControl.getTicks(),
       "endTime": $("#endTime").val()
     }, function (respones) {
@@ -380,7 +556,7 @@ var soundHandleInit = function soundHandleInit(timerControl) {
 };
 
 exports.soundHandleInit = soundHandleInit;
-},{"./sound":5}],5:[function(require,module,exports){
+},{"./globalVar_html.js":6,"./sound":8}],8:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -409,6 +585,7 @@ var activeSound = function activeSound() {
     s.muted = true;
     s.play();
     console.log(s.volume);
+    console.log("activeSound");
     var x = s;
     setTimeout(function () {
       x.muted = false;
@@ -436,7 +613,69 @@ var activeSound = function activeSound() {
 
 
 exports.activeSound = activeSound;
-},{}],6:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.titleContentInit = void 0;
+
+var _globalVar_html = require("./globalVar_html.js");
+
+var titleContentInit = function titleContentInit() {
+  var ele_doingNote = document.getElementById("doingNote");
+  update_curDoing(ele_doingNote.value);
+
+  function change_curDoing_handler(e) {
+    console.log(document.getElementById("curDoing").value);
+    update_DoingNote(document.getElementById("curDoing").value);
+  }
+
+  document.getElementById("curDoing").addEventListener("change", change_curDoing_handler);
+
+  function update_DoingNote(str) {
+    ele_doingNote.value = ele_doingNote.value.replace(/.*/, str);
+    $("#doingNote").trigger("change");
+  }
+
+  function update_curDoing(str) {
+    document.getElementById("curDoing").value = str.match(/.*/)[0];
+  }
+
+  $("#doingNote").on("change", function () {
+    var title = $(this).val();
+    update_curDoing(title);
+    console.log(title);
+    $.ajax({
+      url: _globalVar_html.base_url + 'doing_timer/set_title/' + _globalVar_html.type,
+      data: {
+        'title': title
+      },
+      type: "POST",
+      success: function success(response) {
+        console.log("set-title=" + response);
+      }
+    });
+  });
+  $("#timeMark").on("change", function () {
+    var content = $(this).val();
+    console.log("content-change=" + content);
+    $.ajax({
+      url: "http://bf2c.info/sp/project/ci-doing-timer-v5/doing_timer/set_content/" + window.timerType,
+      data: {
+        'content': content
+      },
+      type: "POST",
+      success: function success(response) {
+        console.log(response);
+      }
+    });
+  });
+};
+
+exports.titleContentInit = titleContentInit;
+},{"./globalVar_html.js":6}],10:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -455,7 +694,7 @@ var currentTime = function currentTime() {
 };
 
 exports.currentTime = currentTime;
-},{}],7:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -501,4 +740,4 @@ var extend = function extend(out) {
 };
 
 exports.extend = extend;
-},{}]},{},[3])
+},{}]},{},[5])

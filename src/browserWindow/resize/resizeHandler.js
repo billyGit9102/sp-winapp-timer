@@ -12,7 +12,8 @@ const resizeHandlerInit=(mainWindow)=>{
     
     //mainwindow resize smaller when on blur
     let winBlur=()=>{
-        //set_sizeMini(mainWindow);
+        console.log('winBlur');
+        set_sizeMini(mainWindow);
     }
     mainWindow.on('blur', winBlur);
     

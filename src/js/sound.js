@@ -17,6 +17,7 @@ const activeSound=()=> {
         s.muted = true;
         s.play();
         console.log(s.volume);
+        console.log("activeSound");
         let x = s;
         setTimeout(function() {
             x.muted = false

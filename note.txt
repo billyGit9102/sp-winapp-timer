@@ -13,3 +13,9 @@ babel-eslint
 
 command
 gulp compileJs
+git commit -m ""
+
+git checkout master
+git checkout startHtml
+
+const base_url="";

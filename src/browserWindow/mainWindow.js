@@ -6,7 +6,8 @@ const {trayInit} = require('./traySetting');
 let mainWindow;
 
 let createWindow=()=>{
-  
+  console.log('winW(),winH()')
+  console.log(winW(),winH())
   mainWindow = new BrowserWindow({
     width: winW(),
     height: winH(),

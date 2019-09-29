@@ -1,4 +1,6 @@
 import {soundProcess,sound1Min,sound2Min,sound5Min} from './sound';
+import  { base_url,type } from './globalVar_html.js';
+
 const soundHandleInit=(timerControl)=>{
     $(document).on("sound:start", function() {
         console.log("sound:start");
@@ -7,7 +9,7 @@ const soundHandleInit=(timerControl)=>{
     });
 
     $(document).on("sound:process", function() {
-        $.post("<?php echo base_url('doing_timer/set_ticks/') . $type ?>", {
+        $.post(base_url+'doing_timer/set_ticks/'+type, {
             "ticks": timerControl.getTicks(),
             "endTime": $("#endTime").val()
         },
