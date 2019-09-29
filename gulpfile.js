@@ -1,4 +1,4 @@
-const {watchJs}= require('./gulp/watchJs');
+const {watchJs,compileJs}= require('./gulp/watchJs');
 const {watchHtml,compileHtml}= require('./gulp/watchHtml');
 const {watchScss,compileScss}= require('./gulp/watchScss');
 
@@ -18,3 +18,4 @@ exports.default = defaultTask;
 exports.gw=watchSrc;
 exports.compileScss=compileScss;
 exports.compileHtml=compileHtml;
+exports.compileJs=compileJs;

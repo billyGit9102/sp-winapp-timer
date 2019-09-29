@@ -2,3 +2,14 @@ github link
 https://github.com/billyGit9102/winapp-timer
 
 https://www.npmjs.com/package/gulp-htmlmin
+
+
+problem
+hasOwnProperty("bar")
+https://eslint.org/docs/rules/no-prototype-builtins
+
+babel-eslint
+
+
+command
+gulp compileJs
