@@ -26,7 +26,12 @@ let createWindow=()=>{
   resizeHandlerInit(mainWindow);
   //mainWindow.webContents.openDevTools();
 
+  // mainWindow.webContents.on('did-finish-load',()=>{
+  //   console.log("app first load")
+  // });
+
   let winBlur=()=>{   
+    console.log('winBlur222');
     mainWindow.webContents.send('timer:blur');
     //prevent slow connection problem
     mainWindow.webContents.once('dom-ready', () => {  mainWindow.webContents.send('appStart'); });

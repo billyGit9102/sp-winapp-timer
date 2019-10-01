@@ -27,14 +27,15 @@ const resizeHandlerInit=(mainWindow)=>{
         console.log("timer:expand",expand);
     });
     
-    ipcMain.on('appLoadDone', ()=>{
-        console.log("appLoadDone");
-        if(expand){
-            set_sizeExpand(mainWindow);
-        }else{
-            set_sizeMini(mainWindow);
-        }
-    });
+    //htmlloadDone, old script , for when minimize refresh page, need expand the app
+    // ipcMain.on('htmlLoadDone', ()=>{
+    //     console.log("htmlLoadDone");
+    //     if(expand){
+    //         set_sizeExpand(mainWindow);
+    //     }else{
+    //         set_sizeMini(mainWindow);
+    //     }
+    // });
 }
 
 module.exports = {

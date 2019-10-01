@@ -171,23 +171,23 @@ var DoingTimer = function DoingTimer(option) {
 
 
 exports.DoingTimer = DoingTimer;
-},{"./utility-function/extend":11}],2:[function(require,module,exports){
+},{"./utility-function/extend":12}],2:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.SoundTrigger = void 0;
+exports.SoundEventDispatch = void 0;
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 // JavaScript Document
-var SoundTrigger = function SoundTrigger(endTime) {
+var SoundEventDispatch = function SoundEventDispatch(endTime) {
   var _this = this;
 
-  _classCallCheck(this, SoundTrigger);
+  _classCallCheck(this, SoundEventDispatch);
 
   _defineProperty(this, "endTime", void 0);
 
@@ -251,7 +251,7 @@ var SoundTrigger = function SoundTrigger(endTime) {
   console.log(this.endTime);
 };
 
-exports.SoundTrigger = SoundTrigger;
+exports.SoundEventDispatch = SoundEventDispatch;
 },{}],3:[function(require,module,exports){
 "use strict";
 
@@ -386,7 +386,7 @@ function done_timer() {
 //         return;
 //     }
 // });
-},{"./globalVar_html.js":6,"./sound":8,"./utility-function/currentTime":10}],4:[function(require,module,exports){
+},{"./globalVar_html.js":6,"./sound":8,"./utility-function/currentTime":11}],4:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -452,7 +452,7 @@ exports.ipcRendererInit = ipcRendererInit;
 },{}],5:[function(require,module,exports){
 "use strict";
 
-var _soundHandler = require("./sound-handler");
+var _preloader = require("./preloader");
 
 var _Doingtimer = require("./Doingtimer");
 
@@ -460,37 +460,40 @@ var _button = require("./button");
 
 var _titleContent = require("./title-content");
 
-var _globalVar_html = require("./globalVar_html.js");
+var _globalVar_html = require("./globalVar_html");
 
-var _electron = require("./electron.js");
+var _electron = require("./electron");
 
-var _SoundTrigger = require("./SoundTrigger.js");
+var _SoundEventDispatch = require("./SoundEventDispatch");
 
-var electron = window.require('electron');
+var _soundEventHandle = require("./soundEventHandle");
 
-var ipcRenderer = electron.ipcRenderer;
-
+//const electron = window.require('electron');
+//const {ipcRenderer} = electron;
 (function ($) {
-  ipcRenderer.send('appLoadDone');
-  console.log('appLoadDone:sent');
-  $.get(_globalVar_html.base_url + '/doing_timer/start/' + _globalVar_html.type, function (data) {
-    $(".result").html(data); //console.log(data.endTime );
+  (0, _preloader.showPreloader)(); //htmlloadDone, old script , for when minimize refresh page in devtool, need expand the app
+  //ipcRenderer.send('htmlLoadDone');
+  //console.log('htmlLoadDone:sent');
 
+  (0, _electron.ipcRendererInit)(); //console.log(this.location)       
+
+  $.get(_globalVar_html.base_url + '/doing_timer/start/' + _globalVar_html.type, function (data) {
     $("#doingNote").val(data.title);
     $("#timeMark").val(data.content);
     $("#endTime").val(data.endTime);
+    (0, _preloader.removePreloader)();
     var timerControl = new _Doingtimer.DoingTimer({
       target: document.getElementById("timer"),
-      startTime: 500
+      startTime: 0 //1000 = 1s
+
     });
-    var soundTri = new _SoundTrigger.SoundTrigger(document.getElementById("endTime").value);
+    var soundEvent = new _SoundEventDispatch.SoundEventDispatch(document.getElementById("endTime").value);
     (0, _titleContent.titleContentInit)();
-    (0, _electron.ipcRendererInit)();
-    (0, _soundHandler.soundHandleInit)(timerControl);
-    (0, _button.buttonInit)(timerControl, soundTri);
+    (0, _soundEventHandle.soundEventHandleInit)(timerControl);
+    (0, _button.buttonInit)(timerControl, soundEvent);
   }, "json");
 })(jQuery); //--end (function ($) {
-},{"./Doingtimer":1,"./SoundTrigger.js":2,"./button":3,"./electron.js":4,"./globalVar_html.js":6,"./sound-handler":7,"./title-content":9}],6:[function(require,module,exports){
+},{"./Doingtimer":1,"./SoundEventDispatch":2,"./button":3,"./electron":4,"./globalVar_html":6,"./preloader":7,"./soundEventHandle":9,"./title-content":10}],6:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -507,56 +510,29 @@ exports.type = type;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.soundHandleInit = void 0;
+exports.removePreloader = exports.showPreloader = void 0;
 
-var _sound = require("./sound");
+//only show preloader when load time exsist 100ms, 
+//because want to show preloader only when app start
+//prevent the loader show when refresh page
+var showPreloader = function showPreloader() {
+  setTimeout(function () {
+    $("#preloader").addClass('init');
+    console.log('$("#preloader").fadeIn(20)');
+  }, 100);
+}; //when ajax load php data finish, remove preloader html
 
-var _globalVar_html = require("./globalVar_html.js");
 
-var soundHandleInit = function soundHandleInit(timerControl) {
-  $(document).on("sound:start", function () {
-    console.log("sound:start");
-    _sound.soundProcess.currentTime = 0;
+exports.showPreloader = showPreloader;
 
-    _sound.soundProcess.play();
-  });
-  $(document).on("sound:process", function () {
-    $.post(_globalVar_html.base_url + 'doing_timer/set_ticks/' + _globalVar_html.type, {
-      "ticks": timerControl.getTicks(),
-      "endTime": $("#endTime").val()
-    }, function (respones) {
-      console.log(respones + "set_ticks");
-    });
-    console.log("sound:process");
-
-    _sound.soundProcess.play();
-  });
-  $(document).on("sound:1min", function () {
-    console.log("sound:1min");
-
-    _sound.sound1Min.play();
-  });
-  $(document).on("sound:2min", function () {
-    console.log("sound:2min");
-
-    _sound.sound2Min.play();
-  });
-  $(document).on("sound:5min", function () {
-    console.log("sound:5min");
-
-    _sound.sound5Min.play();
-  });
-  $(document).on("sound:End", function () {
-    console.log("sound:End");
-    $("body").addClass("timerAlert");
-    _sound.sound2Min.loop = true;
-
-    _sound.sound2Min.play();
+var removePreloader = function removePreloader() {
+  $("#preloader").fadeOut(300, function () {
+    $("#preloader").remove();
   });
 };
 
-exports.soundHandleInit = soundHandleInit;
-},{"./globalVar_html.js":6,"./sound":8}],8:[function(require,module,exports){
+exports.removePreloader = removePreloader;
+},{}],8:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -619,6 +595,61 @@ exports.activeSound = activeSound;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.soundEventHandleInit = void 0;
+
+var _sound = require("./sound");
+
+var _globalVar_html = require("./globalVar_html.js");
+
+var soundEventHandleInit = function soundEventHandleInit(timerControl) {
+  $(document).on("sound:start", function () {
+    console.log("sound:start");
+    _sound.soundProcess.currentTime = 0;
+
+    _sound.soundProcess.play();
+  });
+  $(document).on("sound:process", function () {
+    $.post(_globalVar_html.base_url + 'doing_timer/set_ticks/' + _globalVar_html.type, {
+      "ticks": timerControl.getTicks(),
+      "endTime": $("#endTime").val()
+    }, function (respones) {
+      console.log(respones + "set_ticks");
+    });
+    console.log("sound:process");
+
+    _sound.soundProcess.play();
+  });
+  $(document).on("sound:1min", function () {
+    console.log("sound:1min");
+
+    _sound.sound1Min.play();
+  });
+  $(document).on("sound:2min", function () {
+    console.log("sound:2min");
+
+    _sound.sound2Min.play();
+  });
+  $(document).on("sound:5min", function () {
+    console.log("sound:5min");
+
+    _sound.sound5Min.play();
+  });
+  $(document).on("sound:End", function () {
+    console.log("sound:End");
+    $("body").addClass("timerAlert");
+    _sound.sound2Min.loop = true;
+
+    _sound.sound2Min.play();
+  });
+};
+
+exports.soundEventHandleInit = soundEventHandleInit;
+},{"./globalVar_html.js":6,"./sound":8}],10:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.titleContentInit = void 0;
 
 var _globalVar_html = require("./globalVar_html.js");
@@ -675,7 +706,7 @@ var titleContentInit = function titleContentInit() {
 };
 
 exports.titleContentInit = titleContentInit;
-},{"./globalVar_html.js":6}],10:[function(require,module,exports){
+},{"./globalVar_html.js":6}],11:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -694,7 +725,7 @@ var currentTime = function currentTime() {
 };
 
 exports.currentTime = currentTime;
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

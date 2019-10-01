@@ -1,7 +1,7 @@
 import {soundProcess,sound1Min,sound2Min,sound5Min} from './sound';
 import  { base_url,type } from './globalVar_html.js';
 
-const soundHandleInit=(timerControl)=>{
+const soundEventHandleInit=(timerControl)=>{
     $(document).on("sound:start", function() {
         console.log("sound:start");
         soundProcess.currentTime = 0;
@@ -43,4 +43,4 @@ const soundHandleInit=(timerControl)=>{
     });
 }
 
-export {soundHandleInit}
+export {soundEventHandleInit}

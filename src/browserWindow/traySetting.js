@@ -33,8 +33,12 @@ let trayInit=(mainWindow)=>{
     tray.setToolTip('Winapp Timer');
 
     app.on('window-all-closed', ()=> {
-        //console.log("app in tray call tray destroy")
+        console.log("app in tray call tray destroy")
         tray.destroy();
+    })
+    app.on('quit', ()=> {
+        tray.destroy();
+        console.log("app in tray call tray destroy2")
     })
 
 }

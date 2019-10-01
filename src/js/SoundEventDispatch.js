@@ -1,5 +1,5 @@
 // JavaScript Document
-class SoundTrigger{
+class SoundEventDispatch{
     endTime;
     constructor(endTime){
         this.endTime=endTime*60;      
@@ -54,4 +54,4 @@ class SoundTrigger{
     }    
 	setEndTime=(e)=>{ this.endTime=e*60;console.log("set end Time:SoundTrigger", this.endTime)}
 } 
-export {SoundTrigger}
+export {SoundEventDispatch}
