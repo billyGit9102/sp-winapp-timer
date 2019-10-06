@@ -1,7 +1,7 @@
 import { activeSound } from './sound';
 import { currentTime } from './utility-function/currentTime';
 import  { base_url,type } from './globalVar_html.js';
-const buttonInit=(timerControl,soundTri)=>{
+const buttonActionInit=(timerControl,soundEventDispatch)=>{
     $("#endTime").on("change", function() {
         var v = $(this).val()
         if (v == "") {
@@ -11,7 +11,7 @@ const buttonInit=(timerControl,soundTri)=>{
             "ticks": timerControl.getTicks(),
             "endTime": $("#endTime").val()
         }, function(respones) {})
-        soundTri.setEndTime($("#endTime").val())
+        soundEventDispatch.setEndTime($("#endTime").val())
         //sound2Min.loop = true;
         //sound2Min.play();
         //alert(v)
@@ -89,7 +89,7 @@ function done_timer(){
     });
 }
 
-export {buttonInit}
+export {buttonActionInit}
 // 
 // var flag = 0;
 // $("#refresh").on("click", function() {

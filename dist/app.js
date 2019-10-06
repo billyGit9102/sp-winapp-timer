@@ -258,7 +258,7 @@ exports.SoundEventDispatch = SoundEventDispatch;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.buttonInit = void 0;
+exports.buttonActionInit = void 0;
 
 var _sound = require("./sound");
 
@@ -266,7 +266,7 @@ var _currentTime = require("./utility-function/currentTime");
 
 var _globalVar_html = require("./globalVar_html.js");
 
-var buttonInit = function buttonInit(timerControl, soundTri) {
+var buttonActionInit = function buttonActionInit(timerControl, soundEventDispatch) {
   $("#endTime").on("change", function () {
     var v = $(this).val();
 
@@ -278,7 +278,7 @@ var buttonInit = function buttonInit(timerControl, soundTri) {
       "ticks": timerControl.getTicks(),
       "endTime": $("#endTime").val()
     }, function (respones) {});
-    soundTri.setEndTime($("#endTime").val()); //sound2Min.loop = true;
+    soundEventDispatch.setEndTime($("#endTime").val()); //sound2Min.loop = true;
     //sound2Min.play();
     //alert(v)
   }); //button action
@@ -342,7 +342,7 @@ var buttonInit = function buttonInit(timerControl, soundTri) {
   });
 };
 
-exports.buttonInit = buttonInit;
+exports.buttonActionInit = buttonActionInit;
 
 function done_timer() {
   var content = $("#timeMark").val(); //console.log("content-change="+content)
@@ -487,10 +487,11 @@ var _soundEventHandle = require("./soundEventHandle");
       startTime: 0 //1000 = 1s
 
     });
-    var soundEvent = new _SoundEventDispatch.SoundEventDispatch(document.getElementById("endTime").value);
+    var soundEventDispatch = new _SoundEventDispatch.SoundEventDispatch(document.getElementById("endTime").value);
+    console.log(soundEventDispatch.endTime);
     (0, _titleContent.titleContentInit)();
     (0, _soundEventHandle.soundEventHandleInit)(timerControl);
-    (0, _button.buttonInit)(timerControl, soundEvent);
+    (0, _button.buttonActionInit)(timerControl, soundEventDispatch);
   }, "json");
 })(jQuery); //--end (function ($) {
 },{"./Doingtimer":1,"./SoundEventDispatch":2,"./button":3,"./electron":4,"./globalVar_html":6,"./preloader":7,"./soundEventHandle":9,"./title-content":10}],6:[function(require,module,exports){
@@ -602,13 +603,13 @@ var _sound = require("./sound");
 var _globalVar_html = require("./globalVar_html.js");
 
 var soundEventHandleInit = function soundEventHandleInit(timerControl) {
-  $(document).on("sound:start", function () {
+  $(document).addEventListener("sound:start", function () {
     console.log("sound:start");
     _sound.soundProcess.currentTime = 0;
 
     _sound.soundProcess.play();
   });
-  $(document).on("sound:process", function () {
+  $(document).addEventListener("sound:process", function () {
     $.post(_globalVar_html.base_url + 'doing_timer/set_ticks/' + _globalVar_html.type, {
       "ticks": timerControl.getTicks(),
       "endTime": $("#endTime").val()
@@ -619,22 +620,22 @@ var soundEventHandleInit = function soundEventHandleInit(timerControl) {
 
     _sound.soundProcess.play();
   });
-  $(document).on("sound:1min", function () {
+  $(document).addEventListener("sound:1min", function () {
     console.log("sound:1min");
 
     _sound.sound1Min.play();
   });
-  $(document).on("sound:2min", function () {
+  $(document).addEventListener("sound:2min", function () {
     console.log("sound:2min");
 
     _sound.sound2Min.play();
   });
-  $(document).on("sound:5min", function () {
+  $(document).addEventListener("sound:5min", function () {
     console.log("sound:5min");
 
     _sound.sound5Min.play();
   });
-  $(document).on("sound:End", function () {
+  $(document).addEventListener("sound:End", function () {
     console.log("sound:End");
     $("body").addClass("timerAlert");
     _sound.sound2Min.loop = true;

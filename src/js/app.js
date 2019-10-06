@@ -1,7 +1,7 @@
 
 import {showPreloader,removePreloader} from './preloader';
 import {DoingTimer} from './Doingtimer';
-import {buttonInit} from './button';
+import {buttonActionInit} from './button';
 import {titleContentInit} from './title-content';
 import {base_url,type} from './globalVar_html';
 import {ipcRendererInit} from './electron';
@@ -23,7 +23,7 @@ import {soundEventHandleInit} from './soundEventHandle';
     $.get( base_url+'/doing_timer/start/'+type, function( data ) {
       $("#doingNote").val(data.title);
       $("#timeMark").val(data.content);
-      $("#endTime").val(data.endTime);    
+      $("#endTime").val(data.endTime);
       
       removePreloader();
 
@@ -31,11 +31,13 @@ import {soundEventHandleInit} from './soundEventHandle';
         target: document.getElementById("timer"),
         startTime: 0 //1000 = 1s
       });
-      const soundEvent = new SoundEventDispatch(document.getElementById("endTime").value);
+      const soundEventDispatch = new SoundEventDispatch(document.getElementById("endTime").value);
+      
+      console.log(soundEventDispatch.endTime);
 
       titleContentInit();
       soundEventHandleInit(timerControl);
-      buttonInit(timerControl,soundEvent);
+      buttonActionInit(timerControl,soundEventDispatch);
   
     },"json")
 
