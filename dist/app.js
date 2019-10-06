@@ -8,6 +8,8 @@ exports.DoingTimer = void 0;
 
 var _extend = require("./utility-function/extend");
 
+var _SoundEventDispatch = require("./SoundEventDispatch");
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -28,6 +30,8 @@ var DoingTimer = function DoingTimer(option) {
   _defineProperty(this, "intervalTimer", void 0);
 
   _defineProperty(this, "currentTime", void 0);
+
+  _defineProperty(this, "soundEventDispatch", void 0);
 
   _defineProperty(this, "_findMilesecond", function (x) {
     /*
@@ -153,6 +157,12 @@ var DoingTimer = function DoingTimer(option) {
     _this._displayTime();
   });
 
+  _defineProperty(this, "setEndTime", function () {
+    _this.soundEventDispatch.setEndTime($("#endTime").val());
+
+    console.log("setEndTimer in timecontrol");
+  });
+
   this.setting = (0, _extend.extend)({
     target: {
       name: "default"
@@ -164,6 +174,7 @@ var DoingTimer = function DoingTimer(option) {
   this.ms = this.setting.startTime;
   this.endTime = this.setting.endTime * 60;
   this.intervalTimer = "";
+  this.soundEventDispatch = new _SoundEventDispatch.SoundEventDispatch(document.getElementById("endTime").value);
   console.log("DoingTimer-start");
   console.log(this.setting);
   console.log(this.ms, "===tart-dt");
@@ -171,7 +182,7 @@ var DoingTimer = function DoingTimer(option) {
 
 
 exports.DoingTimer = DoingTimer;
-},{"./utility-function/extend":12}],2:[function(require,module,exports){
+},{"./SoundEventDispatch":2,"./utility-function/extend":12}],2:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -266,7 +277,7 @@ var _currentTime = require("./utility-function/currentTime");
 
 var _globalVar_html = require("./globalVar_html.js");
 
-var buttonActionInit = function buttonActionInit(timerControl, soundEventDispatch) {
+var buttonActionInit = function buttonActionInit(timerControl) {
   $("#endTime").on("change", function () {
     var v = $(this).val();
 
@@ -278,7 +289,7 @@ var buttonActionInit = function buttonActionInit(timerControl, soundEventDispatc
       "ticks": timerControl.getTicks(),
       "endTime": $("#endTime").val()
     }, function (respones) {});
-    soundEventDispatch.setEndTime($("#endTime").val()); //sound2Min.loop = true;
+    timerControl.setEndTime($("#endTime").val()); //sound2Min.loop = true;
     //sound2Min.play();
     //alert(v)
   }); //button action
@@ -464,8 +475,6 @@ var _globalVar_html = require("./globalVar_html");
 
 var _electron = require("./electron");
 
-var _SoundEventDispatch = require("./SoundEventDispatch");
-
 var _soundEventHandle = require("./soundEventHandle");
 
 //const electron = window.require('electron');
@@ -487,14 +496,12 @@ var _soundEventHandle = require("./soundEventHandle");
       startTime: 0 //1000 = 1s
 
     });
-    var soundEventDispatch = new _SoundEventDispatch.SoundEventDispatch(document.getElementById("endTime").value);
-    console.log(soundEventDispatch.endTime);
-    (0, _titleContent.titleContentInit)();
     (0, _soundEventHandle.soundEventHandleInit)(timerControl);
-    (0, _button.buttonActionInit)(timerControl, soundEventDispatch);
+    (0, _titleContent.titleContentInit)();
+    (0, _button.buttonActionInit)(timerControl);
   }, "json");
 })(jQuery); //--end (function ($) {
-},{"./Doingtimer":1,"./SoundEventDispatch":2,"./button":3,"./electron":4,"./globalVar_html":6,"./preloader":7,"./soundEventHandle":9,"./title-content":10}],6:[function(require,module,exports){
+},{"./Doingtimer":1,"./button":3,"./electron":4,"./globalVar_html":6,"./preloader":7,"./soundEventHandle":9,"./title-content":10}],6:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -603,13 +610,13 @@ var _sound = require("./sound");
 var _globalVar_html = require("./globalVar_html.js");
 
 var soundEventHandleInit = function soundEventHandleInit(timerControl) {
-  $(document).addEventListener("sound:start", function () {
+  document.addEventListener("sound:start", function () {
     console.log("sound:start");
     _sound.soundProcess.currentTime = 0;
 
     _sound.soundProcess.play();
   });
-  $(document).addEventListener("sound:process", function () {
+  document.addEventListener("sound:process", function () {
     $.post(_globalVar_html.base_url + 'doing_timer/set_ticks/' + _globalVar_html.type, {
       "ticks": timerControl.getTicks(),
       "endTime": $("#endTime").val()
@@ -620,22 +627,22 @@ var soundEventHandleInit = function soundEventHandleInit(timerControl) {
 
     _sound.soundProcess.play();
   });
-  $(document).addEventListener("sound:1min", function () {
+  document.addEventListener("sound:1min", function () {
     console.log("sound:1min");
 
     _sound.sound1Min.play();
   });
-  $(document).addEventListener("sound:2min", function () {
+  document.addEventListener("sound:2min", function () {
     console.log("sound:2min");
 
     _sound.sound2Min.play();
   });
-  $(document).addEventListener("sound:5min", function () {
+  document.addEventListener("sound:5min", function () {
     console.log("sound:5min");
 
     _sound.sound5Min.play();
   });
-  $(document).addEventListener("sound:End", function () {
+  document.addEventListener("sound:End", function () {
     console.log("sound:End");
     $("body").addClass("timerAlert");
     _sound.sound2Min.loop = true;

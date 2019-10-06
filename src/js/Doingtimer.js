@@ -1,4 +1,6 @@
-import {extend} from './utility-function/extend'
+import {extend} from './utility-function/extend';
+import {SoundEventDispatch} from './SoundEventDispatch';
+
 class DoingTimer{
 	setting;
 	ms;
@@ -6,12 +8,18 @@ class DoingTimer{
 	endTime;
 	intervalTimer;
 	currentTime;
+
+	soundEventDispatch;
+
 	constructor(option){	
 		this.setting=extend({target:{name:"default"},"startTime":0,"endTime":0}, option||{});
 		this.target=this.setting.target;
 		this.ms=this.setting.startTime;
 		this.endTime=this.setting.endTime*60;
-        this.intervalTimer=""; 
+		this.intervalTimer=""; 
+		
+		this.soundEventDispatch = new SoundEventDispatch(document.getElementById("endTime").value);
+
         console.log("DoingTimer-start");
         console.log(this.setting);
         console.log(this.ms,"===tart-dt");
@@ -112,7 +120,7 @@ class DoingTimer{
 	getTicks=()=>{ return this.ms; }
 	getCurrentTime=()=>{ return this.currentTime; }
 	addTime=(second)=>{ this.ms=this.ms+(second*60000); this._displayTime(); }
-
+	setEndTime=()=>{ this.soundEventDispatch.setEndTime($("#endTime").val()); console.log("setEndTimer in timecontrol") }
 }
 //let ele=document.getElementById("timer");
 

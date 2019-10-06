@@ -5,7 +5,6 @@ import {buttonActionInit} from './button';
 import {titleContentInit} from './title-content';
 import {base_url,type} from './globalVar_html';
 import {ipcRendererInit} from './electron';
-import {SoundEventDispatch} from './SoundEventDispatch';
 import {soundEventHandleInit} from './soundEventHandle';
 
 //const electron = window.require('electron');
@@ -31,13 +30,10 @@ import {soundEventHandleInit} from './soundEventHandle';
         target: document.getElementById("timer"),
         startTime: 0 //1000 = 1s
       });
-      const soundEventDispatch = new SoundEventDispatch(document.getElementById("endTime").value);
-      
-      console.log(soundEventDispatch.endTime);
+      soundEventHandleInit(timerControl);
 
       titleContentInit();
-      soundEventHandleInit(timerControl);
-      buttonActionInit(timerControl,soundEventDispatch);
+      buttonActionInit(timerControl);
   
     },"json")
 
