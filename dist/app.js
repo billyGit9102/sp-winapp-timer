@@ -480,10 +480,7 @@ var _soundEventHandle = require("./soundEventHandle");
 //const electron = window.require('electron');
 //const {ipcRenderer} = electron;
 (function ($) {
-  (0, _preloader.showPreloader)(); //htmlloadDone, old script , for when minimize refresh page in devtool, need expand the app
-  //ipcRenderer.send('htmlLoadDone');
-  //console.log('htmlLoadDone:sent');
-
+  (0, _preloader.showPreloader)();
   (0, _electron.ipcRendererInit)(); //console.log(this.location)       
 
   $.get(_globalVar_html.base_url + '/doing_timer/start/' + _globalVar_html.type, function (data) {

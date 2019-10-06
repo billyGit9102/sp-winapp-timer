@@ -13,10 +13,6 @@ import {soundEventHandleInit} from './soundEventHandle';
 (function ($) {
     showPreloader()
 
-    //htmlloadDone, old script , for when minimize refresh page in devtool, need expand the app
-    //ipcRenderer.send('htmlLoadDone');
-    //console.log('htmlLoadDone:sent');
-
     ipcRendererInit();
     //console.log(this.location)       
     $.get( base_url+'/doing_timer/start/'+type, function( data ) {
