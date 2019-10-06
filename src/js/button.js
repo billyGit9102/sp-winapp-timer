@@ -47,10 +47,11 @@ const buttonActionInit=(timerControl)=>{
         $.post(base_url+'doing_timer/done/'+type, {}, function(respones) {
             var ct = timerControl.getCurrentTime();
             if (ct != "0s" && !press_stop) {
+                //let curDoingTask=prompt("type task name");
                 press_stop = true;
                 //get current time, then set to end time
                 //$("#time").text()
-                doingEndTimer = "-" + currentTime() + "| " + document.getElementById("curDoing").value + "\n";
+                doingEndTimer = "-" + currentTime() + "| " + document.getElementById("curDoing").value  + "\n"; //+ ' ' + curDoingTask
                 //alert($("#time").text());
                 var currentDoingTxtContent = $("#timeMark").val();
                 currentDoingTxtContent = currentDoingTxtContent.split(" ");

@@ -37,7 +37,8 @@ const soundEventHandleInit=(timerControl)=>{
 
     document.addEventListener("sound:End", function() {
         console.log("sound:End");
-        $("body").addClass("timerAlert")
+        $("body").addClass("timerAlert");
+        $("#expander").trigger('click');
         sound2Min.loop = true;
         sound2Min.play();
     });

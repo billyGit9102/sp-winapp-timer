@@ -325,10 +325,12 @@ var buttonActionInit = function buttonActionInit(timerControl) {
       var ct = timerControl.getCurrentTime();
 
       if (ct != "0s" && !press_stop) {
+        //let curDoingTask=prompt("type task name");
         press_stop = true; //get current time, then set to end time
         //$("#time").text()
 
-        doingEndTimer = "-" + (0, _currentTime.currentTime)() + "| " + document.getElementById("curDoing").value + "\n"; //alert($("#time").text());
+        doingEndTimer = "-" + (0, _currentTime.currentTime)() + "| " + document.getElementById("curDoing").value + "\n"; //+ ' ' + curDoingTask
+        //alert($("#time").text());
 
         var currentDoingTxtContent = $("#timeMark").val();
         currentDoingTxtContent = currentDoingTxtContent.split(" ");
@@ -642,6 +644,7 @@ var soundEventHandleInit = function soundEventHandleInit(timerControl) {
   document.addEventListener("sound:End", function () {
     console.log("sound:End");
     $("body").addClass("timerAlert");
+    $("#expander").trigger('click');
     _sound.sound2Min.loop = true;
 
     _sound.sound2Min.play();
