@@ -17,8 +17,7 @@ let createWindow=()=>{
     minimizable:false,
     webPreferences: {
       nodeIntegration: true
-    }
-    
+    } 
   })
   mainWindow.loadFile("./index.html");
   console.log(mainWindow.webContents.getURL());

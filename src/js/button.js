@@ -1,6 +1,6 @@
 import { activeSound } from './sound';
 import { currentTime } from './utility-function/currentTime';
-import  { base_url,type } from './globalVar_html.js';
+import { base_url,type } from './globalVar_html.js';
 const buttonActionInit=(timerControl)=>{
     $("#endTime").on("change", function() {
         var v = $(this).val()
