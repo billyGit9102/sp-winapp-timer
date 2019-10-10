@@ -2,7 +2,7 @@ import { activeSound } from './sound';
 import { currentTime } from './utility-function/currentTime';
 import { base_url,type } from './globalVar_html.js';
 const buttonActionInit=(timerControl)=>{
-    $("#endTime").on("change", function() {
+    document.getElementById("endTime").addEventListener("change", function() {
         var v = $(this).val()
         if (v == "") {
             $(this).val(0)
@@ -11,7 +11,8 @@ const buttonActionInit=(timerControl)=>{
             "ticks": timerControl.getTicks(),
             "endTime": $("#endTime").val()
         }, function(respones) {})
-        timerControl.setEndTime($("#endTime").val())
+        let et=$("#endTime").val();
+        timerControl.setEndTime(et)
         //sound2Min.loop = true;
         //sound2Min.play();
         //alert(v)
@@ -19,7 +20,7 @@ const buttonActionInit=(timerControl)=>{
     //button action
     var doingStTimer = ">???|-"
     var doingEndTimer = "<|"
-    $("#start").on("click", function() {
+    document.getElementById("start").addEventListener("click", function() {
         timerControl.startTimer()
         activeSound()
         //$("#start").addClass("hide");
@@ -28,22 +29,23 @@ const buttonActionInit=(timerControl)=>{
         document.getElementById("pause").className = "show";
         doingStTimer = ">" + currentTime() + "-";
     })
-    $("#pause").on("click", function() {
+    document.getElementById("pause").addEventListener("click", function() {
         timerControl.pauseTimer();
         //$("#pause").addClass("hide");
         document.getElementById("pause").className = "hide";
         //$("#resume").addClass("show");
         document.getElementById("resume").className = "show";
     })
-    $("#resume").on("click", function() {
+    document.getElementById("resume").addEventListener("click", function() {
         timerControl.resumeTimer();
         //$("#resume").addClass("hide");
         document.getElementById("resume").className = "hide";
         //$("#pause").addClass("show");
         document.getElementById("pause").className = "show";
     })
+
     var press_stop = false;
-    $("#stop").on("click", function() {
+    document.getElementById("stop").addEventListener("click", function() {
         $.post(base_url+'doing_timer/done/'+type, {}, function(respones) {
             var ct = timerControl.getCurrentTime();
             if (ct != "0s" && !press_stop) {
@@ -51,7 +53,7 @@ const buttonActionInit=(timerControl)=>{
                 press_stop = true;
                 //get current time, then set to end time
                 //$("#time").text()
-                doingEndTimer = "-" + currentTime() + "| " + document.getElementById("curDoing").value  + "\n"; //+ ' ' + curDoingTask
+                doingEndTimer = "-" + currentTime() + "| " + document.getElementById("curDoing").value  + " \n"; //+ ' ' + curDoingTask
                 //alert($("#time").text());
                 var currentDoingTxtContent = $("#timeMark").val();
                 currentDoingTxtContent = currentDoingTxtContent.split(" ");
@@ -78,7 +80,8 @@ const buttonActionInit=(timerControl)=>{
 
 }
 function done_timer(){
-    var content=$("#timeMark").val();
+    let content=document.getElementById("timeMark").value;
+
     //console.log("content-change="+content)
     $.ajax({
         url: base_url+"doing_timer/set_content/"+type,
