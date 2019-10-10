@@ -24,4 +24,6 @@ const base_url="";
 
 document.getElementById(" ")
 
-document.getElementById("#endTime").addEventListener(
+document.getElementById("endTime").addEventListener(
+
+document.getElementById("preloader").classList.add('init');

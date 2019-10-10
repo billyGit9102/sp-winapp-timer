@@ -12,6 +12,15 @@
   flex-direction: column;
   z-index: 50;
 }
+#preloader.fadeout{
+  animation-name: preloader-fadeout;
+  animation-duration: 3s;
+}
+@keyframes preloader-fadeout{
+  0% {opacity:1;}
+  100% {opacity:0;}
+}
+
 
 .lds-roller {
   display: inline-block;

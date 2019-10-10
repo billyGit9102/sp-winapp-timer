@@ -120,7 +120,7 @@ class DoingTimer{
 	getTicks=()=>{ return this.ms; }
 	getCurrentTime=()=>{ return this.currentTime; }
 	addTime=(second)=>{ this.ms=this.ms+(second*60000); this._displayTime(); }
-	setEndTime=()=>{ this.soundEventDispatch.setEndTime($("#endTime").val()); console.log("setEndTimer in timecontrol") }
+	setEndTime=()=>{ this.soundEventDispatch.setEndTime(document.getElementById("endTime").value); console.log("setEndTimer in timecontrol") }
 }
 //let ele=document.getElementById("timer");
 

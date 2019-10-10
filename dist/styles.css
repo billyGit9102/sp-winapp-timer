@@ -42,6 +42,24 @@ div, textarea {
   flex-direction: column;
   z-index: 50; }
 
+#preloader.fadeout {
+  -webkit-animation-name: preloader-fadeout;
+          animation-name: preloader-fadeout;
+  -webkit-animation-duration: 3s;
+          animation-duration: 3s; }
+
+@-webkit-keyframes preloader-fadeout {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
+
+@keyframes preloader-fadeout {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
+
 .lds-roller {
   display: inline-block;
   position: relative;

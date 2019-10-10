@@ -3,16 +3,17 @@ import { currentTime } from './utility-function/currentTime';
 import { base_url,type } from './globalVar_html.js';
 const buttonActionInit=(timerControl)=>{
     document.getElementById("endTime").addEventListener("change", function() {
-        var v = $(this).val()
+        console.log('end time press',this.value)
+        var v = this.value;
         if (v == "") {
-            $(this).val(0)
+            this.value=0;
         }
         $.post(base_url+'doing_timer/set_ticks/'+type, {
             "ticks": timerControl.getTicks(),
-            "endTime": $("#endTime").val()
+            "endTime": this.value
         }, function(respones) {})
-        let et=$("#endTime").val();
-        timerControl.setEndTime(et)
+        
+        timerControl.setEndTime(this.value)
         //sound2Min.loop = true;
         //sound2Min.play();
         //alert(v)

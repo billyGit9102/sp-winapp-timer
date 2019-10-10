@@ -2,7 +2,7 @@ $timerSecH:33px;
 #timer-section{
     position: relative; background-color: #303030;
     #timer{ height: 33px; box-sizing: border-box; color: #fff;
-            font-size:1.2rem; text-align: center; line-height: $timerSecH; margin-left: $timerSecH; margin-right: $timerSecH}
+            font-size:1.2rem; text-align: center; line-height: $timerSecH; margin-left: $timerSecH; margin-right: $timerSecH }
 
     #expander{
         width: $timerSecH; height: $timerSecH;  position: absolute;left: 0px; cursor: pointer; 
@@ -10,7 +10,7 @@ $timerSecH:33px;
 
         span#arrow{display: block; width: 12px; height: 7px; 
             background: url(../assets/img/arrow-down.png) center center no-repeat; transition: transform ease-out .15s; opacity: .4;}
-    } 
+    }
 
     #menu{
         width: $timerSecH; height: $timerSecH; position: absolute; right: 0;

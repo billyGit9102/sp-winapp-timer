@@ -158,7 +158,7 @@ var DoingTimer = function DoingTimer(option) {
   });
 
   _defineProperty(this, "setEndTime", function () {
-    _this.soundEventDispatch.setEndTime($("#endTime").val());
+    _this.soundEventDispatch.setEndTime(document.getElementById("endTime").value);
 
     console.log("setEndTimer in timecontrol");
   });
@@ -278,25 +278,26 @@ var _currentTime = require("./utility-function/currentTime");
 var _globalVar_html = require("./globalVar_html.js");
 
 var buttonActionInit = function buttonActionInit(timerControl) {
-  $("#endTime").on("change", function () {
-    var v = $(this).val();
+  document.getElementById("endTime").addEventListener("change", function () {
+    console.log('end time press', this.value);
+    var v = this.value;
 
     if (v == "") {
-      $(this).val(0);
+      this.value = 0;
     }
 
     $.post(_globalVar_html.base_url + 'doing_timer/set_ticks/' + _globalVar_html.type, {
       "ticks": timerControl.getTicks(),
-      "endTime": $("#endTime").val()
+      "endTime": this.value
     }, function (respones) {});
-    timerControl.setEndTime($("#endTime").val()); //sound2Min.loop = true;
+    timerControl.setEndTime(this.value); //sound2Min.loop = true;
     //sound2Min.play();
     //alert(v)
   }); //button action
 
   var doingStTimer = ">???|-";
   var doingEndTimer = "<|";
-  $("#start").on("click", function () {
+  document.getElementById("start").addEventListener("click", function () {
     timerControl.startTimer();
     (0, _sound.activeSound)(); //$("#start").addClass("hide");
 
@@ -305,14 +306,14 @@ var buttonActionInit = function buttonActionInit(timerControl) {
     document.getElementById("pause").className = "show";
     doingStTimer = ">" + (0, _currentTime.currentTime)() + "-";
   });
-  $("#pause").on("click", function () {
+  document.getElementById("pause").addEventListener("click", function () {
     timerControl.pauseTimer(); //$("#pause").addClass("hide");
 
     document.getElementById("pause").className = "hide"; //$("#resume").addClass("show");
 
     document.getElementById("resume").className = "show";
   });
-  $("#resume").on("click", function () {
+  document.getElementById("resume").addEventListener("click", function () {
     timerControl.resumeTimer(); //$("#resume").addClass("hide");
 
     document.getElementById("resume").className = "hide"; //$("#pause").addClass("show");
@@ -320,7 +321,7 @@ var buttonActionInit = function buttonActionInit(timerControl) {
     document.getElementById("pause").className = "show";
   });
   var press_stop = false;
-  $("#stop").on("click", function () {
+  document.getElementById("stop").addEventListener("click", function () {
     $.post(_globalVar_html.base_url + 'doing_timer/done/' + _globalVar_html.type, {}, function (respones) {
       var ct = timerControl.getCurrentTime();
 
@@ -329,7 +330,7 @@ var buttonActionInit = function buttonActionInit(timerControl) {
         press_stop = true; //get current time, then set to end time
         //$("#time").text()
 
-        doingEndTimer = "-" + (0, _currentTime.currentTime)() + "| " + document.getElementById("curDoing").value + "\n"; //+ ' ' + curDoingTask
+        doingEndTimer = "-" + (0, _currentTime.currentTime)() + "| " + document.getElementById("curDoing").value + " \n"; //+ ' ' + curDoingTask
         //alert($("#time").text());
 
         var currentDoingTxtContent = $("#timeMark").val();
@@ -358,7 +359,7 @@ var buttonActionInit = function buttonActionInit(timerControl) {
 exports.buttonActionInit = buttonActionInit;
 
 function done_timer() {
-  var content = $("#timeMark").val(); //console.log("content-change="+content)
+  var content = document.getElementById("timeMark").value; //console.log("content-change="+content)
 
   $.ajax({
     url: _globalVar_html.base_url + "doing_timer/set_content/" + _globalVar_html.type,
@@ -486,9 +487,9 @@ var _soundEventHandle = require("./soundEventHandle");
   (0, _electron.ipcRendererInit)(); //console.log(this.location)       
 
   $.get(_globalVar_html.base_url + '/doing_timer/start/' + _globalVar_html.type, function (data) {
-    $("#doingNote").val(data.title);
-    $("#timeMark").val(data.content);
-    $("#endTime").val(data.endTime);
+    document.getElementById("doingNote").value = data.title;
+    document.getElementById("timeMark").value = data.content;
+    document.getElementById("endTime").value = data.endTime;
     (0, _preloader.removePreloader)();
     var timerControl = new _Doingtimer.DoingTimer({
       target: document.getElementById("timer"),
@@ -524,7 +525,7 @@ exports.removePreloader = exports.showPreloader = void 0;
 //prevent the loader show when refresh page
 var showPreloader = function showPreloader() {
   setTimeout(function () {
-    $("#preloader").addClass('init');
+    document.getElementById("preloader").classList.add('init');
     console.log('$("#preloader").fadeIn(20)');
   }, 100);
 }; //when ajax load php data finish, remove preloader html
@@ -533,6 +534,8 @@ var showPreloader = function showPreloader() {
 exports.showPreloader = showPreloader;
 
 var removePreloader = function removePreloader() {
+  //document.getElementById("preloader").classList.remove('init');
+  //document.getElementById("preloader").classList.add('fadeout');
   $("#preloader").fadeOut(300, function () {
     $("#preloader").remove();
   });

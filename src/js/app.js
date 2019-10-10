@@ -16,9 +16,9 @@ import {soundEventHandleInit} from './soundEventHandle';
     ipcRendererInit();
     //console.log(this.location)       
     $.get( base_url+'/doing_timer/start/'+type, function( data ) {
-      $("#doingNote").val(data.title);
-      $("#timeMark").val(data.content);
-      $("#endTime").val(data.endTime);
+      document.getElementById("doingNote").value=data.title;
+      document.getElementById("timeMark").value=data.content;
+      document.getElementById("endTime").value=data.endTime;
       
       removePreloader();
 
