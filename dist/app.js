@@ -182,7 +182,7 @@ var DoingTimer = function DoingTimer(option) {
 
 
 exports.DoingTimer = DoingTimer;
-},{"./SoundEventDispatch":2,"./utility-function/extend":12}],2:[function(require,module,exports){
+},{"./SoundEventDispatch":2,"./utility-function/extend":13}],2:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -614,6 +614,8 @@ var _sound = require("./sound");
 
 var _globalVar_html = require("./globalVar_html.js");
 
+var _eventTrigger = require("./utility-function/eventTrigger");
+
 var soundEventHandleInit = function soundEventHandleInit(timerControl) {
   document.addEventListener("sound:start", function () {
     console.log("sound:start");
@@ -650,8 +652,10 @@ var soundEventHandleInit = function soundEventHandleInit(timerControl) {
   document.addEventListener("sound:End", function () {
     console.log("sound:End");
     document.getElementsByTagName('body')[0].classList.add('timerAlert'); //$("body").addClass("timerAlert");
+    //$("#expander").trigger('click');
 
-    $("#expander").trigger('click');
+    (0, _eventTrigger.triggerNativeEvent)(document.getElementById("expander"), 'click');
+    console.log((0, _eventTrigger.triggerNativeEvent)(document.getElementById("expander"), 'click'));
     _sound.sound2Min.loop = true;
 
     _sound.sound2Min.play();
@@ -659,7 +663,7 @@ var soundEventHandleInit = function soundEventHandleInit(timerControl) {
 };
 
 exports.soundEventHandleInit = soundEventHandleInit;
-},{"./globalVar_html.js":6,"./sound":8}],10:[function(require,module,exports){
+},{"./globalVar_html.js":6,"./sound":8,"./utility-function/eventTrigger":12}],10:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -741,6 +745,21 @@ var currentTime = function currentTime() {
 
 exports.currentTime = currentTime;
 },{}],12:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.triggerNativeEvent = void 0;
+
+var triggerNativeEvent = function triggerNativeEvent(el, e) {
+  var event = document.createEvent('HTMLEvents');
+  event.initEvent(e, true, false);
+  el.dispatchEvent(event);
+};
+
+exports.triggerNativeEvent = triggerNativeEvent;
+},{}],13:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
