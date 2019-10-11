@@ -27,3 +27,5 @@ document.getElementById(" ")
 document.getElementById("endTime").addEventListener(
 
 document.getElementById("preloader").classList.add('init');
+
+ document.getElementById("preloader").classList.remove('init')

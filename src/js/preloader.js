@@ -10,12 +10,11 @@ const showPreloader=()=>{
 
 //when ajax load php data finish, remove preloader html
 const removePreloader=()=>{
-    //document.getElementById("preloader").classList.remove('init');
     document.getElementById("preloader").classList.add('fadeout');
     setTimeout(()=>{
         document.getElementById("preloader").classList.remove('init');
         document.getElementById("preloader").classList.remove('fadeout');
-        const parent=document.getElementsByTagName('body');
+        const parent=document.getElementsByTagName('body')[0];
         const child=document.getElementById('preloader');
         parent.removeChild(child);
     },350)

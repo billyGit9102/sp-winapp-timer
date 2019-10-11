@@ -115,8 +115,7 @@ class DoingTimer{
 		console.log("startTimer()221")
 	}
 	pauseTimer=()=>{ clearInterval(this.intervalTimer) }
-	resumeTimer=()=>{ this.intervalTimer=setInterval(this._counter,100)}	
-	//setEndTime=(e)=>{ this.endTime=e*60; console.log("set end Time:doingtimer", this.endTime)}
+	resumeTimer=()=>{ this.intervalTimer=setInterval(this._counter,100)}
 	getTicks=()=>{ return this.ms; }
 	getCurrentTime=()=>{ return this.currentTime; }
 	addTime=(second)=>{ this.ms=this.ms+(second*60000); this._displayTime(); }

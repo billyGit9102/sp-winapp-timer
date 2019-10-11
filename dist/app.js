@@ -277,22 +277,22 @@ var _currentTime = require("./utility-function/currentTime");
 
 var _globalVar_html = require("./globalVar_html.js");
 
+var _this = void 0;
+
 var buttonActionInit = function buttonActionInit(timerControl) {
-  document.getElementById("endTime").addEventListener("change", function () {
-    console.log('end time press', this.value);
-    var v = this.value;
+  document.getElementById("endTime").addEventListener("change", function (e) {
+    console.log(_this, 'end time press11');
+    var v = e.target.value;
 
     if (v == "") {
-      this.value = 0;
+      e.target.value = 0;
     }
 
     $.post(_globalVar_html.base_url + 'doing_timer/set_ticks/' + _globalVar_html.type, {
       "ticks": timerControl.getTicks(),
-      "endTime": this.value
+      "endTime": e.target.value
     }, function (respones) {});
-    timerControl.setEndTime(this.value); //sound2Min.loop = true;
-    //sound2Min.play();
-    //alert(v)
+    timerControl.setEndTime(e.target.value);
   }); //button action
 
   var doingStTimer = ">???|-";
@@ -534,12 +534,11 @@ var showPreloader = function showPreloader() {
 exports.showPreloader = showPreloader;
 
 var removePreloader = function removePreloader() {
-  //document.getElementById("preloader").classList.remove('init');
   document.getElementById("preloader").classList.add('fadeout');
   setTimeout(function () {
     document.getElementById("preloader").classList.remove('init');
     document.getElementById("preloader").classList.remove('fadeout');
-    var parent = document.getElementsByTagName('body');
+    var parent = document.getElementsByTagName('body')[0];
     var child = document.getElementById('preloader');
     parent.removeChild(child);
   }, 350);

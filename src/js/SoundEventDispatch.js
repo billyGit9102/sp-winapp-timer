@@ -2,7 +2,7 @@
 class SoundEventDispatch{
     endTime;
     constructor(endTime){
-        this.endTime=endTime*60;      
+        this.endTime=endTime*60;
         document.addEventListener("timer:ticksChange",this.handleTicksChange);
         console.log("soundTimer start",this.endTime);
         console.log(this.endTime);
@@ -10,7 +10,7 @@ class SoundEventDispatch{
     handleTicksChange=(e)=>{
         //console.log("handleTicksChange");
         console.log(this.endTime)
-         
+        
         let x=e.detail.ticks;
         let checkStart=(x/1000)/3==1?true:false;
 		let checkProcess=(x/1000)%15==0?true:false;
@@ -50,7 +50,6 @@ class SoundEventDispatch{
             console.log("SoundTrigger-5min")
             document.dispatchEvent(new CustomEvent("sound:5min"));
         }
-
     }    
 	setEndTime=(e)=>{ this.endTime=e*60;console.log("set end Time:SoundTrigger", this.endTime)}
 } 
