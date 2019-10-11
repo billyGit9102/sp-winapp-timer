@@ -535,10 +535,14 @@ exports.showPreloader = showPreloader;
 
 var removePreloader = function removePreloader() {
   //document.getElementById("preloader").classList.remove('init');
-  //document.getElementById("preloader").classList.add('fadeout');
-  $("#preloader").fadeOut(300, function () {
-    $("#preloader").remove();
-  });
+  document.getElementById("preloader").classList.add('fadeout');
+  setTimeout(function () {
+    document.getElementById("preloader").classList.remove('init');
+    document.getElementById("preloader").classList.remove('fadeout');
+    var parent = document.getElementsByTagName('body');
+    var child = document.getElementById('preloader');
+    parent.removeChild(child);
+  }, 350);
 };
 
 exports.removePreloader = removePreloader;

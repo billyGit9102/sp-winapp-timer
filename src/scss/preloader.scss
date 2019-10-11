@@ -4,18 +4,20 @@
   width: calc(100% - 2px);
   height: 100%;
   display: none;
+  &.init {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 50;
+  }
+  &.fadeout{
+    animation-name: preloader-fadeout;
+    animation-duration: .3s;
+    animation-fill-mode: forwards;
+  }
 }
-#preloader.init {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  z-index: 50;
-}
-#preloader.fadeout{
-  animation-name: preloader-fadeout;
-  animation-duration: 3s;
-}
+
 @keyframes preloader-fadeout{
   0% {opacity:1;}
   100% {opacity:0;}

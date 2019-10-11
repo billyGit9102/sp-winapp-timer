@@ -34,19 +34,19 @@ div, textarea {
   width: calc(100% - 2px);
   height: 100%;
   display: none; }
-
-#preloader.init {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  z-index: 50; }
-
-#preloader.fadeout {
-  -webkit-animation-name: preloader-fadeout;
-          animation-name: preloader-fadeout;
-  -webkit-animation-duration: 3s;
-          animation-duration: 3s; }
+  #preloader.init {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 50; }
+  #preloader.fadeout {
+    -webkit-animation-name: preloader-fadeout;
+            animation-name: preloader-fadeout;
+    -webkit-animation-duration: .3s;
+            animation-duration: .3s;
+    -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards; }
 
 @-webkit-keyframes preloader-fadeout {
   0% {
