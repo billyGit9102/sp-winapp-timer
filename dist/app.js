@@ -333,7 +333,7 @@ var buttonActionInit = function buttonActionInit(timerControl) {
         doingEndTimer = "-" + (0, _currentTime.currentTime)() + "| " + document.getElementById("curDoing").value + " \n"; //+ ' ' + curDoingTask
         //alert($("#time").text());
 
-        var currentDoingTxtContent = $("#timeMark").val();
+        var currentDoingTxtContent = document.getElementById("timeMark").value;
         currentDoingTxtContent = currentDoingTxtContent.split(" ");
         console.log(currentDoingTxtContent); //var doingTitle=[];
         //doingTitle[0]=currentDoingTxtContent[0];
@@ -347,7 +347,7 @@ var buttonActionInit = function buttonActionInit(timerControl) {
         output = output.join(" "); //remove first row space
 
         output = output.replace(" >", ">");
-        $("#timeMark").val(output); //$("#timeMark").trigger("change");
+        document.getElementById("timeMark").value = output; //$("#timeMark").trigger("change");
 
         timerControl.pauseTimer();
         done_timer(); //
@@ -624,7 +624,7 @@ var soundEventHandleInit = function soundEventHandleInit(timerControl) {
   document.addEventListener("sound:process", function () {
     $.post(_globalVar_html.base_url + 'doing_timer/set_ticks/' + _globalVar_html.type, {
       "ticks": timerControl.getTicks(),
-      "endTime": $("#endTime").val()
+      "endTime": document.getElementById("endTime").value
     }, function (respones) {
       console.log(respones + "set_ticks");
     });
@@ -649,7 +649,8 @@ var soundEventHandleInit = function soundEventHandleInit(timerControl) {
   });
   document.addEventListener("sound:End", function () {
     console.log("sound:End");
-    $("body").addClass("timerAlert");
+    document.getElementsByTagName('body')[0].classList.add('timerAlert'); //$("body").addClass("timerAlert");
+
     $("#expander").trigger('click');
     _sound.sound2Min.loop = true;
 
@@ -688,8 +689,8 @@ var titleContentInit = function titleContentInit() {
     document.getElementById("curDoing").value = str.match(/.*/)[0];
   }
 
-  $("#doingNote").on("change", function () {
-    var title = $(this).val();
+  document.getElementById("doingNote").addEventListener("change", function (e) {
+    var title = e.target.value;
     update_curDoing(title);
     console.log(title);
     $.ajax({
@@ -703,8 +704,8 @@ var titleContentInit = function titleContentInit() {
       }
     });
   });
-  $("#timeMark").on("change", function () {
-    var content = $(this).val();
+  document.getElementById("timeMark").addEventListener("change", function (e) {
+    var content = e.target.value;
     console.log("content-change=" + content);
     $.ajax({
       url: "http://bf2c.info/sp/project/ci-doing-timer-v5/doing_timer/set_content/" + window.timerType,

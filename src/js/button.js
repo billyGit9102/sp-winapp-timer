@@ -54,7 +54,7 @@ const buttonActionInit=(timerControl)=>{
                 //$("#time").text()
                 doingEndTimer = "-" + currentTime() + "| " + document.getElementById("curDoing").value  + " \n"; //+ ' ' + curDoingTask
                 //alert($("#time").text());
-                var currentDoingTxtContent = $("#timeMark").val();
+                var currentDoingTxtContent = document.getElementById("timeMark").value;
                 currentDoingTxtContent = currentDoingTxtContent.split(" ");
                 console.log(currentDoingTxtContent)
                 //var doingTitle=[];
@@ -68,7 +68,7 @@ const buttonActionInit=(timerControl)=>{
                 output = output.join(" ");
                 //remove first row space
                 output = output.replace(" >", ">");
-                $("#timeMark").val(output);
+                document.getElementById("timeMark").value=output;
                 //$("#timeMark").trigger("change");
                 timerControl.pauseTimer()
                 done_timer();

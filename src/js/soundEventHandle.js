@@ -11,7 +11,7 @@ const soundEventHandleInit=(timerControl)=>{
     document.addEventListener("sound:process", ()=>{
         $.post(base_url+'doing_timer/set_ticks/'+type, {
             "ticks": timerControl.getTicks(),
-            "endTime": $("#endTime").val()
+            "endTime": document.getElementById("endTime").value
         },
         function(respones) {
             console.log(respones + "set_ticks");
@@ -37,7 +37,8 @@ const soundEventHandleInit=(timerControl)=>{
 
     document.addEventListener("sound:End", ()=>{
         console.log("sound:End");
-        $("body").addClass("timerAlert");
+        document.getElementsByTagName('body')[0].classList.add('timerAlert');
+        //$("body").addClass("timerAlert");
         $("#expander").trigger('click');
         sound2Min.loop = true;
         sound2Min.play();

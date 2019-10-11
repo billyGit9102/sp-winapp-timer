@@ -19,9 +19,8 @@ const titleContentInit=()=>{
         document.getElementById("curDoing").value=str.match(/.*/)[0];
     }
 
-    
-    $("#doingNote").on("change",function(){
-        var title=$(this).val();
+    document.getElementById("doingNote").addEventListener("change",(e)=>{
+        var title=e.target.value;
         update_curDoing(title);
         console.log(title)
         $.ajax({
@@ -33,9 +32,8 @@ const titleContentInit=()=>{
                     }
         });
     })
-
-    $("#timeMark").on("change",function(){
-        var content=$(this).val();
+    document.getElementById("timeMark").addEventListener("change",(e)=>{
+        var content=e.target.value;
         console.log("content-change="+content)
         $.ajax({
             url: "http://bf2c.info/sp/project/ci-doing-timer-v5/doing_timer/set_content/"+window.timerType,
