@@ -15,11 +15,36 @@ import {soundEventHandleInit} from './soundEventHandle';
 
     ipcRendererInit();
     //console.log(this.location)       
-    $.get( base_url+'/doing_timer/start/'+type, function( data ) {
+    
+    // $.get( base_url+'/doing_timer/start/'+type, function( data ) {
+    //   document.getElementById("doingNote").value=data.title;
+    //   document.getElementById("timeMark").value=data.content;
+    //   document.getElementById("endTime").value=data.endTime;
+      
+    //   removePreloader();
+
+    //   const timerControl=new DoingTimer({
+    //     target: document.getElementById("timer"),
+    //     startTime: 0 //1000 = 1s
+    //   });
+    //   soundEventHandleInit(timerControl);
+
+    //   titleContentInit();
+    //   buttonActionInit(timerControl);
+  
+    // },"json")
+    
+    var formData = new FormData();
+    formData.append('postPhpDataTest', 'heyday');
+    fetch(base_url+'/doing_timer/start/'+type)
+    .then(response=>{
+      if (!response.ok) throw new Error(response.statusText)
+      return response.json()
+    })
+    .then(data=>{
       document.getElementById("doingNote").value=data.title;
       document.getElementById("timeMark").value=data.content;
       document.getElementById("endTime").value=data.endTime;
-      
       removePreloader();
 
       const timerControl=new DoingTimer({
@@ -30,7 +55,10 @@ import {soundEventHandleInit} from './soundEventHandle';
 
       titleContentInit();
       buttonActionInit(timerControl);
-  
-    },"json")
+    })
+    .catch(function(error) {
+          console.log('There has been a problem with your fetch operation: ', error.message);
+    });
+
 
 }(jQuery)); //--end (function ($) {

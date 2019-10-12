@@ -501,8 +501,26 @@ var _soundEventHandle = require("./soundEventHandle");
 (function ($) {
   (0, _preloader.showPreloader)();
   (0, _electron.ipcRendererInit)(); //console.log(this.location)       
+  // $.get( base_url+'/doing_timer/start/'+type, function( data ) {
+  //   document.getElementById("doingNote").value=data.title;
+  //   document.getElementById("timeMark").value=data.content;
+  //   document.getElementById("endTime").value=data.endTime;
+  //   removePreloader();
+  //   const timerControl=new DoingTimer({
+  //     target: document.getElementById("timer"),
+  //     startTime: 0 //1000 = 1s
+  //   });
+  //   soundEventHandleInit(timerControl);
+  //   titleContentInit();
+  //   buttonActionInit(timerControl);
+  // },"json")
 
-  $.get(_globalVar_html.base_url + '/doing_timer/start/' + _globalVar_html.type, function (data) {
+  var formData = new FormData();
+  formData.append('postPhpDataTest', 'heyday');
+  fetch(_globalVar_html.base_url + '/doing_timer/start/' + _globalVar_html.type).then(function (response) {
+    if (!response.ok) throw new Error(response.statusText);
+    return response.json();
+  }).then(function (data) {
     document.getElementById("doingNote").value = data.title;
     document.getElementById("timeMark").value = data.content;
     document.getElementById("endTime").value = data.endTime;
@@ -515,7 +533,9 @@ var _soundEventHandle = require("./soundEventHandle");
     (0, _soundEventHandle.soundEventHandleInit)(timerControl);
     (0, _titleContent.titleContentInit)();
     (0, _button.buttonActionInit)(timerControl);
-  }, "json");
+  })["catch"](function (error) {
+    console.log('There has been a problem with your fetch operation: ', error.message);
+  });
 })(jQuery); //--end (function ($) {
 },{"./Doingtimer":1,"./button":3,"./electron":4,"./globalVar_html":6,"./preloader":7,"./soundEventHandle":9,"./title-content":10}],6:[function(require,module,exports){
 "use strict";
