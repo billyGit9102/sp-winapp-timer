@@ -799,40 +799,24 @@ exports.triggerNativeEvent = triggerNativeEvent;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.extend = exports.deepExtend = void 0;
+exports.extend = void 0;
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-//global hasOwnProperty 
-var deepExtend = function deepExtend(out) {
-  out = out || {};
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-  for (var i = 1; i < arguments.length; i++) {
-    var obj = arguments[i];
-    if (!obj) continue;
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-    for (var key in obj) {
-      if (obj.hasOwnProperty(key)) {
-        if (_typeof(obj[key]) === 'object') out[key] = deepExtend(out[key], obj[key]);else out[key] = obj[key];
-      }
-    }
-  }
-
-  return out;
-}; //deepExtend({}, objA, objB);
-
-
-exports.deepExtend = deepExtend;
-
+//deepExtend({}, objA, objB);
 var extend = function extend(out) {
-  out = out || {};
+  //make first parameter as base object
+  out = out || {}; //start mix other object
+  //loop object
 
-  for (var i = 1; i < arguments.length; i++) {
-    if (!arguments[i]) continue;
-
-    for (var key in arguments[i]) {
-      if (arguments[i].hasOwnProperty(key)) out[key] = arguments[i][key];
-    }
+  for (var i = 0; i < (arguments.length <= 1 ? 0 : arguments.length - 1); i++) {
+    //if no obj, stop script        
+    if (!(i + 1 < 1 || arguments.length <= i + 1 ? undefined : arguments[i + 1])) continue;
+    out = _objectSpread({}, out, {}, i + 1 < 1 || arguments.length <= i + 1 ? undefined : arguments[i + 1]);
   }
 
   return out;

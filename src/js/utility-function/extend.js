@@ -1,37 +1,15 @@
-//global hasOwnProperty 
-const deepExtend = function(out) {
-    out = out || {};  
-    for (var i = 1; i < arguments.length; i++) {
-        var obj = arguments[i]; 
-        if (!obj)
-        continue;  
-        for (var key in obj) {
-        if (obj.hasOwnProperty(key)) {
-            if (typeof obj[key] === 'object')
-            out[key] = deepExtend(out[key], obj[key]);
-            else
-            out[key] = obj[key];
-        }
-        }
-    }  
-    return out;
-};
-  
 //deepExtend({}, objA, objB);
-const extend = function(out) {
-    out = out || {};
-
-    for (var i = 1; i < arguments.length; i++) {
-        if (!arguments[i])
-        continue;
-
-        for (var key in arguments[i]) {
-        if (arguments[i].hasOwnProperty(key))
-            out[key] = arguments[i][key];
-        }
+const extend =(out, ...args)=> {
+    //make first parameter as base object
+    out= out || {};    
+    //start mix other object
+    //loop object
+    for (var i = 0; i < args.length; i++) {
+        //if no obj, stop script        
+        if (!args[i]) continue;
+        out = {...out,...args[i]};      
     }
-
     return out;
 };
 
-export {deepExtend,extend}
+export {extend}
