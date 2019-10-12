@@ -18,7 +18,7 @@ command
 gulp compileJs
 
 git add .
-git commit -m ""
+git commit -am ""
 
 git checkout master
 git checkout startHtml
