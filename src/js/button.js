@@ -5,12 +5,12 @@ const buttonActionInit=(timerControl)=>{
 
     document.getElementById("endTime").addEventListener("change", (e)=>{
         console.log( this,'end time press11',);
-        var v = e.target.value;
+        let v = e.target.value;
         if (v == "") {
             e.target.value=0;
         }
 
-        var formData = new FormData();
+        let formData = new FormData();
         formData.append('ticks', timerControl.getTicks());
         formData.append('endTime', e.target.value);
         fetch(base_url+'doing_timer/set_ticks/'+type, { method:'POST', body:formData })
@@ -29,8 +29,8 @@ const buttonActionInit=(timerControl)=>{
     })
 
     //button action
-    var doingStTimer = ">???|-"
-    var doingEndTimer = "<|"
+    let doingStTimer = ">???|-"
+    let doingEndTimer = "<|"
     document.getElementById("start").addEventListener("click", ()=>{
         timerControl.startTimer();
         activeSound();
@@ -55,7 +55,7 @@ const buttonActionInit=(timerControl)=>{
         document.getElementById("pause").className = "show";
     })
 
-    var press_stop = false;
+    let press_stop = false;
     document.getElementById("stop").addEventListener("click", ()=>{
         let formData = new FormData();
         formData.append('no var', "");
@@ -67,7 +67,7 @@ const buttonActionInit=(timerControl)=>{
         .then(response=>{
             console.log(response);
 
-            var ct = timerControl.getCurrentTime();
+            let ct = timerControl.getCurrentTime();
             console.log("press stop",ct)
             if (ct != "0s" && !press_stop) {
                 press_stop = true;
@@ -75,13 +75,13 @@ const buttonActionInit=(timerControl)=>{
                 doingEndTimer = "-" + currentTime() + "| " + document.getElementById("curDoing").value  + " \n"; 
                 
                 //get timemark textare text, change to array
-                var currentDoingTxtContent = document.getElementById("timeMark").value;
+                let currentDoingTxtContent = document.getElementById("timeMark").value;
                 currentDoingTxtContent = currentDoingTxtContent.split(" ");
                 console.log("currentDoingTxtContent"+currentDoingTxtContent)
 
                 //add current done time in front
                 currentDoingTxtContent.unshift(doingStTimer + ct + doingEndTimer);
-                var output = currentDoingTxtContent
+                let output = currentDoingTxtContent
                 output = output.join(" ");
 
                 //remove first row space
@@ -103,7 +103,7 @@ const buttonActionInit=(timerControl)=>{
 const done_timer=()=>{
     let content=document.getElementById("timeMark").value;
 
-    var formData = new FormData();
+    let formData = new FormData();
     formData.append('content', content);
     fetch(base_url+"doing_timer/set_content/"+type, {
         method: 'POST', 
