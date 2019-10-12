@@ -9,7 +9,7 @@ import {soundEventHandleInit} from './soundEventHandle';
 //const electron = window.require('electron');
 //const {ipcRenderer} = electron;
 
-(function () {
+(()=>{
     showPreloader()
     ipcRendererInit();
    
@@ -35,7 +35,7 @@ import {soundEventHandleInit} from './soundEventHandle';
       titleContentInit();
       buttonActionInit(timerControl);
     })
-    .catch(function(error) {
+    .catch((error)=>{
           console.log('There has been a problem with your fetch operation: ', error.message);
     });
-}()); //--end (function ($) {
+})(); //--end (function ($) {
