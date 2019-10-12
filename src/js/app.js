@@ -11,28 +11,8 @@ import {soundEventHandleInit} from './soundEventHandle';
 
 (function () {
     showPreloader()
-
     ipcRendererInit();
-    //console.log(this.location)       
-    
-    // $.get( base_url+'/doing_timer/start/'+type, function( data ) {
-    //   document.getElementById("doingNote").value=data.title;
-    //   document.getElementById("timeMark").value=data.content;
-    //   document.getElementById("endTime").value=data.endTime;
-      
-    //   removePreloader();
-
-    //   const timerControl=new DoingTimer({
-    //     target: document.getElementById("timer"),
-    //     startTime: 0 //1000 = 1s
-    //   });
-    //   soundEventHandleInit(timerControl);
-
-    //   titleContentInit();
-    //   buttonActionInit(timerControl);
-  
-    // },"json")
-    
+   
     var formData = new FormData();
     formData.append('postPhpDataTest', 'heyday');
     fetch(base_url+'/doing_timer/start/'+type)
@@ -58,6 +38,4 @@ import {soundEventHandleInit} from './soundEventHandle';
     .catch(function(error) {
           console.log('There has been a problem with your fetch operation: ', error.message);
     });
-
-
 }()); //--end (function ($) {

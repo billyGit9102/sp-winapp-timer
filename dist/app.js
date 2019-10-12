@@ -500,21 +500,7 @@ var _soundEventHandle = require("./soundEventHandle");
 //const {ipcRenderer} = electron;
 (function () {
   (0, _preloader.showPreloader)();
-  (0, _electron.ipcRendererInit)(); //console.log(this.location)       
-  // $.get( base_url+'/doing_timer/start/'+type, function( data ) {
-  //   document.getElementById("doingNote").value=data.title;
-  //   document.getElementById("timeMark").value=data.content;
-  //   document.getElementById("endTime").value=data.endTime;
-  //   removePreloader();
-  //   const timerControl=new DoingTimer({
-  //     target: document.getElementById("timer"),
-  //     startTime: 0 //1000 = 1s
-  //   });
-  //   soundEventHandleInit(timerControl);
-  //   titleContentInit();
-  //   buttonActionInit(timerControl);
-  // },"json")
-
+  (0, _electron.ipcRendererInit)();
   var formData = new FormData();
   formData.append('postPhpDataTest', 'heyday');
   fetch(_globalVar_html.base_url + '/doing_timer/start/' + _globalVar_html.type).then(function (response) {
