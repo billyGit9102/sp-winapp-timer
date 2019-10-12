@@ -9,16 +9,15 @@ const titleContentInit=()=>{
     }
     const update_DoingNote=(str)=>{
         ele_doingNote.value=ele_doingNote.value.replace(/.*/,str);
-        //$("#doingNote").trigger("change");
         triggerNativeEvent(document.getElementById("doingNote"),'change')	
     }
     update_curDoing(ele_doingNote.value);    
     document.getElementById("curDoing").addEventListener("change",(e)=>{
-        console.log(e.target.value,'curDoing');
+        //console.log(e.target.value,'curDoing');
         update_DoingNote(e.target.value);
     });
     document.getElementById("doingNote").addEventListener("change",(e)=>{
-        console.log('doingNote change');
+        //console.log('doingNote change');
         let title=e.target.value;
         update_curDoing(title);
 
@@ -30,7 +29,7 @@ const titleContentInit=()=>{
             return response.text()
         })
         .then(response=>{
-            console.log(response)
+            //console.log(response)
         })
         .catch((error)=>{
             console.log('There has been a problem with your fetch operation: ', error.message);
@@ -39,7 +38,7 @@ const titleContentInit=()=>{
     })
     document.getElementById("timeMark").addEventListener("change",(e)=>{
         let content=e.target.value;
-        console.log("content-change="+content)
+        //console.log("content-change="+content)
 
         let formData = new FormData();
         formData.append('content', content);
@@ -49,7 +48,7 @@ const titleContentInit=()=>{
             return response.text()
         })
         .then(response=>{
-            console.log(response + "timeMark change")
+            //console.log(response + "timeMark change")
         })
         .catch((error)=>{
             console.log('There has been a problem with your fetch operation: ', error.message);

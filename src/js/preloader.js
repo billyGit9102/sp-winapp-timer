@@ -4,7 +4,7 @@
 const showPreloader=()=>{
     setTimeout(()=>{
         document.getElementById("preloader").classList.add('init');
-        console.log('$("#preloader").fadeIn(20)')
+        //console.log('$("#preloader").fadeIn(20)')
     }, 100);
 }
 

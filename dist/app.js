@@ -131,8 +131,7 @@ var DoingTimer = function DoingTimer(option) {
   });
 
   _defineProperty(this, "startTimer", function () {
-    _this.intervalTimer = setInterval(_this._counter, 100);
-    console.log("startTimer()221");
+    _this.intervalTimer = setInterval(_this._counter, 100); //console.log("startTimer()221")
   });
 
   _defineProperty(this, "pauseTimer", function () {
@@ -175,9 +174,8 @@ var DoingTimer = function DoingTimer(option) {
   this.endTime = this.setting.endTime * 60;
   this.intervalTimer = "";
   this.soundEventDispatch = new _SoundEventDispatch.SoundEventDispatch(document.getElementById("endTime").value);
-  console.log("DoingTimer-start");
-  console.log(this.setting);
-  console.log(this.ms, "===tart-dt");
+  console.log("DoingTimer-start"); //console.log(this.setting);
+  //console.log(this.ms,"===tart-dt");
 }; //let ele=document.getElementById("timer");
 
 
@@ -256,9 +254,8 @@ var SoundEventDispatch = function SoundEventDispatch(endTime) {
   });
 
   this.endTime = endTime * 60;
-  document.addEventListener("timer:ticksChange", this.handleTicksChange);
-  console.log("soundTimer start", this.endTime);
-  console.log(this.endTime);
+  document.addEventListener("timer:ticksChange", this.handleTicksChange); //console.log("soundTimer start",this.endTime);
+  //console.log(this.endTime);
 };
 
 exports.SoundEventDispatch = SoundEventDispatch;
@@ -276,11 +273,9 @@ var _currentTime = require("./utility-function/currentTime");
 
 var _globalVar_html = require("./globalVar_html.js");
 
-var _this = void 0;
-
 var buttonActionInit = function buttonActionInit(timerControl) {
   document.getElementById("endTime").addEventListener("change", function (e) {
-    console.log(_this, 'end time press11');
+    //console.log( this,'end time',);
     var v = e.target.value;
 
     if (v == "") {
@@ -296,8 +291,7 @@ var buttonActionInit = function buttonActionInit(timerControl) {
     }).then(function (response) {
       if (!response.ok) throw new Error(response.statusText);
       return response.text();
-    }).then(function (response) {
-      console.log(response);
+    }).then(function (response) {//console.log(response)
     })["catch"](function (error) {
       console.log('There has been a problem with your fetch operation: ', error.message);
     });
@@ -340,9 +334,8 @@ var buttonActionInit = function buttonActionInit(timerControl) {
       if (!response.ok) throw new Error(response.statusText);
       return response.text();
     }).then(function (response) {
-      console.log(response);
-      var ct = timerControl.getCurrentTime();
-      console.log("press stop", ct);
+      //console.log(response);
+      var ct = timerControl.getCurrentTime(); //console.log("press stop",ct)
 
       if (ct != "0s" && !press_stop) {
         press_stop = true; //get current time, + cur doing task
@@ -350,8 +343,8 @@ var buttonActionInit = function buttonActionInit(timerControl) {
         doingEndTimer = "-" + (0, _currentTime.currentTime)() + "| " + document.getElementById("curDoing").value + " \n"; //get timemark textare text, change to array
 
         var currentDoingTxtContent = document.getElementById("timeMark").value;
-        currentDoingTxtContent = currentDoingTxtContent.split(" ");
-        console.log("currentDoingTxtContent" + currentDoingTxtContent); //add current done time in front
+        currentDoingTxtContent = currentDoingTxtContent.split(" "); //console.log("currentDoingTxtContent"+currentDoingTxtContent)
+        //add current done time in front
 
         currentDoingTxtContent.unshift(doingStTimer + ct + doingEndTimer);
         var output = currentDoingTxtContent;
@@ -359,8 +352,8 @@ var buttonActionInit = function buttonActionInit(timerControl) {
 
         output = output.replace(" >", ">");
         document.getElementById("timeMark").value = output;
-        timerControl.pauseTimer();
-        console.log("done");
+        timerControl.pauseTimer(); //console.log("done");
+
         done_timer();
       }
     })["catch"](function (error) {
@@ -382,7 +375,7 @@ var done_timer = function done_timer() {
     if (!response.ok) throw new Error(response.statusText);
     return response.text();
   }).then(function (response) {
-    console.log(response);
+    //console.log(response)
     setTimeout(function () {
       location.reload();
     }, 50);
@@ -442,8 +435,8 @@ var ipcRendererInit = function ipcRendererInit() {
   var is_expand = true;
 
   var toggleExpand_handle = function toggleExpand_handle(e) {
-    e.preventDefault();
-    console.log("is_expand", is_expand);
+    e.preventDefault(); //console.log("is_expand",is_expand);
+
     is_expand = bodyele.classList.contains("expand");
 
     if (is_expand) {
@@ -453,8 +446,7 @@ var ipcRendererInit = function ipcRendererInit() {
     }
 
     is_expand = bodyele.classList.contains("expand");
-    ipcRenderer.send('timer:expand', is_expand);
-    console.log("expand btn click");
+    ipcRenderer.send('timer:expand', is_expand); //console.log("expand btn click");		
   };
 
   document.getElementById('expander').addEventListener('click', toggleExpand_handle); //document.getElementById('curDoing').addEventListener('focus', toggleExpand_handle);
@@ -464,17 +456,17 @@ var ipcRendererInit = function ipcRendererInit() {
   * ----------------------------------------------------- */
 
   ipcRenderer.on('timer:blur', function () {
-    console.log('timer:blur'); //bodyele.className="";
-
+    //console.log('timer:blur');
+    //bodyele.className="";
     bodyele.classList.remove("expand");
   });
   ipcRenderer.on('timer:max', function () {
-    console.log('timer:max');
+    //console.log('timer:max');
     bodyele.classList.add("max");
     bodyele.classList.add("expand");
   });
-  ipcRenderer.on('appStart', function () {
-    console.log('appStart'); //bodyele.className="expand";
+  ipcRenderer.on('appStart', function () {//console.log('appStart');
+    //bodyele.className="expand";
   });
 };
 
@@ -496,8 +488,6 @@ var _electron = require("./electron");
 
 var _soundEventHandle = require("./soundEventHandle");
 
-//const electron = window.require('electron');
-//const {ipcRenderer} = electron;
 (function () {
   (0, _preloader.showPreloader)();
   (0, _electron.ipcRendererInit)();
@@ -547,8 +537,7 @@ exports.removePreloader = exports.showPreloader = void 0;
 //prevent the loader show when refresh page
 var showPreloader = function showPreloader() {
   setTimeout(function () {
-    document.getElementById("preloader").classList.add('init');
-    console.log('$("#preloader").fadeIn(20)');
+    document.getElementById("preloader").classList.add('init'); //console.log('$("#preloader").fadeIn(20)')
   }, 100);
 }; //when ajax load php data finish, remove preloader html
 
@@ -591,12 +580,12 @@ sound5Min.volume = 1;
 
 var activeSound = function activeSound() {
   var _loop = function _loop(i) {
-    console.log(soundArray[i]);
+    //console.log(soundArray[i]);
     var s = document.getElementById(soundArray[i]);
     s.muted = true;
-    s.play();
-    console.log(s.volume);
-    console.log("activeSound");
+    s.play(); //console.log(s.volume);
+    //console.log("activeSound");
+
     var x = s;
     setTimeout(function () {
       x.muted = false;
@@ -653,8 +642,7 @@ var soundEventHandleInit = function soundEventHandleInit(timerControl) {
     }).then(function (response) {
       if (!response.ok) throw new Error(response.statusText);
       return response.text();
-    }).then(function (response) {
-      console.log(response + "set_ticks");
+    }).then(function (response) {//console.log(response + "set_ticks")
     })["catch"](function (error) {
       console.log('There has been a problem with your fetch operation: ', error.message);
     });
@@ -679,11 +667,9 @@ var soundEventHandleInit = function soundEventHandleInit(timerControl) {
   });
   document.addEventListener("sound:End", function () {
     console.log("sound:End");
-    document.getElementsByTagName('body')[0].classList.add('timerAlert'); //$("body").addClass("timerAlert");
-    //$("#expander").trigger('click');
+    document.getElementsByTagName('body')[0].classList.add('timerAlert');
+    (0, _eventTrigger.triggerNativeEvent)(document.getElementById("expander"), 'click'); //console.log("triggerNativeEvent(document.getElementById(expander)");
 
-    (0, _eventTrigger.triggerNativeEvent)(document.getElementById("expander"), 'click');
-    console.log("triggerNativeEvent(document.getElementById(expander)");
     _sound.sound2Min.loop = true;
 
     _sound.sound2Min.play();
@@ -711,18 +697,17 @@ var titleContentInit = function titleContentInit() {
   };
 
   var update_DoingNote = function update_DoingNote(str) {
-    ele_doingNote.value = ele_doingNote.value.replace(/.*/, str); //$("#doingNote").trigger("change");
-
+    ele_doingNote.value = ele_doingNote.value.replace(/.*/, str);
     (0, _eventTrigger.triggerNativeEvent)(document.getElementById("doingNote"), 'change');
   };
 
   update_curDoing(ele_doingNote.value);
   document.getElementById("curDoing").addEventListener("change", function (e) {
-    console.log(e.target.value, 'curDoing');
+    //console.log(e.target.value,'curDoing');
     update_DoingNote(e.target.value);
   });
   document.getElementById("doingNote").addEventListener("change", function (e) {
-    console.log('doingNote change');
+    //console.log('doingNote change');
     var title = e.target.value;
     update_curDoing(title);
     var formData = new FormData();
@@ -733,15 +718,14 @@ var titleContentInit = function titleContentInit() {
     }).then(function (response) {
       if (!response.ok) throw new Error(response.statusText);
       return response.text();
-    }).then(function (response) {
-      console.log(response);
+    }).then(function (response) {//console.log(response)
     })["catch"](function (error) {
       console.log('There has been a problem with your fetch operation: ', error.message);
     });
   });
   document.getElementById("timeMark").addEventListener("change", function (e) {
-    var content = e.target.value;
-    console.log("content-change=" + content);
+    var content = e.target.value; //console.log("content-change="+content)
+
     var formData = new FormData();
     formData.append('content', content);
     fetch(_globalVar_html.base_url + 'doing_timer/set_content/' + _globalVar_html.type, {
@@ -750,8 +734,7 @@ var titleContentInit = function titleContentInit() {
     }).then(function (response) {
       if (!response.ok) throw new Error(response.statusText);
       return response.text();
-    }).then(function (response) {
-      console.log(response + "timeMark change");
+    }).then(function (response) {//console.log(response + "timeMark change")
     })["catch"](function (error) {
       console.log('There has been a problem with your fetch operation: ', error.message);
     });

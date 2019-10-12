@@ -19,7 +19,7 @@ const soundEventHandleInit=(timerControl)=>{
             return response.text()
         })
         .then(response=>{
-            console.log(response + "set_ticks")
+            //console.log(response + "set_ticks")
         })
         .catch((error)=>{
             console.log('There has been a problem with your fetch operation: ', error.message);
@@ -48,10 +48,8 @@ const soundEventHandleInit=(timerControl)=>{
     document.addEventListener("sound:End", ()=>{
         console.log("sound:End");
         document.getElementsByTagName('body')[0].classList.add('timerAlert');
-        //$("body").addClass("timerAlert");
-        //$("#expander").trigger('click');
         triggerNativeEvent(document.getElementById("expander"),'click')
-        console.log("triggerNativeEvent(document.getElementById(expander)");
+        //console.log("triggerNativeEvent(document.getElementById(expander)");
         
         sound2Min.loop = true;
         sound2Min.play();

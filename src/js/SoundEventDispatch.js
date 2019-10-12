@@ -4,8 +4,8 @@ class SoundEventDispatch{
     constructor(endTime){
         this.endTime=endTime*60;
         document.addEventListener("timer:ticksChange",this.handleTicksChange);
-        console.log("soundTimer start",this.endTime);
-        console.log(this.endTime);
+        //console.log("soundTimer start",this.endTime);
+        //console.log(this.endTime);
     }
     handleTicksChange=(e)=>{
         //console.log("handleTicksChange");

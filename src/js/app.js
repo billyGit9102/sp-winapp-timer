@@ -6,9 +6,6 @@ import {base_url,type} from './globalVar_html';
 import {ipcRendererInit} from './electron';
 import {soundEventHandleInit} from './soundEventHandle';
 
-//const electron = window.require('electron');
-//const {ipcRenderer} = electron;
-
 (()=>{
     showPreloader()
     ipcRendererInit();

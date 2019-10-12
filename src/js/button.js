@@ -4,7 +4,7 @@ import { base_url,type } from './globalVar_html.js';
 const buttonActionInit=(timerControl)=>{
 
     document.getElementById("endTime").addEventListener("change", (e)=>{
-        console.log( this,'end time press11',);
+        //console.log( this,'end time',);
         let v = e.target.value;
         if (v == "") {
             e.target.value=0;
@@ -19,7 +19,7 @@ const buttonActionInit=(timerControl)=>{
             return response.text()
         })
         .then(response=>{
-            console.log(response)
+            //console.log(response)
         })
         .catch((error)=>{
             console.log('There has been a problem with your fetch operation: ', error.message);
@@ -65,10 +65,10 @@ const buttonActionInit=(timerControl)=>{
             return response.text()
         })
         .then(response=>{
-            console.log(response);
+            //console.log(response);
 
             let ct = timerControl.getCurrentTime();
-            console.log("press stop",ct)
+            //console.log("press stop",ct)
             if (ct != "0s" && !press_stop) {
                 press_stop = true;
                 //get current time, + cur doing task
@@ -77,7 +77,7 @@ const buttonActionInit=(timerControl)=>{
                 //get timemark textare text, change to array
                 let currentDoingTxtContent = document.getElementById("timeMark").value;
                 currentDoingTxtContent = currentDoingTxtContent.split(" ");
-                console.log("currentDoingTxtContent"+currentDoingTxtContent)
+                //console.log("currentDoingTxtContent"+currentDoingTxtContent)
 
                 //add current done time in front
                 currentDoingTxtContent.unshift(doingStTimer + ct + doingEndTimer);
@@ -90,7 +90,7 @@ const buttonActionInit=(timerControl)=>{
 
                 timerControl.pauseTimer()
 
-                console.log("done");
+                //console.log("done");
                 done_timer();
             }
 
@@ -114,7 +114,7 @@ const done_timer=()=>{
         return response.text()
     })
 	.then(response=>{
-        console.log(response)
+        //console.log(response)
         setTimeout(()=>{ 
             location.reload(); 
         }, 50);

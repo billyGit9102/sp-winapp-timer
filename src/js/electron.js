@@ -18,7 +18,7 @@ const ipcRendererInit=()=>{
 
     const toggleExpand_handle=(e)=>{
         e.preventDefault();
-        console.log("is_expand",is_expand);
+        //console.log("is_expand",is_expand);
         is_expand=bodyele.classList.contains("expand");
         if(is_expand){
             bodyele.classList.remove("expand");
@@ -29,7 +29,7 @@ const ipcRendererInit=()=>{
         }
         is_expand=bodyele.classList.contains("expand");
         ipcRenderer.send('timer:expand',is_expand);
-        console.log("expand btn click");		
+       //console.log("expand btn click");		
     }
     document.getElementById('expander').addEventListener('click', toggleExpand_handle);
 
@@ -39,17 +39,17 @@ const ipcRendererInit=()=>{
     *  2. response to electron main window timer:blur event
     * ----------------------------------------------------- */
     ipcRenderer.on('timer:blur', ()=>{
-        console.log('timer:blur');
+        //console.log('timer:blur');
         //bodyele.className="";
         bodyele.classList.remove("expand");
     });
     ipcRenderer.on('timer:max', ()=>{
-        console.log('timer:max');
+        //console.log('timer:max');
         bodyele.classList.add("max");
         bodyele.classList.add("expand");
     });
     ipcRenderer.on('appStart', ()=>{
-        console.log('appStart');
+        //console.log('appStart');
     //bodyele.className="expand";
     });
 }

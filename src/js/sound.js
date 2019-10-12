@@ -12,12 +12,12 @@ sound5Min.volume = 1;
 
 const activeSound=()=> {
     for (let i = 0; i < soundArray.length; i++) {
-        console.log(soundArray[i]);
+        //console.log(soundArray[i]);
         let s = document.getElementById(soundArray[i]);
         s.muted = true;
         s.play();
-        console.log(s.volume);
-        console.log("activeSound");
+        //console.log(s.volume);
+        //console.log("activeSound");
         let x = s;
         setTimeout(()=>{
             x.muted = false

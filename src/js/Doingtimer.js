@@ -21,8 +21,8 @@ class DoingTimer{
 		this.soundEventDispatch = new SoundEventDispatch(document.getElementById("endTime").value);
 
         console.log("DoingTimer-start");
-        console.log(this.setting);
-        console.log(this.ms,"===tart-dt");
+        //console.log(this.setting);
+        //console.log(this.ms,"===tart-dt");
 	}	
 	_findMilesecond=(x)=>{
 		/*
@@ -112,7 +112,7 @@ class DoingTimer{
 	}
 	startTimer=()=>{
 		this.intervalTimer=setInterval(this._counter,100);
-		console.log("startTimer()221")
+		//console.log("startTimer()221")
 	}
 	pauseTimer=()=>{ clearInterval(this.intervalTimer) }
 	resumeTimer=()=>{ this.intervalTimer=setInterval(this._counter,100)}
