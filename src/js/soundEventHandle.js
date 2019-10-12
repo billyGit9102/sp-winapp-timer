@@ -10,14 +10,6 @@ const soundEventHandleInit=(timerControl)=>{
     });
 
     document.addEventListener("sound:process", ()=>{
-        // $.post(base_url+'doing_timer/set_ticks/'+type, {
-        //     "ticks": timerControl.getTicks(),
-        //     "endTime": document.getElementById("endTime").value
-        // },
-        // function(respones) {
-        //     console.log(respones + "set_ticks");
-        // })
-
         var formData = new FormData();
         formData.append('ticks', timerControl.getTicks());
         formData.append('endTime', document.getElementById("endTime").value);

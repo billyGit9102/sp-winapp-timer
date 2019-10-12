@@ -9,10 +9,6 @@ const buttonActionInit=(timerControl)=>{
         if (v == "") {
             e.target.value=0;
         }
-        // $.post(base_url+'doing_timer/set_ticks/'+type, {
-        //     "ticks": timerControl.getTicks(),
-        //     "endTime": e.target.value
-        // }, function(respones) {})
 
         var formData = new FormData();
         formData.append('ticks', timerControl.getTicks());
@@ -61,36 +57,6 @@ const buttonActionInit=(timerControl)=>{
 
     var press_stop = false;
     document.getElementById("stop").addEventListener("click", ()=>{
-        
-        // $.post(base_url+'doing_timer/done/'+type, {}, (respones)=>{
-        //     var ct = timerControl.getCurrentTime();
-        //     console.log("press stop",ct)
-        //     if (ct != "0s" && !press_stop) {
-        //         press_stop = true;
-        //         //get current time, + cur doing task
-        //         doingEndTimer = "-" + currentTime() + "| " + document.getElementById("curDoing").value  + " \n"; 
-                
-        //         //get timemark textare text, change to array
-        //         var currentDoingTxtContent = document.getElementById("timeMark").value;
-        //         currentDoingTxtContent = currentDoingTxtContent.split(" ");
-        //         console.log("currentDoingTxtContent"+currentDoingTxtContent)
-
-        //         //add current done time in front
-        //         currentDoingTxtContent.unshift(doingStTimer + ct + doingEndTimer);
-        //         var output = currentDoingTxtContent
-        //         output = output.join(" ");
-
-        //         //remove first row space
-        //         output = output.replace(" >", ">");
-        //         document.getElementById("timeMark").value=output;
-
-        //         timerControl.pauseTimer()
-        //         done_timer();
-        //     }
-
-        // }) //$.post("
-
-
         let formData = new FormData();
         formData.append('no var', "");
         fetch(base_url+'doing_timer/done/'+type, { method:'POST', body:formData })
@@ -124,33 +90,18 @@ const buttonActionInit=(timerControl)=>{
 
                 timerControl.pauseTimer()
 
-                console.log("put");
-                //done_timer();
+                console.log("done");
+                done_timer();
             }
 
         })
         .catch(function(error) {
             console.log('There has been a problem with your fetch operation: ', error.message);
         });
-
-
     })
-
 }
 function done_timer(){
     let content=document.getElementById("timeMark").value;
-
-    //console.log("content-change="+content)
-    // $.ajax({
-    //     url: base_url+"doing_timer/set_content/"+type,
-    //     data: {'content':content},
-    //     type: "POST",
-    //     success:(response)=>{
-    //         setTimeout(()=>{ 
-    //             location.reload(); 
-    //         }, 50);
-    //     }
-    // });
 
     var formData = new FormData();
     formData.append('content', content);
@@ -171,7 +122,6 @@ function done_timer(){
 	.catch(function(error) {
         console.log('There has been a problem with your fetch operation: ', error.message);
     });
-
 }
 
 export {buttonActionInit}

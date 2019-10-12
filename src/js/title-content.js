@@ -22,15 +22,6 @@ const titleContentInit=()=>{
     document.getElementById("doingNote").addEventListener("change",(e)=>{
         var title=e.target.value;
         update_curDoing(title);
-        //console.log(title)
-        // $.ajax({
-        //     url: base_url+'doing_timer/set_title/'+type,
-        //     data: {'title':title},
-        //     type: "POST",
-        //     success:function(response){
-        //             console.log("set-title111====================="+response)
-        //             }
-        // });
 
         var formData = new FormData();
         formData.append('title', title);
@@ -50,14 +41,6 @@ const titleContentInit=()=>{
     document.getElementById("timeMark").addEventListener("change",(e)=>{
         var content=e.target.value;
         console.log("content-change="+content)
-        // $.ajax({
-        //     url: "http://bf2c.info/sp/project/ci-doing-timer-v5/doing_timer/set_content/"+window.timerType,
-        //     data: {'content':content},
-        //     type: "POST",
-        //     success:function(response){
-        //             console.log(response)
-        //             }
-        // });
 
         var formData = new FormData();
         formData.append('content', content);
