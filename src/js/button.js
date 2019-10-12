@@ -13,7 +13,7 @@ const buttonActionInit=(timerControl)=>{
         //     "ticks": timerControl.getTicks(),
         //     "endTime": e.target.value
         // }, function(respones) {})
-        
+
         var formData = new FormData();
         formData.append('ticks', timerControl.getTicks());
         formData.append('endTime', e.target.value);
@@ -61,36 +61,79 @@ const buttonActionInit=(timerControl)=>{
 
     var press_stop = false;
     document.getElementById("stop").addEventListener("click", ()=>{
-        $.post(base_url+'doing_timer/done/'+type, {}, (respones)=>{
+        
+        // $.post(base_url+'doing_timer/done/'+type, {}, (respones)=>{
+        //     var ct = timerControl.getCurrentTime();
+        //     console.log("press stop",ct)
+        //     if (ct != "0s" && !press_stop) {
+        //         press_stop = true;
+        //         //get current time, + cur doing task
+        //         doingEndTimer = "-" + currentTime() + "| " + document.getElementById("curDoing").value  + " \n"; 
+                
+        //         //get timemark textare text, change to array
+        //         var currentDoingTxtContent = document.getElementById("timeMark").value;
+        //         currentDoingTxtContent = currentDoingTxtContent.split(" ");
+        //         console.log("currentDoingTxtContent"+currentDoingTxtContent)
+
+        //         //add current done time in front
+        //         currentDoingTxtContent.unshift(doingStTimer + ct + doingEndTimer);
+        //         var output = currentDoingTxtContent
+        //         output = output.join(" ");
+
+        //         //remove first row space
+        //         output = output.replace(" >", ">");
+        //         document.getElementById("timeMark").value=output;
+
+        //         timerControl.pauseTimer()
+        //         done_timer();
+        //     }
+
+        // }) //$.post("
+
+
+        let formData = new FormData();
+        formData.append('no var', "");
+        fetch(base_url+'doing_timer/done/'+type, { method:'POST', body:formData })
+        .then(response=>{
+            if (!response.ok) throw new Error(response.statusText)
+            return response.text()
+        })
+        .then(response=>{
+            console.log(response);
+
             var ct = timerControl.getCurrentTime();
+            console.log("press stop",ct)
             if (ct != "0s" && !press_stop) {
-                //let curDoingTask=prompt("type task name");
                 press_stop = true;
-                //get current time, then set to end time
-                //$("#time").text()
-                doingEndTimer = "-" + currentTime() + "| " + document.getElementById("curDoing").value  + " \n"; //+ ' ' + curDoingTask
-                //alert($("#time").text());
+                //get current time, + cur doing task
+                doingEndTimer = "-" + currentTime() + "| " + document.getElementById("curDoing").value  + " \n"; 
+                
+                //get timemark textare text, change to array
                 var currentDoingTxtContent = document.getElementById("timeMark").value;
                 currentDoingTxtContent = currentDoingTxtContent.split(" ");
-                console.log(currentDoingTxtContent)
-                //var doingTitle=[];
-                //doingTitle[0]=currentDoingTxtContent[0];
+                console.log("currentDoingTxtContent"+currentDoingTxtContent)
+
                 //add current done time in front
                 currentDoingTxtContent.unshift(doingStTimer + ct + doingEndTimer);
-                //var output=doingTitle.concat(currentDoingTxtContent)
                 var output = currentDoingTxtContent
-                //console.log(output[1]);
-                //output[1]=output[1].substring(1);
                 output = output.join(" ");
+
                 //remove first row space
                 output = output.replace(" >", ">");
                 document.getElementById("timeMark").value=output;
-                //$("#timeMark").trigger("change");
+
                 timerControl.pauseTimer()
-                done_timer();
-                //
+
+                console.log("put");
+                //done_timer();
             }
-        }) //$.post("
+
+        })
+        .catch(function(error) {
+            console.log('There has been a problem with your fetch operation: ', error.message);
+        });
+
+
     })
 
 }
@@ -98,14 +141,37 @@ function done_timer(){
     let content=document.getElementById("timeMark").value;
 
     //console.log("content-change="+content)
-    $.ajax({
-        url: base_url+"doing_timer/set_content/"+type,
-        data: {'content':content},
-        type: "POST",
-        success:(response)=>{
-            setTimeout(()=>{ location.reload(); }, 50);
-        }
+    // $.ajax({
+    //     url: base_url+"doing_timer/set_content/"+type,
+    //     data: {'content':content},
+    //     type: "POST",
+    //     success:(response)=>{
+    //         setTimeout(()=>{ 
+    //             location.reload(); 
+    //         }, 50);
+    //     }
+    // });
+
+    var formData = new FormData();
+    formData.append('content', content);
+    fetch(base_url+"doing_timer/set_content/"+type, {
+        method: 'POST', 
+        body: formData
+    })
+    .then(response=>{
+        if (!response.ok) throw new Error(response.statusText)
+        return response.text()
+    })
+	.then(response=>{
+        console.log(response)
+        setTimeout(()=>{ 
+            location.reload(); 
+        }, 50);
+	})
+	.catch(function(error) {
+        console.log('There has been a problem with your fetch operation: ', error.message);
     });
+
 }
 
 export {buttonActionInit}

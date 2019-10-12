@@ -10,13 +10,30 @@ const soundEventHandleInit=(timerControl)=>{
     });
 
     document.addEventListener("sound:process", ()=>{
-        $.post(base_url+'doing_timer/set_ticks/'+type, {
-            "ticks": timerControl.getTicks(),
-            "endTime": document.getElementById("endTime").value
-        },
-        function(respones) {
-            console.log(respones + "set_ticks");
+        // $.post(base_url+'doing_timer/set_ticks/'+type, {
+        //     "ticks": timerControl.getTicks(),
+        //     "endTime": document.getElementById("endTime").value
+        // },
+        // function(respones) {
+        //     console.log(respones + "set_ticks");
+        // })
+
+        var formData = new FormData();
+        formData.append('ticks', timerControl.getTicks());
+        formData.append('endTime', document.getElementById("endTime").value);
+        fetch(base_url+'doing_timer/set_ticks/'+type, { method:'POST', body:formData })
+        .then(response=>{
+            if (!response.ok) throw new Error(response.statusText)
+            return response.text()
         })
+        .then(response=>{
+            console.log(response + "set_ticks")
+        })
+        .catch(function(error) {
+            console.log('There has been a problem with your fetch operation: ', error.message);
+        });
+
+
         console.log("sound:process");
         soundProcess.play();
     });

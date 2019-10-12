@@ -50,14 +50,30 @@ const titleContentInit=()=>{
     document.getElementById("timeMark").addEventListener("change",(e)=>{
         var content=e.target.value;
         console.log("content-change="+content)
-        $.ajax({
-            url: "http://bf2c.info/sp/project/ci-doing-timer-v5/doing_timer/set_content/"+window.timerType,
-            data: {'content':content},
-            type: "POST",
-            success:function(response){
-                    console.log(response)
-                    }
+        // $.ajax({
+        //     url: "http://bf2c.info/sp/project/ci-doing-timer-v5/doing_timer/set_content/"+window.timerType,
+        //     data: {'content':content},
+        //     type: "POST",
+        //     success:function(response){
+        //             console.log(response)
+        //             }
+        // });
+
+        var formData = new FormData();
+        formData.append('content', content);
+        fetch(base_url+'doing_timer/set_content/'+type, { method:'POST', body:formData })
+        .then(response=>{
+            if (!response.ok) throw new Error(response.statusText)
+            return response.text()
+        })
+        .then(response=>{
+            console.log(response + "timeMark change")
+        })
+        .catch(function(error) {
+            console.log('There has been a problem with your fetch operation: ', error.message);
         });
+
+
     })
 
 }

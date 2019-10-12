@@ -335,37 +335,62 @@ var buttonActionInit = function buttonActionInit(timerControl) {
   });
   var press_stop = false;
   document.getElementById("stop").addEventListener("click", function () {
-    $.post(_globalVar_html.base_url + 'doing_timer/done/' + _globalVar_html.type, {}, function (respones) {
+    // $.post(base_url+'doing_timer/done/'+type, {}, (respones)=>{
+    //     var ct = timerControl.getCurrentTime();
+    //     console.log("press stop",ct)
+    //     if (ct != "0s" && !press_stop) {
+    //         press_stop = true;
+    //         //get current time, + cur doing task
+    //         doingEndTimer = "-" + currentTime() + "| " + document.getElementById("curDoing").value  + " \n"; 
+    //         //get timemark textare text, change to array
+    //         var currentDoingTxtContent = document.getElementById("timeMark").value;
+    //         currentDoingTxtContent = currentDoingTxtContent.split(" ");
+    //         console.log("currentDoingTxtContent"+currentDoingTxtContent)
+    //         //add current done time in front
+    //         currentDoingTxtContent.unshift(doingStTimer + ct + doingEndTimer);
+    //         var output = currentDoingTxtContent
+    //         output = output.join(" ");
+    //         //remove first row space
+    //         output = output.replace(" >", ">");
+    //         document.getElementById("timeMark").value=output;
+    //         timerControl.pauseTimer()
+    //         done_timer();
+    //     }
+    // }) //$.post("
+    var formData = new FormData();
+    formData.append('no var', "");
+    fetch(_globalVar_html.base_url + 'doing_timer/done/' + _globalVar_html.type, {
+      method: 'POST',
+      body: formData
+    }).then(function (response) {
+      if (!response.ok) throw new Error(response.statusText);
+      return response.text();
+    }).then(function (response) {
+      console.log(response);
       var ct = timerControl.getCurrentTime();
+      console.log("press stop", ct);
 
       if (ct != "0s" && !press_stop) {
-        //let curDoingTask=prompt("type task name");
-        press_stop = true; //get current time, then set to end time
-        //$("#time").text()
+        press_stop = true; //get current time, + cur doing task
 
-        doingEndTimer = "-" + (0, _currentTime.currentTime)() + "| " + document.getElementById("curDoing").value + " \n"; //+ ' ' + curDoingTask
-        //alert($("#time").text());
+        doingEndTimer = "-" + (0, _currentTime.currentTime)() + "| " + document.getElementById("curDoing").value + " \n"; //get timemark textare text, change to array
 
         var currentDoingTxtContent = document.getElementById("timeMark").value;
         currentDoingTxtContent = currentDoingTxtContent.split(" ");
-        console.log(currentDoingTxtContent); //var doingTitle=[];
-        //doingTitle[0]=currentDoingTxtContent[0];
-        //add current done time in front
+        console.log("currentDoingTxtContent" + currentDoingTxtContent); //add current done time in front
 
-        currentDoingTxtContent.unshift(doingStTimer + ct + doingEndTimer); //var output=doingTitle.concat(currentDoingTxtContent)
-
-        var output = currentDoingTxtContent; //console.log(output[1]);
-        //output[1]=output[1].substring(1);
-
+        currentDoingTxtContent.unshift(doingStTimer + ct + doingEndTimer);
+        var output = currentDoingTxtContent;
         output = output.join(" "); //remove first row space
 
         output = output.replace(" >", ">");
-        document.getElementById("timeMark").value = output; //$("#timeMark").trigger("change");
-
+        document.getElementById("timeMark").value = output;
         timerControl.pauseTimer();
-        done_timer(); //
+        console.log("put"); //done_timer();
       }
-    }); //$.post("
+    })["catch"](function (error) {
+      console.log('There has been a problem with your fetch operation: ', error.message);
+    });
   });
 };
 
@@ -373,18 +398,32 @@ exports.buttonActionInit = buttonActionInit;
 
 function done_timer() {
   var content = document.getElementById("timeMark").value; //console.log("content-change="+content)
+  // $.ajax({
+  //     url: base_url+"doing_timer/set_content/"+type,
+  //     data: {'content':content},
+  //     type: "POST",
+  //     success:(response)=>{
+  //         setTimeout(()=>{ 
+  //             location.reload(); 
+  //         }, 50);
+  //     }
+  // });
 
-  $.ajax({
-    url: _globalVar_html.base_url + "doing_timer/set_content/" + _globalVar_html.type,
-    data: {
-      'content': content
-    },
-    type: "POST",
-    success: function success(response) {
-      setTimeout(function () {
-        location.reload();
-      }, 50);
-    }
+  var formData = new FormData();
+  formData.append('content', content);
+  fetch(_globalVar_html.base_url + "doing_timer/set_content/" + _globalVar_html.type, {
+    method: 'POST',
+    body: formData
+  }).then(function (response) {
+    if (!response.ok) throw new Error(response.statusText);
+    return response.text();
+  }).then(function (response) {
+    console.log(response);
+    setTimeout(function () {
+      location.reload();
+    }, 50);
+  })["catch"](function (error) {
+    console.log('There has been a problem with your fetch operation: ', error.message);
   });
 } // 
 // var flag = 0;
@@ -637,11 +676,26 @@ var soundEventHandleInit = function soundEventHandleInit(timerControl) {
     _sound.soundProcess.play();
   });
   document.addEventListener("sound:process", function () {
-    $.post(_globalVar_html.base_url + 'doing_timer/set_ticks/' + _globalVar_html.type, {
-      "ticks": timerControl.getTicks(),
-      "endTime": document.getElementById("endTime").value
-    }, function (respones) {
-      console.log(respones + "set_ticks");
+    // $.post(base_url+'doing_timer/set_ticks/'+type, {
+    //     "ticks": timerControl.getTicks(),
+    //     "endTime": document.getElementById("endTime").value
+    // },
+    // function(respones) {
+    //     console.log(respones + "set_ticks");
+    // })
+    var formData = new FormData();
+    formData.append('ticks', timerControl.getTicks());
+    formData.append('endTime', document.getElementById("endTime").value);
+    fetch(_globalVar_html.base_url + 'doing_timer/set_ticks/' + _globalVar_html.type, {
+      method: 'POST',
+      body: formData
+    }).then(function (response) {
+      if (!response.ok) throw new Error(response.statusText);
+      return response.text();
+    }).then(function (response) {
+      console.log(response + "set_ticks");
+    })["catch"](function (error) {
+      console.log('There has been a problem with your fetch operation: ', error.message);
     });
     console.log("sound:process");
 
@@ -734,16 +788,27 @@ var titleContentInit = function titleContentInit() {
   });
   document.getElementById("timeMark").addEventListener("change", function (e) {
     var content = e.target.value;
-    console.log("content-change=" + content);
-    $.ajax({
-      url: "http://bf2c.info/sp/project/ci-doing-timer-v5/doing_timer/set_content/" + window.timerType,
-      data: {
-        'content': content
-      },
-      type: "POST",
-      success: function success(response) {
-        console.log(response);
-      }
+    console.log("content-change=" + content); // $.ajax({
+    //     url: "http://bf2c.info/sp/project/ci-doing-timer-v5/doing_timer/set_content/"+window.timerType,
+    //     data: {'content':content},
+    //     type: "POST",
+    //     success:function(response){
+    //             console.log(response)
+    //             }
+    // });
+
+    var formData = new FormData();
+    formData.append('content', content);
+    fetch(_globalVar_html.base_url + 'doing_timer/set_content/' + _globalVar_html.type, {
+      method: 'POST',
+      body: formData
+    }).then(function (response) {
+      if (!response.ok) throw new Error(response.statusText);
+      return response.text();
+    }).then(function (response) {
+      console.log(response + "timeMark change");
+    })["catch"](function (error) {
+      console.log('There has been a problem with your fetch operation: ', error.message);
     });
   });
 };
