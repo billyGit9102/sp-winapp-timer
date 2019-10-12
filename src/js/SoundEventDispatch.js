@@ -9,7 +9,7 @@ class SoundEventDispatch{
     }
     handleTicksChange=(e)=>{
         //console.log("handleTicksChange");
-        console.log(this.endTime)
+        //console.log(this.endTime)
         
         let x=e.detail.ticks;
         let checkStart=(x/1000)/3==1?true:false;
@@ -19,8 +19,8 @@ class SoundEventDispatch{
 		let check5Min=(x/1000)%300==0?true:false;
         let checkEnd=(x/1000)%this.endTime==0?true:false;
 
-        console.log("endTime="+this.endTime);
-        console.log(this);
+        //console.log("endTime="+this.endTime);
+        //console.log(this);
 
         if(checkEnd){
             console.log("SoundTrigger-checkEnd")
@@ -50,7 +50,7 @@ class SoundEventDispatch{
             console.log("SoundTrigger-5min")
             document.dispatchEvent(new CustomEvent("sound:5min"));
         }
-    }    
-	setEndTime=(e)=>{ this.endTime=e*60;console.log("set end Time:SoundTrigger", this.endTime)}
+    }
+	setEndTime=(e)=>{ this.endTime=e*60;console.log("set end Time:SoundTrigger", this.endTime) }
 } 
 export {SoundEventDispatch}

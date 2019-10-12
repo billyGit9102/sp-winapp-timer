@@ -204,16 +204,15 @@ var SoundEventDispatch = function SoundEventDispatch(endTime) {
 
   _defineProperty(this, "handleTicksChange", function (e) {
     //console.log("handleTicksChange");
-    console.log(_this.endTime);
+    //console.log(this.endTime)
     var x = e.detail.ticks;
     var checkStart = x / 1000 / 3 == 1 ? true : false;
     var checkProcess = x / 1000 % 15 == 0 ? true : false;
     var check1Min = x / 1000 % 60 == 0 ? true : false;
     var check2Min = x / 1000 % 120 == 0 ? true : false;
     var check5Min = x / 1000 % 300 == 0 ? true : false;
-    var checkEnd = x / 1000 % _this.endTime == 0 ? true : false;
-    console.log("endTime=" + _this.endTime);
-    console.log(_this);
+    var checkEnd = x / 1000 % _this.endTime == 0 ? true : false; //console.log("endTime="+this.endTime);
+    //console.log(this);
 
     if (checkEnd) {
       console.log("SoundTrigger-checkEnd");
@@ -286,12 +285,26 @@ var buttonActionInit = function buttonActionInit(timerControl) {
 
     if (v == "") {
       e.target.value = 0;
-    }
+    } // $.post(base_url+'doing_timer/set_ticks/'+type, {
+    //     "ticks": timerControl.getTicks(),
+    //     "endTime": e.target.value
+    // }, function(respones) {})
 
-    $.post(_globalVar_html.base_url + 'doing_timer/set_ticks/' + _globalVar_html.type, {
-      "ticks": timerControl.getTicks(),
-      "endTime": e.target.value
-    }, function (respones) {});
+
+    var formData = new FormData();
+    formData.append('ticks', timerControl.getTicks());
+    formData.append('endTime', e.target.value);
+    fetch(_globalVar_html.base_url + 'doing_timer/set_ticks/' + _globalVar_html.type, {
+      method: 'POST',
+      body: formData
+    }).then(function (response) {
+      if (!response.ok) throw new Error(response.statusText);
+      return response.text();
+    }).then(function (response) {
+      console.log(response);
+    })["catch"](function (error) {
+      console.log('There has been a problem with your fetch operation: ', error.message);
+    });
     timerControl.setEndTime(e.target.value);
   }); //button action
 
@@ -655,7 +668,7 @@ var soundEventHandleInit = function soundEventHandleInit(timerControl) {
     //$("#expander").trigger('click');
 
     (0, _eventTrigger.triggerNativeEvent)(document.getElementById("expander"), 'click');
-    console.log((0, _eventTrigger.triggerNativeEvent)(document.getElementById("expander"), 'click'));
+    console.log("triggerNativeEvent(document.getElementById(expander)");
     _sound.sound2Min.loop = true;
 
     _sound.sound2Min.play();
@@ -673,20 +686,20 @@ exports.titleContentInit = void 0;
 
 var _globalVar_html = require("./globalVar_html.js");
 
+var _eventTrigger = require("./utility-function/eventTrigger");
+
 var titleContentInit = function titleContentInit() {
   var ele_doingNote = document.getElementById("doingNote");
   update_curDoing(ele_doingNote.value);
-
-  function change_curDoing_handler(e) {
-    console.log(document.getElementById("curDoing").value);
-    update_DoingNote(document.getElementById("curDoing").value);
-  }
-
-  document.getElementById("curDoing").addEventListener("change", change_curDoing_handler);
+  document.getElementById("curDoing").addEventListener("change", function (e) {
+    console.log(e.target.value, 'curDoing');
+    update_DoingNote(e.target.value);
+  });
 
   function update_DoingNote(str) {
-    ele_doingNote.value = ele_doingNote.value.replace(/.*/, str);
-    $("#doingNote").trigger("change");
+    ele_doingNote.value = ele_doingNote.value.replace(/.*/, str); //$("#doingNote").trigger("change");
+
+    (0, _eventTrigger.triggerNativeEvent)(document.getElementById("doingNote"), 'change');
   }
 
   function update_curDoing(str) {
@@ -695,17 +708,28 @@ var titleContentInit = function titleContentInit() {
 
   document.getElementById("doingNote").addEventListener("change", function (e) {
     var title = e.target.value;
-    update_curDoing(title);
-    console.log(title);
-    $.ajax({
-      url: _globalVar_html.base_url + 'doing_timer/set_title/' + _globalVar_html.type,
-      data: {
-        'title': title
-      },
-      type: "POST",
-      success: function success(response) {
-        console.log("set-title=" + response);
-      }
+    update_curDoing(title); //console.log(title)
+    // $.ajax({
+    //     url: base_url+'doing_timer/set_title/'+type,
+    //     data: {'title':title},
+    //     type: "POST",
+    //     success:function(response){
+    //             console.log("set-title111====================="+response)
+    //             }
+    // });
+
+    var formData = new FormData();
+    formData.append('title', title);
+    fetch(_globalVar_html.base_url + 'doing_timer/set_title/' + _globalVar_html.type, {
+      method: 'POST',
+      body: formData
+    }).then(function (response) {
+      if (!response.ok) throw new Error(response.statusText);
+      return response.text();
+    }).then(function (response) {
+      console.log(response);
+    })["catch"](function (error) {
+      console.log('There has been a problem with your fetch operation: ', error.message);
     });
   });
   document.getElementById("timeMark").addEventListener("change", function (e) {
@@ -725,7 +749,7 @@ var titleContentInit = function titleContentInit() {
 };
 
 exports.titleContentInit = titleContentInit;
-},{"./globalVar_html.js":6}],11:[function(require,module,exports){
+},{"./globalVar_html.js":6,"./utility-function/eventTrigger":12}],11:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

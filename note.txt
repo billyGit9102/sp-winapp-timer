@@ -1,3 +1,6 @@
+http://bf2c.info/sp/project/ci-doing-timer-v5/
+
+
 github link 
 https://github.com/billyGit9102/winapp-timer
 
@@ -28,6 +31,6 @@ document.getElementById("endTime").addEventListener(
 
 document.getElementById("preloader").classList.add('init');
 
- document.getElementById("preloader").classList.remove('init')
+document.getElementById("preloader").classList.remove('init')
 
- document.getElementsByTagName('body')[0]
+document.getElementsByTagName('body')[0]

@@ -42,7 +42,7 @@ const soundEventHandleInit=(timerControl)=>{
         //$("body").addClass("timerAlert");
         //$("#expander").trigger('click');
         triggerNativeEvent(document.getElementById("expander"),'click')
-        console.log(triggerNativeEvent(document.getElementById("expander"),'click'));
+        console.log("triggerNativeEvent(document.getElementById(expander)");
         
         sound2Min.loop = true;
         sound2Min.play();

@@ -9,10 +9,26 @@ const buttonActionInit=(timerControl)=>{
         if (v == "") {
             e.target.value=0;
         }
-        $.post(base_url+'doing_timer/set_ticks/'+type, {
-            "ticks": timerControl.getTicks(),
-            "endTime": e.target.value
-        }, function(respones) {})
+        // $.post(base_url+'doing_timer/set_ticks/'+type, {
+        //     "ticks": timerControl.getTicks(),
+        //     "endTime": e.target.value
+        // }, function(respones) {})
+        
+        var formData = new FormData();
+        formData.append('ticks', timerControl.getTicks());
+        formData.append('endTime', e.target.value);
+        fetch(base_url+'doing_timer/set_ticks/'+type, { method:'POST', body:formData })
+        .then(response=>{
+            if (!response.ok) throw new Error(response.statusText)
+            return response.text()
+        })
+        .then(response=>{
+            console.log(response)
+        })
+        .catch(function(error) {
+            console.log('There has been a problem with your fetch operation: ', error.message);
+        });
+
         timerControl.setEndTime(e.target.value)
     })
 

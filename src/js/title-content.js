@@ -1,19 +1,19 @@
 import  { base_url,type } from './globalVar_html.js';
-
+import  { triggerNativeEvent } from './utility-function/eventTrigger';
 
 const titleContentInit=()=>{
     let ele_doingNote=document.getElementById("doingNote");
     update_curDoing(ele_doingNote.value);
     
-    function change_curDoing_handler(e){
-        console.log(document.getElementById("curDoing").value);
-        update_DoingNote(document.getElementById("curDoing").value);
-    }
-    document.getElementById("curDoing").addEventListener("change",change_curDoing_handler);
+    document.getElementById("curDoing").addEventListener("change",(e)=>{
+        console.log(e.target.value,'curDoing');
+        update_DoingNote(e.target.value);
+    });
     
     function update_DoingNote(str){
         ele_doingNote.value=ele_doingNote.value.replace(/.*/,str);
-        $("#doingNote").trigger("change");	
+        //$("#doingNote").trigger("change");
+        triggerNativeEvent(document.getElementById("doingNote"),'change')	
     }
     function update_curDoing(str){
         document.getElementById("curDoing").value=str.match(/.*/)[0];
@@ -22,15 +22,30 @@ const titleContentInit=()=>{
     document.getElementById("doingNote").addEventListener("change",(e)=>{
         var title=e.target.value;
         update_curDoing(title);
-        console.log(title)
-        $.ajax({
-            url: base_url+'doing_timer/set_title/'+type,
-            data: {'title':title},
-            type: "POST",
-            success:function(response){
-                    console.log("set-title="+response)
-                    }
+        //console.log(title)
+        // $.ajax({
+        //     url: base_url+'doing_timer/set_title/'+type,
+        //     data: {'title':title},
+        //     type: "POST",
+        //     success:function(response){
+        //             console.log("set-title111====================="+response)
+        //             }
+        // });
+
+        var formData = new FormData();
+        formData.append('title', title);
+        fetch(base_url+'doing_timer/set_title/'+type, { method:'POST', body:formData })
+        .then(response=>{
+            if (!response.ok) throw new Error(response.statusText)
+            return response.text()
+        })
+        .then(response=>{
+            console.log(response)
+        })
+        .catch(function(error) {
+            console.log('There has been a problem with your fetch operation: ', error.message);
         });
+
     })
     document.getElementById("timeMark").addEventListener("change",(e)=>{
         var content=e.target.value;
