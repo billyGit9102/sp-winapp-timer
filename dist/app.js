@@ -498,7 +498,7 @@ var _soundEventHandle = require("./soundEventHandle");
 
 //const electron = window.require('electron');
 //const {ipcRenderer} = electron;
-(function ($) {
+(function () {
   (0, _preloader.showPreloader)();
   (0, _electron.ipcRendererInit)(); //console.log(this.location)       
   // $.get( base_url+'/doing_timer/start/'+type, function( data ) {
@@ -536,7 +536,7 @@ var _soundEventHandle = require("./soundEventHandle");
   })["catch"](function (error) {
     console.log('There has been a problem with your fetch operation: ', error.message);
   });
-})(jQuery); //--end (function ($) {
+})(); //--end (function ($) {
 },{"./Doingtimer":1,"./button":3,"./electron":4,"./globalVar_html":6,"./preloader":7,"./soundEventHandle":9,"./title-content":10}],6:[function(require,module,exports){
 "use strict";
 

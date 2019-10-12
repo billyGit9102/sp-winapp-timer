@@ -1,4 +1,3 @@
-
 import {showPreloader,removePreloader} from './preloader';
 import {DoingTimer} from './Doingtimer';
 import {buttonActionInit} from './button';
@@ -10,7 +9,7 @@ import {soundEventHandleInit} from './soundEventHandle';
 //const electron = window.require('electron');
 //const {ipcRenderer} = electron;
 
-(function ($) {
+(function () {
     showPreloader()
 
     ipcRendererInit();
@@ -61,4 +60,4 @@ import {soundEventHandleInit} from './soundEventHandle';
     });
 
 
-}(jQuery)); //--end (function ($) {
+}()); //--end (function ($) {
