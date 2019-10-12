@@ -21,7 +21,7 @@ const soundEventHandleInit=(timerControl)=>{
         .then(response=>{
             console.log(response + "set_ticks")
         })
-        .catch(function(error) {
+        .catch((error)=>{
             console.log('There has been a problem with your fetch operation: ', error.message);
         });
 

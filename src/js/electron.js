@@ -16,7 +16,7 @@ const ipcRendererInit=()=>{
     let bodyele=document.getElementsByTagName("body")[0];
     let is_expand=true;
 
-    function toggleExpand_handle(e){
+    const toggleExpand_handle=(e)=>{
         e.preventDefault();
         console.log("is_expand",is_expand);
         is_expand=bodyele.classList.contains("expand");
@@ -38,17 +38,17 @@ const ipcRendererInit=()=>{
     /* ---------------------------------------------------- *
     *  2. response to electron main window timer:blur event
     * ----------------------------------------------------- */
-    ipcRenderer.on('timer:blur', function(e, item){
+    ipcRenderer.on('timer:blur', ()=>{
         console.log('timer:blur');
         //bodyele.className="";
         bodyele.classList.remove("expand");
     });
-    ipcRenderer.on('timer:max', function(e, item){
+    ipcRenderer.on('timer:max', ()=>{
         console.log('timer:max');
         bodyele.classList.add("max");
         bodyele.classList.add("expand");
     });
-    ipcRenderer.on('appStart', function(e){
+    ipcRenderer.on('appStart', ()=>{
         console.log('appStart');
     //bodyele.className="expand";
     });

@@ -19,7 +19,7 @@ const activeSound=()=> {
         console.log(s.volume);
         console.log("activeSound");
         let x = s;
-        setTimeout(function() {
+        setTimeout(()=>{
             x.muted = false
         }, restartTime[i] * 1000)
     }

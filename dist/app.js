@@ -371,7 +371,7 @@ var buttonActionInit = function buttonActionInit(timerControl) {
 
 exports.buttonActionInit = buttonActionInit;
 
-function done_timer() {
+var done_timer = function done_timer() {
   var content = document.getElementById("timeMark").value;
   var formData = new FormData();
   formData.append('content', content);
@@ -389,7 +389,7 @@ function done_timer() {
   })["catch"](function (error) {
     console.log('There has been a problem with your fetch operation: ', error.message);
   });
-} // 
+}; // 
 // var flag = 0;
 // $("#refresh").on("click", function() {
 //     if ($(this).hasClass("active")) {
@@ -441,7 +441,7 @@ var ipcRendererInit = function ipcRendererInit() {
   var bodyele = document.getElementsByTagName("body")[0];
   var is_expand = true;
 
-  function toggleExpand_handle(e) {
+  var toggleExpand_handle = function toggleExpand_handle(e) {
     e.preventDefault();
     console.log("is_expand", is_expand);
     is_expand = bodyele.classList.contains("expand");
@@ -455,7 +455,7 @@ var ipcRendererInit = function ipcRendererInit() {
     is_expand = bodyele.classList.contains("expand");
     ipcRenderer.send('timer:expand', is_expand);
     console.log("expand btn click");
-  }
+  };
 
   document.getElementById('expander').addEventListener('click', toggleExpand_handle); //document.getElementById('curDoing').addEventListener('focus', toggleExpand_handle);
 
@@ -463,17 +463,17 @@ var ipcRendererInit = function ipcRendererInit() {
   *  2. response to electron main window timer:blur event
   * ----------------------------------------------------- */
 
-  ipcRenderer.on('timer:blur', function (e, item) {
+  ipcRenderer.on('timer:blur', function () {
     console.log('timer:blur'); //bodyele.className="";
 
     bodyele.classList.remove("expand");
   });
-  ipcRenderer.on('timer:max', function (e, item) {
+  ipcRenderer.on('timer:max', function () {
     console.log('timer:max');
     bodyele.classList.add("max");
     bodyele.classList.add("expand");
   });
-  ipcRenderer.on('appStart', function (e) {
+  ipcRenderer.on('appStart', function () {
     console.log('appStart'); //bodyele.className="expand";
   });
 };
@@ -707,23 +707,24 @@ var _eventTrigger = require("./utility-function/eventTrigger");
 
 var titleContentInit = function titleContentInit() {
   var ele_doingNote = document.getElementById("doingNote");
+
+  var update_curDoing = function update_curDoing(str) {
+    document.getElementById("curDoing").value = str.match(/.*/)[0];
+  };
+
+  var update_DoingNote = function update_DoingNote(str) {
+    ele_doingNote.value = ele_doingNote.value.replace(/.*/, str); //$("#doingNote").trigger("change");
+
+    (0, _eventTrigger.triggerNativeEvent)(document.getElementById("doingNote"), 'change');
+  };
+
   update_curDoing(ele_doingNote.value);
   document.getElementById("curDoing").addEventListener("change", function (e) {
     console.log(e.target.value, 'curDoing');
     update_DoingNote(e.target.value);
   });
-
-  function update_DoingNote(str) {
-    ele_doingNote.value = ele_doingNote.value.replace(/.*/, str); //$("#doingNote").trigger("change");
-
-    (0, _eventTrigger.triggerNativeEvent)(document.getElementById("doingNote"), 'change');
-  }
-
-  function update_curDoing(str) {
-    document.getElementById("curDoing").value = str.match(/.*/)[0];
-  }
-
   document.getElementById("doingNote").addEventListener("change", function (e) {
+    console.log('doingNote change');
     var title = e.target.value;
     update_curDoing(title);
     var formData = new FormData();

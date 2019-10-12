@@ -21,7 +21,7 @@ const buttonActionInit=(timerControl)=>{
         .then(response=>{
             console.log(response)
         })
-        .catch(function(error) {
+        .catch((error)=>{
             console.log('There has been a problem with your fetch operation: ', error.message);
         });
 
@@ -95,12 +95,12 @@ const buttonActionInit=(timerControl)=>{
             }
 
         })
-        .catch(function(error) {
+        .catch((error)=>{
             console.log('There has been a problem with your fetch operation: ', error.message);
         });
     })
 }
-function done_timer(){
+const done_timer=()=>{
     let content=document.getElementById("timeMark").value;
 
     var formData = new FormData();
@@ -119,7 +119,7 @@ function done_timer(){
             location.reload(); 
         }, 50);
 	})
-	.catch(function(error) {
+	.catch((error)=>{
         console.log('There has been a problem with your fetch operation: ', error.message);
     });
 }

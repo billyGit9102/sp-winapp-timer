@@ -1,25 +1,24 @@
 import  { base_url,type } from './globalVar_html.js';
 import  { triggerNativeEvent } from './utility-function/eventTrigger';
 
+
 const titleContentInit=()=>{
     let ele_doingNote=document.getElementById("doingNote");
-    update_curDoing(ele_doingNote.value);
-    
-    document.getElementById("curDoing").addEventListener("change",(e)=>{
-        console.log(e.target.value,'curDoing');
-        update_DoingNote(e.target.value);
-    });
-    
-    function update_DoingNote(str){
+    const update_curDoing=(str)=>{
+        document.getElementById("curDoing").value=str.match(/.*/)[0];
+    }
+    const update_DoingNote=(str)=>{
         ele_doingNote.value=ele_doingNote.value.replace(/.*/,str);
         //$("#doingNote").trigger("change");
         triggerNativeEvent(document.getElementById("doingNote"),'change')	
     }
-    function update_curDoing(str){
-        document.getElementById("curDoing").value=str.match(/.*/)[0];
-    }
-
+    update_curDoing(ele_doingNote.value);    
+    document.getElementById("curDoing").addEventListener("change",(e)=>{
+        console.log(e.target.value,'curDoing');
+        update_DoingNote(e.target.value);
+    });
     document.getElementById("doingNote").addEventListener("change",(e)=>{
+        console.log('doingNote change');
         var title=e.target.value;
         update_curDoing(title);
 
@@ -33,7 +32,7 @@ const titleContentInit=()=>{
         .then(response=>{
             console.log(response)
         })
-        .catch(function(error) {
+        .catch((error)=>{
             console.log('There has been a problem with your fetch operation: ', error.message);
         });
 
@@ -52,13 +51,10 @@ const titleContentInit=()=>{
         .then(response=>{
             console.log(response + "timeMark change")
         })
-        .catch(function(error) {
+        .catch((error)=>{
             console.log('There has been a problem with your fetch operation: ', error.message);
         });
-
-
     })
-
 }
 
 export {titleContentInit}
