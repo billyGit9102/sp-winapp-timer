@@ -590,9 +590,9 @@ exports.sound5Min = sound5Min;
 sound5Min.volume = 1;
 
 var activeSound = function activeSound() {
-  var _loop = function _loop() {
+  var _loop = function _loop(i) {
     console.log(soundArray[i]);
-    s = document.getElementById(soundArray[i]);
+    var s = document.getElementById(soundArray[i]);
     s.muted = true;
     s.play();
     console.log(s.volume);
@@ -604,9 +604,7 @@ var activeSound = function activeSound() {
   };
 
   for (var i = 0; i < soundArray.length; i++) {
-    var s;
-
-    _loop();
+    _loop(i);
   }
 }; //response for sound trigger
 // const muteAllSound=()=>{

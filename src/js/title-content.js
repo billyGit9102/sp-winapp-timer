@@ -3,7 +3,7 @@ import  { triggerNativeEvent } from './utility-function/eventTrigger';
 
 
 const titleContentInit=()=>{
-    let ele_doingNote=document.getElementById("doingNote");
+    const ele_doingNote=document.getElementById("doingNote");
     const update_curDoing=(str)=>{
         document.getElementById("curDoing").value=str.match(/.*/)[0];
     }
@@ -19,10 +19,10 @@ const titleContentInit=()=>{
     });
     document.getElementById("doingNote").addEventListener("change",(e)=>{
         console.log('doingNote change');
-        var title=e.target.value;
+        let title=e.target.value;
         update_curDoing(title);
 
-        var formData = new FormData();
+        let formData = new FormData();
         formData.append('title', title);
         fetch(base_url+'doing_timer/set_title/'+type, { method:'POST', body:formData })
         .then(response=>{
@@ -38,10 +38,10 @@ const titleContentInit=()=>{
 
     })
     document.getElementById("timeMark").addEventListener("change",(e)=>{
-        var content=e.target.value;
+        let content=e.target.value;
         console.log("content-change="+content)
 
-        var formData = new FormData();
+        let formData = new FormData();
         formData.append('content', content);
         fetch(base_url+'doing_timer/set_content/'+type, { method:'POST', body:formData })
         .then(response=>{

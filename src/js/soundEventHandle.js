@@ -10,7 +10,7 @@ const soundEventHandleInit=(timerControl)=>{
     });
 
     document.addEventListener("sound:process", ()=>{
-        var formData = new FormData();
+        let formData = new FormData();
         formData.append('ticks', timerControl.getTicks());
         formData.append('endTime', document.getElementById("endTime").value);
         fetch(base_url+'doing_timer/set_ticks/'+type, { method:'POST', body:formData })

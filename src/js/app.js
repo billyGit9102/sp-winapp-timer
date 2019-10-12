@@ -13,7 +13,7 @@ import {soundEventHandleInit} from './soundEventHandle';
     showPreloader()
     ipcRendererInit();
    
-    var formData = new FormData();
+    let formData = new FormData();
     formData.append('postPhpDataTest', 'heyday');
     fetch(base_url+'/doing_timer/start/'+type)
     .then(response=>{

@@ -11,9 +11,9 @@ const sound5Min = document.getElementById("sound:5min");
 sound5Min.volume = 1;
 
 const activeSound=()=> {
-    for (var i = 0; i < soundArray.length; i++) {
+    for (let i = 0; i < soundArray.length; i++) {
         console.log(soundArray[i]);
-        var s = document.getElementById(soundArray[i]);
+        let s = document.getElementById(soundArray[i]);
         s.muted = true;
         s.play();
         console.log(s.volume);
