@@ -1,10 +1,15 @@
 const { src, dest, watch, series  } = require('gulp');
 const babel = require('gulp-babel');
 const browserify = require('gulp-browserify');
+const uglify = require('gulp-uglify');
+const sourcemaps = require('gulp-sourcemaps');
 
 function compileBrowserify(){
     return src('lib/js/app.js')
+    .pipe(sourcemaps.init())
     .pipe(browserify())
+    .pipe(uglify())
+    .pipe(sourcemaps.write('../dist'))
     .pipe(dest('dist/'))
 }
 function compileES6js(){
