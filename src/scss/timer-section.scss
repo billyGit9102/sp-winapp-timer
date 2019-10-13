@@ -12,12 +12,15 @@ $timerSecH:33px;
             background: url(../assets/img/arrow-down.png) center center no-repeat; transition: transform ease-out .15s; opacity: .4;}
     }
 
-    #menu{
-        width: $timerSecH; height: $timerSecH; position: absolute; right: 0;
+    #btn-menu{
+        width: $timerSecH; height: $timerSecH; position: absolute; right: 0;background-color: royalblue;display: none;
     }
 }
 body.expand{
-    #timer-section #expander span#arrow{ transform: rotateZ(180deg); margin-bottom: 2px;}
+    #timer-section {
+        #expander span#arrow{ transform: rotateZ(180deg); margin-bottom: 2px;}
+        #btn-menu{display: block;} 
+    }
 }
 body.timerAlert{
     #timer-section{

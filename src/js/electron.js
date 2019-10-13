@@ -8,28 +8,29 @@
 const electron = window.require('electron');
 const {ipcRenderer} = electron;
 
+import { activeSound} from './sound';
+
 /* ---------------------------------------------------- *
 *  1. handle expand button click event
 * ----------------------------------------------------- */
 
 const ipcRendererInit=()=>{
     let bodyele=document.getElementsByTagName("body")[0];
-    let is_expand=true;
 
     const toggleExpand_handle=(e)=>{
+        activeSound()
         e.preventDefault();
         //console.log("is_expand",is_expand);
-        is_expand=bodyele.classList.contains("expand");
+        let is_expand=bodyele.classList.contains("expand");
         if(is_expand){
-            bodyele.classList.remove("expand");
-            //bodyele.className="";
+            bodyele.classList.remove("expand");            
+            ipcRenderer.send('timer:expand',false);
+            document.dispatchEvent(new CustomEvent("minimize"));
         }else{
-            bodyele.classList.add("expand");
-            //bodyele.className="expand";
-        }
-        is_expand=bodyele.classList.contains("expand");
-        ipcRenderer.send('timer:expand',is_expand);
-       //console.log("expand btn click");		
+            bodyele.classList.add("expand");        
+            ipcRenderer.send('timer:expand',true);
+        }        
+       //console.log("expand btn click");
     }
     document.getElementById('expander').addEventListener('click', toggleExpand_handle);
 

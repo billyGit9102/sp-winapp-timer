@@ -68,8 +68,8 @@ const buttonActionInit=(timerControl)=>{
             //console.log(response);
 
             let ct = timerControl.getCurrentTime();
-            //console.log("press stop",ct)
-            if (ct != "0s" && !press_stop) {
+            //console.log("press stop",ct) // && !press_stop
+            if (ct != "0s") {
                 press_stop = true;
                 //get current time, + cur doing task
                 doingEndTimer = "-" + currentTime() + "| " + document.getElementById("curDoing").value  + " \n"; 
@@ -88,8 +88,12 @@ const buttonActionInit=(timerControl)=>{
                 output = output.replace(" >", ">");
                 document.getElementById("timeMark").value=output;
 
-                timerControl.pauseTimer()
-
+                //timerControl.pauseTimer()
+                timerControl.stopTimer();
+                
+                document.getElementById("resume").className = "hide";   
+                document.getElementById("start").className = "show";
+                document.getElementById("pause").className = "hide";
                 //console.log("done");
                 done_timer();
             }
@@ -116,7 +120,7 @@ const done_timer=()=>{
 	.then(()=>{
         //console.log(response)
         setTimeout(()=>{ 
-            location.reload(); 
+            //location.reload(); 
         }, 50);
 	})
 	.catch((error)=>{

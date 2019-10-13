@@ -1,0 +1,8 @@
+#menuWrapper{
+    width: 100%; height: 300px; background-color: #484848; display: none;
+    position: absolute; margin-top: 33px;
+   
+}
+.expand #menuWrapper.show{
+    display: block;
+}

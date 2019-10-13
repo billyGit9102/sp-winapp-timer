@@ -114,6 +114,11 @@ class DoingTimer{
 		this.intervalTimer=setInterval(this._counter,100);
 		//console.log("startTimer()221")
 	}
+	stopTimer=()=>{
+		clearInterval(this.intervalTimer);
+		this.ms=0;
+		this._displayTime();
+	}
 	pauseTimer=()=>{ clearInterval(this.intervalTimer) }
 	resumeTimer=()=>{ this.intervalTimer=setInterval(this._counter,100)}
 	getTicks=()=>{ return this.ms; }

@@ -5,6 +5,7 @@ import {titleContentInit} from './title-content';
 import {base_url,type} from './globalVar_html';
 import {ipcRendererInit} from './electron';
 import {soundEventHandleInit} from './soundEventHandle';
+import {menuInit} from './menu';
 
 (()=>{
     showPreloader()
@@ -31,6 +32,7 @@ import {soundEventHandleInit} from './soundEventHandle';
 
       titleContentInit();
       buttonActionInit(timerControl);
+      menuInit();
     })
     .catch((error)=>{
           console.log('There has been a problem with your fetch operation: ', error.message);
