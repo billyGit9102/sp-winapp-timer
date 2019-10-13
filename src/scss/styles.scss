@@ -19,7 +19,7 @@ textarea{width: 100%; box-sizing: border-box; padding: 4px 5px; height: 110px;re
 .textarea-container textarea{height: 100%}
 
 #setTimeContainer{
-    margin-bottom: 10px; margin-top: 5px; padding: 5px 15px;
+    margin-bottom: 10px; margin-top: 2px; padding: 3px 15px;
     label{display: inline-block;width: 45px; box-sizing: border-box}
     #endTime{ width: calc(100% - 45px); box-sizing: border-box; border: none; border-bottom:solid 1px #ccc }
 }
@@ -32,7 +32,7 @@ textarea{width: 100%; box-sizing: border-box; padding: 4px 5px; height: 110px;re
 
 .hide{display: none !important}
 .show{display: inline-block !important;}
-#stop,#pause,#start,#resume{ color:#FFF; text-decoration:none; width:50px; height:18px;display:inline-block }
+#stop,#pause,#start,#resume{ color:#FFF; text-decoration:none; width:50px; height:18px;display:inline-block; padding: 3px;}
 #stop span,#start span,#pause span,#resume span{position:relative;top:2px; text-align: center}
 #stop:hover,#pause:hover,#start:hover,#resume:hover{ background-color:#F90}
 

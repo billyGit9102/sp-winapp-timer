@@ -18,7 +18,7 @@ const soundEventHandleInit=(timerControl)=>{
             if (!response.ok) throw new Error(response.statusText)
             return response.text()
         })
-        .then(response=>{
+        .then(()=>{
             //console.log(response + "set_ticks")
         })
         .catch((error)=>{

@@ -291,7 +291,7 @@ var buttonActionInit = function buttonActionInit(timerControl) {
     }).then(function (response) {
       if (!response.ok) throw new Error(response.statusText);
       return response.text();
-    }).then(function (response) {//console.log(response)
+    }).then(function () {//console.log(response)
     })["catch"](function (error) {
       console.log('There has been a problem with your fetch operation: ', error.message);
     });
@@ -333,7 +333,7 @@ var buttonActionInit = function buttonActionInit(timerControl) {
     }).then(function (response) {
       if (!response.ok) throw new Error(response.statusText);
       return response.text();
-    }).then(function (response) {
+    }).then(function () {
       //console.log(response);
       var ct = timerControl.getCurrentTime(); //console.log("press stop",ct)
 
@@ -374,7 +374,7 @@ var done_timer = function done_timer() {
   }).then(function (response) {
     if (!response.ok) throw new Error(response.statusText);
     return response.text();
-  }).then(function (response) {
+  }).then(function () {
     //console.log(response)
     setTimeout(function () {
       location.reload();
@@ -642,7 +642,7 @@ var soundEventHandleInit = function soundEventHandleInit(timerControl) {
     }).then(function (response) {
       if (!response.ok) throw new Error(response.statusText);
       return response.text();
-    }).then(function (response) {//console.log(response + "set_ticks")
+    }).then(function () {//console.log(response + "set_ticks")
     })["catch"](function (error) {
       console.log('There has been a problem with your fetch operation: ', error.message);
     });
@@ -718,7 +718,7 @@ var titleContentInit = function titleContentInit() {
     }).then(function (response) {
       if (!response.ok) throw new Error(response.statusText);
       return response.text();
-    }).then(function (response) {//console.log(response)
+    }).then(function () {//console.log(response)
     })["catch"](function (error) {
       console.log('There has been a problem with your fetch operation: ', error.message);
     });
@@ -734,7 +734,7 @@ var titleContentInit = function titleContentInit() {
     }).then(function (response) {
       if (!response.ok) throw new Error(response.statusText);
       return response.text();
-    }).then(function (response) {//console.log(response + "timeMark change")
+    }).then(function () {//console.log(response + "timeMark change")
     })["catch"](function (error) {
       console.log('There has been a problem with your fetch operation: ', error.message);
     });

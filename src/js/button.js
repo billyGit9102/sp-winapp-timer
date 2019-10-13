@@ -18,7 +18,7 @@ const buttonActionInit=(timerControl)=>{
             if (!response.ok) throw new Error(response.statusText)
             return response.text()
         })
-        .then(response=>{
+        .then(()=>{
             //console.log(response)
         })
         .catch((error)=>{
@@ -64,7 +64,7 @@ const buttonActionInit=(timerControl)=>{
             if (!response.ok) throw new Error(response.statusText)
             return response.text()
         })
-        .then(response=>{
+        .then(()=>{
             //console.log(response);
 
             let ct = timerControl.getCurrentTime();
@@ -113,7 +113,7 @@ const done_timer=()=>{
         if (!response.ok) throw new Error(response.statusText)
         return response.text()
     })
-	.then(response=>{
+	.then(()=>{
         //console.log(response)
         setTimeout(()=>{ 
             location.reload(); 

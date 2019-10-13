@@ -28,7 +28,7 @@ const titleContentInit=()=>{
             if (!response.ok) throw new Error(response.statusText)
             return response.text()
         })
-        .then(response=>{
+        .then(()=>{
             //console.log(response)
         })
         .catch((error)=>{
@@ -47,7 +47,7 @@ const titleContentInit=()=>{
             if (!response.ok) throw new Error(response.statusText)
             return response.text()
         })
-        .then(response=>{
+        .then(()=>{
             //console.log(response + "timeMark change")
         })
         .catch((error)=>{
