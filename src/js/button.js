@@ -33,7 +33,7 @@ const buttonActionInit=(timerControl)=>{
     let doingEndTimer = "<|"
     document.getElementById("start").addEventListener("click", ()=>{
         timerControl.startTimer();
-        activeSound();
+        //activeSound();
         //$("#start").addClass("hide");
         document.getElementById("start").className = "hide";
         //$("#pause").addClass("show");

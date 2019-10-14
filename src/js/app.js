@@ -5,12 +5,14 @@ import {titleContentInit} from './title-content';
 import {base_url,type} from './globalVar_html';
 import {ipcRendererInit} from './electron';
 import {soundEventHandleInit} from './soundEventHandle';
+import {activeSound} from './sound';
 import {menuInit} from './menu';
 
 (()=>{
     showPreloader()
-    ipcRendererInit();
-   
+    ipcRendererInit();    
+    activeSound();
+
     let formData = new FormData();
     formData.append('postPhpDataTest', 'heyday');
     fetch(base_url+'/doing_timer/start/'+type)
@@ -32,7 +34,7 @@ import {menuInit} from './menu';
 
       titleContentInit();
       buttonActionInit(timerControl);
-      menuInit();
+      menuInit();      
     })
     .catch((error)=>{
           console.log('There has been a problem with your fetch operation: ', error.message);
