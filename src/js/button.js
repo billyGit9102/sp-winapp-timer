@@ -95,7 +95,6 @@ const buttonActionInit=(timerControl)=>{
                 document.getElementById("start").className = "show";
                 document.getElementById("pause").className = "hide";
                 
-                
                 //console.log("done");
                 done_timer();
             }
