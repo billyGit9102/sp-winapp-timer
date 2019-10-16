@@ -18,7 +18,7 @@ const ipcRendererInit=()=>{
     let bodyele=document.getElementsByTagName("body")[0];
 
     const toggleExpand_handle=(e)=>{
-        activeSound()
+        //activeSound()
         e.preventDefault();
         //console.log("is_expand",is_expand);
         let is_expand=bodyele.classList.contains("expand");

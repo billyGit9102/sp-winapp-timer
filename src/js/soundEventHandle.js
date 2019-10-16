@@ -54,6 +54,12 @@ const soundEventHandleInit=(timerControl)=>{
         sound2Min.loop = true;
         sound2Min.play();
     });
+    document.addEventListener("sound:stop", ()=>{
+        console.log("sound:stop");
+        document.getElementsByTagName('body')[0].classList.remove('timerAlert');
+        sound2Min.loop = false;
+        sound2Min.stop();
+    })
 }
 
 export {soundEventHandleInit}

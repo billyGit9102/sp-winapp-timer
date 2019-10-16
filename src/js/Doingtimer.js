@@ -11,7 +11,7 @@ class DoingTimer{
 
 	soundEventDispatch;
 
-	constructor(option){	
+	constructor(option){
 		this.setting=extend({target:{name:"default"},"startTime":0,"endTime":0}, option||{});
 		this.target=this.setting.target;
 		this.ms=this.setting.startTime;
@@ -19,7 +19,7 @@ class DoingTimer{
 		this.intervalTimer=""; 
 		
 		this.soundEventDispatch = new SoundEventDispatch(document.getElementById("endTime").value);
-
+		
         console.log("DoingTimer-start");
         //console.log(this.setting);
         //console.log(this.ms,"===tart-dt");
@@ -74,7 +74,7 @@ class DoingTimer{
 		result=String(result).split(".")[0];
 		return result;
 	}
-	_counter=()=>{			
+	_counter=()=>{
 		this.ms+=100;
 		//console.log(this);
 		this._displayTime();
@@ -100,7 +100,7 @@ class DoingTimer{
 
 		this.currentTime=result;
 
-		if(result=="0s0"){
+		if(result=="0s"){
 			result="Timer"
 		}
 		//console.log("_displayTime")
@@ -108,7 +108,7 @@ class DoingTimer{
 		
         //document.getElementById("timer").innerHTML=result;
         //console.log(this.target);
-		this.target.innerHTML=result;			
+		this.target.innerHTML=result;
 	}
 	startTimer=()=>{
 		this.intervalTimer=setInterval(this._counter,100);
@@ -118,6 +118,7 @@ class DoingTimer{
 		clearInterval(this.intervalTimer);
 		this.ms=0;
 		this._displayTime();
+		document.dispatchEvent(new CustomEvent("sound:stop"));
 	}
 	pauseTimer=()=>{ clearInterval(this.intervalTimer) }
 	resumeTimer=()=>{ this.intervalTimer=setInterval(this._counter,100)}
