@@ -12,7 +12,7 @@ const soundEventHandleInit=(timerControl)=>{
     document.addEventListener("sound:process", ()=>{
         let formData = new FormData();
         formData.append('ticks', timerControl.getTicks());
-        formData.append('endTime', document.getElementById("endTime").value);
+        formData.append('endTime', document.getElementById("ipt-endTime").value);
         fetch(base_url+'doing_timer/set_ticks/'+type, { method:'POST', body:formData })
         .then(response=>{
             if (!response.ok) throw new Error(response.statusText)
@@ -58,7 +58,8 @@ const soundEventHandleInit=(timerControl)=>{
         console.log("sound:stop");
         document.getElementsByTagName('body')[0].classList.remove('timerAlert');
         sound2Min.loop = false;
-        sound2Min.stop();
+        sound2Min.pause();
+        sound2Min.currentTime = 0;
     })
 }
 

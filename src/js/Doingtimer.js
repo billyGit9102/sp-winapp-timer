@@ -18,7 +18,7 @@ class DoingTimer{
 		this.endTime=this.setting.endTime*60;
 		this.intervalTimer=""; 
 		
-		this.soundEventDispatch = new SoundEventDispatch(document.getElementById("endTime").value);
+		this.soundEventDispatch = new SoundEventDispatch(document.getElementById("ipt-endTime").value);
 		
         console.log("DoingTimer-start");
         //console.log(this.setting);
@@ -125,7 +125,7 @@ class DoingTimer{
 	getTicks=()=>{ return this.ms; }
 	getCurrentTime=()=>{ return this.currentTime; }
 	addTime=(second)=>{ this.ms=this.ms+(second*60000); this._displayTime(); }
-	setEndTime=()=>{ this.soundEventDispatch.setEndTime(document.getElementById("endTime").value); console.log("setEndTimer in timecontrol") }
+	setEndTime=()=>{ this.soundEventDispatch.setEndTime(document.getElementById("ipt-endTime").value); console.log("setEndTimer in timecontrol") }
 }
 //let ele=document.getElementById("timer");
 

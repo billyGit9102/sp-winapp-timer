@@ -23,7 +23,7 @@ import {menuInit} from './menu';
     .then(data=>{
       document.getElementById("doingNote").value=data.title;
       document.getElementById("timeMark").value=data.content;
-      document.getElementById("endTime").value=data.endTime;
+      document.getElementById("ipt-endTime").value=data.endTime;
       removePreloader();
 
       const timerControl=new DoingTimer({

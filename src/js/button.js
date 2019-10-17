@@ -3,7 +3,7 @@ import { currentTime } from './utility-function/currentTime';
 import { base_url,type } from './globalVar_html.js';
 const buttonActionInit=(timerControl)=>{
 
-    document.getElementById("endTime").addEventListener("change", (e)=>{
+    document.getElementById("ipt-endTime").addEventListener("change", (e)=>{
         //console.log( this,'end time',);
         let v = e.target.value;
         if (v == "") {
@@ -33,7 +33,7 @@ const buttonActionInit=(timerControl)=>{
     let doingEndTimer = "<|"
     document.getElementById("btn-start").addEventListener("click", ()=>{
         timerControl.startTimer();
-        //activeSound();
+        activeSound();
         //$("#start").addClass("hide");
         document.getElementById("btn-start").className = "hide";
         //$("#pause").addClass("show");
