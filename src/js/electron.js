@@ -30,7 +30,7 @@ const ipcRendererInit=()=>{
         }        
        //console.log("expand btn click");
     }
-    document.getElementById('expander').addEventListener('click', toggleExpand_handle);
+    document.getElementById('btn-expander').addEventListener('click', toggleExpand_handle);
 
     //document.getElementById('curDoing').addEventListener('focus', toggleExpand_handle);
 

@@ -4,7 +4,7 @@ $timerSecH:33px;
     #timer{ height: 33px; box-sizing: border-box; color: #fff;
             font-size:1.2rem; text-align: center; line-height: $timerSecH; margin-left: $timerSecH; margin-right: $timerSecH }
 
-    #expander{
+    #btn-expander{
         width: $timerSecH; height: $timerSecH;  position: absolute;left: 0px; cursor: pointer; 
         text-align: center; display: flex;justify-content:center;align-items:center;
 
@@ -18,7 +18,7 @@ $timerSecH:33px;
 }
 body.expand{
     #timer-section {
-        #expander span#arrow{ transform: rotateZ(180deg); margin-bottom: 2px;}
+        #btn-expander span#arrow{ transform: rotateZ(180deg); margin-bottom: 2px;}
         #btn-menu{display: block;} 
     }
 }

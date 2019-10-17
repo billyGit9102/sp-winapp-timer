@@ -48,7 +48,7 @@ const soundEventHandleInit=(timerControl)=>{
     document.addEventListener("sound:End", ()=>{
         console.log("sound:End");
         document.getElementsByTagName('body')[0].classList.add('timerAlert');
-        triggerNativeEvent(document.getElementById("expander"),'click')
+        triggerNativeEvent(document.getElementById("btn-expander"),'click')
         //console.log("triggerNativeEvent(document.getElementById(expander)");
         
         sound2Min.loop = true;
