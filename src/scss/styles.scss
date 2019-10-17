@@ -33,24 +33,24 @@ textarea{width: 100%; box-sizing: border-box; padding: 4px 5px; height: 110px;re
 
 .hide{display: none !important}
 .show{display: inline-block !important;}
-#stop,#pause,#start,#resume{ color:#FFF; text-decoration:none; width:50px; height:18px;display:inline-block; padding: 3px;}
-#stop span,#start span,#pause span,#resume span{position:relative;top:2px; text-align: center}
-#stop:hover,#pause:hover,#start:hover,#resume:hover{ background-color:#F90}
+#btn-stop,#btn-pause,#btn-start,#btn-resume{ color:#FFF; text-decoration:none; width:50px; height:18px;display:inline-block; padding: 3px;}
+#btn-stop span,#btn-start span,#btn-pause span,#btn-resume span{position:relative;top:2px; text-align: center}
+#btn-stop:hover,#btn-pause:hover,#btn-start:hover,#btn-resume:hover{ background-color:#F90}
 
-#stop{margin-right:5px; background-color:#ff0000;
+#btn-stop{margin-right:5px; background-color:#ff0000;
 }
-#start{ background-color:#1c4a9e;
+#btn-start{ background-color:#1c4a9e;
 }
-#pause{ background-color:#090;display:none;
+#btn-pause{ background-color:#090;display:none;
 }
-#resume{ background-color:#1c4a9e; display:none;
+#btn-resume{ background-color:#1c4a9e; display:none;
 }
 // #button{ width:105px; margin:0 auto; font-size:10px; position: static;}
 
-// #stop span,#start span,#pause span,#resume span{ position:relative; top:2px;}
+// #btn-stop span,#btn-start span,#btn-pause span,#btn-resume span{ position:relative; top:2px;}
 
-// #stop { position:static; top:46px; right:0}
-// #start,#pause,#resume{top:28px; position:static}
+// #btn-stop { position:static; top:46px; right:0}
+// #btn-start,#btn-pause,#btn-resume{top:28px; position:static}
 
 
 // hidden area

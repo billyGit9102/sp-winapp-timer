@@ -31,32 +31,32 @@ const buttonActionInit=(timerControl)=>{
     //button action
     let doingStTimer = ">???|-"
     let doingEndTimer = "<|"
-    document.getElementById("start").addEventListener("click", ()=>{
+    document.getElementById("btn-start").addEventListener("click", ()=>{
         timerControl.startTimer();
         //activeSound();
         //$("#start").addClass("hide");
-        document.getElementById("start").className = "hide";
+        document.getElementById("btn-start").className = "hide";
         //$("#pause").addClass("show");
-        document.getElementById("pause").className = "show";
+        document.getElementById("btn-pause").className = "show";
         doingStTimer = ">" + currentTime() + "-";
     })
-    document.getElementById("pause").addEventListener("click", ()=>{
+    document.getElementById("btn-pause").addEventListener("click", ()=>{
         timerControl.pauseTimer();
         //$("#pause").addClass("hide");
-        document.getElementById("pause").className = "hide";
+        document.getElementById("btn-pause").className = "hide";
         //$("#resume").addClass("show");
-        document.getElementById("resume").className = "show";
+        document.getElementById("btn-resume").className = "show";
     })
-    document.getElementById("resume").addEventListener("click", ()=>{
+    document.getElementById("btn-resume").addEventListener("click", ()=>{
         timerControl.resumeTimer();
         //$("#resume").addClass("hide");
-        document.getElementById("resume").className = "hide";
+        document.getElementById("btn-resume").className = "hide";
         //$("#pause").addClass("show");
-        document.getElementById("pause").className = "show";
+        document.getElementById("btn-pause").className = "show";
     })
 
     let press_stop = false;
-    document.getElementById("stop").addEventListener("click", ()=>{
+    document.getElementById("btn-stop").addEventListener("click", ()=>{
         let formData = new FormData();
         formData.append('no var', "");
         fetch(base_url+'doing_timer/done/'+type, { method:'POST', body:formData })
@@ -91,9 +91,9 @@ const buttonActionInit=(timerControl)=>{
                 //timerControl.pauseTimer()
                 timerControl.stopTimer();
                 
-                document.getElementById("resume").className = "hide";   
-                document.getElementById("start").className = "show";
-                document.getElementById("pause").className = "hide";
+                document.getElementById("btn-resume").className = "hide";   
+                document.getElementById("btn-start").className = "show";
+                document.getElementById("btn-pause").className = "hide";
                 
                 //console.log("done");
                 done_timer();
