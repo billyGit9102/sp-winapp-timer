@@ -75,7 +75,7 @@ const buttonActionInit=(timerControl)=>{
                 doingEndTimer = "-" + currentTime() + "| " + document.getElementById("curDoing").value  + " \n"; 
                 
                 //get timemark textare text, change to array
-                let currentDoingTxtContent = document.getElementById("timeMark").value;
+                let currentDoingTxtContent = document.getElementById("txa-timeMark").value;
                 currentDoingTxtContent = currentDoingTxtContent.split(" ");
                 //console.log("currentDoingTxtContent"+currentDoingTxtContent)
 
@@ -86,7 +86,7 @@ const buttonActionInit=(timerControl)=>{
 
                 //remove first row space
                 output = output.replace(" >", ">");
-                document.getElementById("timeMark").value=output;
+                document.getElementById("txa-timeMark").value=output;
 
                 //timerControl.pauseTimer()
                 timerControl.stopTimer();
@@ -106,7 +106,7 @@ const buttonActionInit=(timerControl)=>{
     })
 }
 const done_timer=()=>{
-    let content=document.getElementById("timeMark").value;
+    let content=document.getElementById("txa-timeMark").value;
 
     let formData = new FormData();
     formData.append('content', content);

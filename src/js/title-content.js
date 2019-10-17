@@ -36,7 +36,7 @@ const titleContentInit=()=>{
         });
 
     })
-    document.getElementById("timeMark").addEventListener("change",(e)=>{
+    document.getElementById("txa-timeMark").addEventListener("change",(e)=>{
         let content=e.target.value;
         //console.log("content-change="+content)
 
