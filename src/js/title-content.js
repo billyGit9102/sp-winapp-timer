@@ -3,20 +3,20 @@ import  { triggerNativeEvent } from './utility-function/eventTrigger';
 
 
 const titleContentInit=()=>{
-    const ele_doingNote=document.getElementById("doingNote");
+    const ele_doingNote=document.getElementById("txa-doingNote");
     const update_curDoing=(str)=>{
-        document.getElementById("curDoing").value=str.match(/.*/)[0];
+        document.getElementById("ipt-curDoing").value=str.match(/.*/)[0];
     }
     const update_DoingNote=(str)=>{
         ele_doingNote.value=ele_doingNote.value.replace(/.*/,str);
-        triggerNativeEvent(document.getElementById("doingNote"),'change')	
+        triggerNativeEvent(ele_doingNote,'change')	
     }
     update_curDoing(ele_doingNote.value);    
-    document.getElementById("curDoing").addEventListener("change",(e)=>{
+    document.getElementById("ipt-curDoing").addEventListener("change",(e)=>{
         //console.log(e.target.value,'curDoing');
         update_DoingNote(e.target.value);
     });
-    document.getElementById("doingNote").addEventListener("change",(e)=>{
+    document.getElementById("txa-doingNote").addEventListener("change",(e)=>{
         //console.log('doingNote change');
         let title=e.target.value;
         update_curDoing(title);

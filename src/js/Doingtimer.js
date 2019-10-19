@@ -100,9 +100,10 @@ class DoingTimer{
 
 		this.currentTime=result;
 
-		if(result=="0s"){
-			result="Timer"
-		}
+		// if(result=="0s"){
+		// 	result="Timer"
+		// }
+
 		//console.log("_displayTime")
 		//console.log(this.endTime)
 		
@@ -112,6 +113,7 @@ class DoingTimer{
 	}
 	startTimer=()=>{
 		this.intervalTimer=setInterval(this._counter,100);
+		//this._displayTime();
 		//console.log("startTimer()221")
 	}
 	stopTimer=()=>{
@@ -119,6 +121,7 @@ class DoingTimer{
 		this.ms=0;
 		this._displayTime();
 		document.dispatchEvent(new CustomEvent("sound:stop"));
+		this.target.innerHTML='Timer';
 	}
 	pauseTimer=()=>{ clearInterval(this.intervalTimer) }
 	resumeTimer=()=>{ this.intervalTimer=setInterval(this._counter,100)}

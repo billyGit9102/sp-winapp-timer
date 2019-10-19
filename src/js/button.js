@@ -72,7 +72,7 @@ const buttonActionInit=(timerControl)=>{
             if (ct != "0s") {
                 press_stop = true;
                 //get current time, + cur doing task
-                doingEndTimer = "-" + currentTime() + "| " + document.getElementById("curDoing").value  + " \n"; 
+                doingEndTimer = "-" + currentTime() + "| " + document.getElementById("ipt-curDoing").value  + " \n"; 
                 
                 //get timemark textare text, change to array
                 let currentDoingTxtContent = document.getElementById("txa-timeMark").value;

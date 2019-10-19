@@ -54,11 +54,11 @@ textarea{width: 100%; box-sizing: border-box; padding: 4px 5px; height: 110px;re
 
 
 // hidden area
-#curDoing{background-color: #484848; text-align: center; color: #c5c5c5;padding: 6px 5px; }
+#ipt-curDoing{background-color: #484848; text-align: center; color: #c5c5c5;padding: 6px 5px; }
 body.expand{
     textarea.hide-scrollbar{ overflow-y: scroll}
     #toolsbar{display: block;}
-    #curDoing{ display: none;}
+    #ipt-curDoing{ display: none;}
 }
 
  

@@ -11,7 +11,7 @@ import {menuInit} from './menu';
 (()=>{
     showPreloader()
     ipcRendererInit();    
-    activeSound();
+    //activeSound();
 
     let formData = new FormData();
     formData.append('postPhpDataTest', 'heyday');
@@ -21,7 +21,7 @@ import {menuInit} from './menu';
       return response.json()
     })
     .then(data=>{
-      document.getElementById("doingNote").value=data.title;
+      document.getElementById("txa-doingNote").value=data.title;
       document.getElementById("txa-timeMark").value=data.content;
       document.getElementById("ipt-endTime").value=data.endTime;
       removePreloader();
