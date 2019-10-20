@@ -19,7 +19,10 @@
     button:hover{background-color: #aaa;border: 0;}
    
     .buttonWrapper{
-        button{width: 49%;}
-        #btn-mute{margin-right: 2%;}
+        position: relative;
+        button{width:calc((100% - 2px)/2);cursor: pointer;}
+        #btn-mute{margin-right: 2px;}
+        #btn-hardResetSound{width: 21px; background: url(../assets/img/refresh-24px.svg) center center no-repeat;height: 21px; 
+        position: absolute; right: -22px; opacity: .4;}
     }
 }

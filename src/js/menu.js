@@ -1,4 +1,4 @@
-import { soundProcess,sound1Min,sound2Min,sound5Min} from './sound';
+import { soundProcess,sound1Min,sound2Min,sound5Min, defaultVolume} from './sound';
 import  { triggerNativeEvent } from './utility-function/eventTrigger';
 
 const electron = window.require('electron');
@@ -12,17 +12,31 @@ const saveVolume=()=>{
     volumnSetting.sound2Min=sound2Min.volume
     volumnSetting.sound5Min=sound5Min.volume
 }
+const setDefaultVolume=()=>{
+    //save volume to volumnSetting for rest sound
+    document.getElementById('sc-playsp').value=defaultVolume[0];
+    document.getElementById('sc-play1m').value=defaultVolume[1];
+    document.getElementById('sc-play2m').value=defaultVolume[2];
+    document.getElementById('sc-play5m').value=defaultVolume[3];
+}
 
+const setVolume=()=>{
+    soundProcess.volume=document.getElementById('sc-playsp').value
+    sound1Min.volume=document.getElementById('sc-play1m').value
+    sound2Min.volume=document.getElementById('sc-play2m').value
+    sound5Min.volume=document.getElementById('sc-play5m').value
+}
 const soundControl=()=>{
     let mute =false
-    saveVolume();
-    
+    saveVolume();    
 
     document.getElementById('sc-playsp').value=soundProcess.volume
     document.getElementById('sc-play1m').value=sound1Min.volume
     document.getElementById('sc-play2m').value=sound2Min.volume
     document.getElementById('sc-play5m').value=sound5Min.volume
+
     document.getElementById('sc-playsp').addEventListener('change',(e)=>{
+        console.log('setting sc-playsp')
         soundProcess.volume=e.target.value
         saveVolume();
     })
@@ -43,7 +57,7 @@ const soundControl=()=>{
         document.getElementById('sc-play1m').value=0;
         document.getElementById('sc-play2m').value=0;
         document.getElementById('sc-play5m').value=0;       
-        saveVolume();
+        setVolume();
         console.log(volumnSetting);
     })
     document.getElementById('btn-resetSound').addEventListener('click',()=>{
@@ -51,8 +65,15 @@ const soundControl=()=>{
         document.getElementById('sc-play1m').value=volumnSetting.sound1Min;
         document.getElementById('sc-play2m').value=volumnSetting.sound2Min;
         document.getElementById('sc-play5m').value=volumnSetting.sound5Min;
+        setVolume();
+        saveVolume();
+    })    
+    document.getElementById('btn-hardResetSound').addEventListener('click',()=>{
+        setDefaultVolume();
+        setVolume();
         saveVolume();
     })
+
     document.getElementById('btn-playsp').addEventListener('click',()=>{
         //console.log('soundProcess.play();')
         //soundProcess.play();

@@ -1,6 +1,6 @@
 const soundArray = ["sound:process", "sound:1min", "sound:2min", "sound:5min"];
 const restartTime = [3, 4, 3, 10];
-
+const defaultVolume=[1,0.1,0.05,1];
 const soundProcess = document.getElementById("sound:process");
 soundProcess.volume = 1;
 const sound1Min = document.getElementById("sound:1min");
@@ -39,4 +39,4 @@ const activeSound=()=> {
 // }
 
 
-export { activeSound, soundProcess,sound1Min,sound2Min,sound5Min};
+export { activeSound, defaultVolume, soundProcess,sound1Min,sound2Min,sound5Min};
