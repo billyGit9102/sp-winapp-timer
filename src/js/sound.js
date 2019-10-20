@@ -2,13 +2,13 @@ const soundArray = ["sound:process", "sound:1min", "sound:2min", "sound:5min"];
 const restartTime = [3, 4, 3, 10];
 const defaultVolume=[1,0.1,0.05,1];
 const soundProcess = document.getElementById("sound:process");
-soundProcess.volume = 1;
+soundProcess.volume = defaultVolume[0];
 const sound1Min = document.getElementById("sound:1min");
-sound1Min.volume = 0.1;
+sound1Min.volume = defaultVolume[1];
 const sound2Min = document.getElementById("sound:2min");
-sound2Min.volume = 0.05;
+sound2Min.volume = defaultVolume[2];
 const sound5Min = document.getElementById("sound:5min");
-sound5Min.volume = 1;
+sound5Min.volume = defaultVolume[3];
 
 const activeSound=()=> {
     for (let i = 0; i < soundArray.length; i++) {

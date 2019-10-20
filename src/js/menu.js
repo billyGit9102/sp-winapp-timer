@@ -99,7 +99,7 @@ const menuInit=()=>{
     let isMenuOpen=false;
     const menuClose=()=>{
         isMenuOpen=false;
-        document.getElementById('menuWrapper').classList.remove('show'); 
+        document.getElementById('menuWrapper').classList.remove('active'); 
         console.log("menuClose")
     }
     const menu_handle=()=>{
@@ -107,9 +107,11 @@ const menuInit=()=>{
             document.getElementById('btn-menu').classList.add('active');
             isMenuOpen=true;
             console.log("menupress-open")
-            document.getElementById('menuWrapper').classList.add('show');
+            document.getElementById('menuWrapper').classList.add('active');
+            document.getElementById('menuBg').classList.add('active');
         }else{            
             document.getElementById('btn-menu').classList.remove('active');
+            document.getElementById('menuBg').classList.remove('active');
             menuClose()        
             console.log("menupress-close")
         }
@@ -124,7 +126,13 @@ const menuInit=()=>{
     ipcRenderer.on('timer:blur', ()=>{
         //menuClose()
         if(isMenuOpen){
-           // triggerNativeEvent(document.getElementById('btn-menu'),'click');
+            triggerNativeEvent(document.getElementById('btn-menu'),'click');
+        } 
+    });
+    
+    document.getElementById('menuBg').addEventListener('click', ()=>{
+        if(isMenuOpen){
+            triggerNativeEvent(document.getElementById('btn-menu'),'click');
         } 
     });
 

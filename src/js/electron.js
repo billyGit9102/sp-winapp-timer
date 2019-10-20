@@ -40,7 +40,7 @@ const ipcRendererInit=()=>{
     ipcRenderer.on('timer:blur', ()=>{
         //console.log('timer:blur');
         //bodyele.className="";
-        //bodyele.classList.remove("expand");
+        bodyele.classList.remove("expand");
     });
     ipcRenderer.on('timer:max', ()=>{
         //console.log('timer:max');

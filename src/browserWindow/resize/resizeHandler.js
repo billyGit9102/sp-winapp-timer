@@ -15,7 +15,7 @@ const resizeHandlerInit=(mainWindow)=>{
         console.log('winBlur');
         set_sizeMini(mainWindow);
     }
-    //mainWindow.on('blur', winBlur);
+    mainWindow.on('blur', winBlur);
     
     //handle html event
     ipcMain.on('timer:expand', (e, expand)=>{
