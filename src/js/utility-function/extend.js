@@ -1,4 +1,4 @@
-//deepExtend({}, objA, objB);
+//extend({}, objA, objB);
 const extend =(out, ...args)=> {
     //make first parameter as base object
     out= out || {};    

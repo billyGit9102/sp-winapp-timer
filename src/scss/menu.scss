@@ -1,8 +1,25 @@
 #menuWrapper{
-    width: 100%; height: 300px; background-color: #484848; display: none;
-    position: absolute; margin-top: 33px;
+    width: 100%; background-color: #484848; display: none;
+    position: absolute; margin-top: 33px; color: #fff;
    
 }
 .expand #menuWrapper.show{
     display: block;
+}
+#soundMenuWrapper{
+    text-align: center; padding-bottom: 20px;
+    #soundMenuInnerWrapper{
+        display: inline-block; margin: 0px auto;padding: 20px; text-align: left; border: none;
+    }
+    .item{
+        input{width: 80px; margin-top: 5px; margin-bottom: 10px; border: 0;}
+        
+    }
+    button{ padding:4px 5px;border: 0;}
+    button:hover{background-color: #aaa;border: 0;}
+   
+    .buttonWrapper{
+        button{width: 49%;}
+        #btn-mute{margin-right: 2%;}
+    }
 }

@@ -1,18 +1,29 @@
 <div id="menuWrapper">
     <section id="soundMenuWrapper">
-        sound process<br/>
-        <input type="text" id="sc-playsp"><br/>
-        <button id="btn-playsp">play</button>
-        1 min<br/>
-        <input type="text" id="sc-play1m"><br/>
-        <button id="btn-play1m">play</button>
-        2 min<br/>
-        <input type="text" id="sc-play2m"><br/>
-        <button id="btn-play2m">play</button>
-        5 min<br/>
-        <input type="text" id="sc-play5m"><br/>
-        <button id="btn-play5m">play</button>
-        <br/><br/>
-        <button id="btn-mute">mute</button>
+        <div id="soundMenuInnerWrapper">
+            <div class='item'>
+                Sound process<br/>
+                <input type="text" id="sc-playsp"><button id="btn-playsp">play</button><br/>
+            </div>
+
+            <div class='item'>
+                1 min<br/>
+                <input type="text" id="sc-play1m"><button id="btn-play1m">play</button><br/>
+            </div>
+
+            <div class='item'>
+                2 min<br/>        
+                <input type="text" id="sc-play2m"><button id="btn-play2m">play</button><br/>
+            </div>
+            
+            <div class='item'>
+                5 min<br/>        
+                <input type="text" id="sc-play5m"><button id="btn-play5m">play</button><br/>
+            </div>
+            
+            <div class='buttonWrapper'>  
+                <button id="btn-mute">mute</button><button id="btn-resetSound">reset</button>
+            </div>
+        </div>
     </section>
 </div>

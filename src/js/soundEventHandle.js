@@ -27,21 +27,25 @@ const soundEventHandleInit=(timerControl)=>{
 
 
         console.log("sound:process");
+        soundProcess.currentTime = 0;
         soundProcess.play();
     });
 
     document.addEventListener("sound:1min", ()=>{
         console.log("sound:1min");
+        sound1Min.currentTime = 0;
         sound1Min.play();
     });
 
     document.addEventListener("sound:2min", ()=>{
         console.log("sound:2min");
+        sound2Min.currentTime = 0;
         sound2Min.play();
     });
 
     document.addEventListener("sound:5min", ()=>{
         console.log("sound:5min");
+        sound5Min.currentTime = 0;
         sound5Min.play();
     });
 
