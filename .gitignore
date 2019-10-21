@@ -1,4 +1,5 @@
 /node_modules
 /release-builds
 /lib
+/dist
 data-winLargeSize.json
