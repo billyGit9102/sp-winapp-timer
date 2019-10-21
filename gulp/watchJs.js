@@ -22,7 +22,7 @@ function watchJs(){
 }
 function compileJs(cb){
     //compileES6js()
-    compileBrowserify();
+    //compileBrowserify();
     //series(compileES6js,compileBrowserify);
     cb();
 }

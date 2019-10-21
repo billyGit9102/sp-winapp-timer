@@ -66,7 +66,7 @@ const soundControl=()=>{
         document.getElementById('sc-play2m').value=volumnSetting.sound2Min;
         document.getElementById('sc-play5m').value=volumnSetting.sound5Min;
         setVolume();
-        saveVolume();
+        saveVolume(); 
     })    
     document.getElementById('btn-hardResetSound').addEventListener('click',()=>{
         setDefaultVolume();
