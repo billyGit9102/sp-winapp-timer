@@ -14,6 +14,8 @@ const {ipcRenderer} = electron;
 * ----------------------------------------------------- */
 
 const ipcRendererInit=(timerControl)=>{
+    ipcRenderer.send('htmlLoadDataDone');
+
     let bodyele=document.getElementsByTagName("body")[0];
 
     const toggleExpand_handle=(e)=>{
@@ -55,8 +57,10 @@ const ipcRendererInit=(timerControl)=>{
         bodyele.classList.add("expand");
     });
     ipcRenderer.on('appStart', ()=>{
+        
         //console.log('appStart');
     //bodyele.className="expand";
+    
     });
 }
 

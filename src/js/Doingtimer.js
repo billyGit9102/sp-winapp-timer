@@ -7,7 +7,7 @@ class DoingTimer{
 	target;
 	endTime;
 	intervalTimer;
-	currentTime;
+	currentTime="timer stop";
 	status="stop";
 
 	soundEventDispatch;
@@ -124,6 +124,7 @@ class DoingTimer{
 		this.intervalTimer=clearInterval(this.intervalTimer);
 		this.ms=0;
 		this._displayTime();
+		this.currentTime="timer stop"
 		document.dispatchEvent(new CustomEvent("sound:stop"));
 		this.target.innerHTML='Timer';
 	}
