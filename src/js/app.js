@@ -5,7 +5,6 @@ import {titleContentInit} from './title-content';
 import {base_url,type} from './globalVar_html';
 import {ipcRendererInit} from './electron';
 import {soundEventHandleInit} from './soundEventHandle';
-import {activeSound} from './sound';
 import {menuInit} from './menu';
 
 (()=>{

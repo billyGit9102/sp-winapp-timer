@@ -70,7 +70,6 @@ const buttonActionInit=(timerControl)=>{
         document.getElementById("btn-pause").className = "show";
     })
 
-    let press_stop = false;
     document.getElementById("btn-stop").addEventListener("click", ()=>{
         let formData = new FormData();
         formData.append('no var', "");
@@ -83,9 +82,7 @@ const buttonActionInit=(timerControl)=>{
             //console.log(response);
 
             let ct = timerControl.getCurrentTime();
-            //console.log("press stop",ct) // && !press_stop
             if (ct != "0s") {
-                press_stop = true;
                 //get current time, + cur doing task
                 doingEndTimer = "-" + currentTime() + "| " + document.getElementById("ipt-curDoing").value  + " \n"; 
                 
