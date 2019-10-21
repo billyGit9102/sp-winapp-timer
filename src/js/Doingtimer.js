@@ -8,6 +8,7 @@ class DoingTimer{
 	endTime;
 	intervalTimer;
 	currentTime;
+	status="stop";
 
 	soundEventDispatch;
 
@@ -20,7 +21,8 @@ class DoingTimer{
 		
 		this.soundEventDispatch = new SoundEventDispatch(document.getElementById("ipt-endTime").value);
 		
-        console.log("DoingTimer-start");
+		console.log("DoingTimer-start");
+		
         //console.log(this.setting);
         //console.log(this.ms,"===tart-dt");
 	}	
@@ -112,23 +114,39 @@ class DoingTimer{
 		this.target.innerHTML=result;
 	}
 	startTimer=()=>{
+		this.status="running";
 		this.intervalTimer=setInterval(this._counter,100);
 		//this._displayTime();
 		//console.log("startTimer()221")
 	}
 	stopTimer=()=>{
-		clearInterval(this.intervalTimer);
+		this.status="stop";
+		this.intervalTimer=clearInterval(this.intervalTimer);
 		this.ms=0;
 		this._displayTime();
 		document.dispatchEvent(new CustomEvent("sound:stop"));
 		this.target.innerHTML='Timer';
 	}
-	pauseTimer=()=>{ clearInterval(this.intervalTimer) }
-	resumeTimer=()=>{ this.intervalTimer=setInterval(this._counter,100)}
-	getTicks=()=>{ return this.ms; }
-	getCurrentTime=()=>{ return this.currentTime; }
-	addTime=(second)=>{ this.ms=this.ms+(second*60000); this._displayTime(); }
-	setEndTime=()=>{ this.soundEventDispatch.setEndTime(document.getElementById("ipt-endTime").value); console.log("setEndTimer in timecontrol") }
+	pauseTimer=()=>{ 
+		this.status="pause";
+		this.intervalTimer=clearInterval(this.intervalTimer);
+	}
+	resumeTimer=()=>{ 
+		this.status="running";
+		this.intervalTimer=setInterval(this._counter,100)
+	}
+	getTicks=()=>{ 
+		return this.ms; 
+	}
+	getCurrentTime=()=>{ 
+		return this.currentTime; 
+	}
+	addTime=(second)=>{ 
+		this.ms=this.ms+(second*60000); this._displayTime(); 
+	}
+	setEndTime=()=>{ 
+		this.soundEventDispatch.setEndTime(document.getElementById("ipt-endTime").value); console.log("setEndTimer in timecontrol") 
+	}
 }
 //let ele=document.getElementById("timer");
 

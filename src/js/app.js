@@ -10,7 +10,6 @@ import {menuInit} from './menu';
 
 (()=>{
     showPreloader()
-    ipcRendererInit();    
     //activeSound();
 
     let formData = new FormData();
@@ -34,6 +33,7 @@ import {menuInit} from './menu';
 
       titleContentInit();
       buttonActionInit(timerControl);
+      ipcRendererInit(timerControl);    
       menuInit();      
     })
     .catch((error)=>{

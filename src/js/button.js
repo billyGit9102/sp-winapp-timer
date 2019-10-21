@@ -1,7 +1,19 @@
 import { activeSound } from './sound';
 import { currentTime } from './utility-function/currentTime';
 import { base_url,type } from './globalVar_html.js';
+
+const electron = window.require('electron');
+const {ipcRenderer} = electron;
+
+let soundIsActive=false;
+
+
 const buttonActionInit=(timerControl)=>{
+    
+    ipcRenderer.on('timer:blur', ()=>{
+        
+        //console.log('timerControl.status',timerControl.status);
+    });
 
     document.getElementById("ipt-endTime").addEventListener("change", (e)=>{
         //console.log( this,'end time',);
@@ -32,8 +44,11 @@ const buttonActionInit=(timerControl)=>{
     let doingStTimer = ">???|-"
     let doingEndTimer = "<|"
     document.getElementById("btn-start").addEventListener("click", ()=>{
-        timerControl.startTimer();
-        activeSound();
+        if(!soundIsActive){
+            activeSound();
+            soundIsActive=true        
+        }        
+        timerControl.startTimer();        
         //$("#start").addClass("hide");
         document.getElementById("btn-start").className = "hide";
         //$("#pause").addClass("show");

@@ -4,7 +4,7 @@
 *  2. response to electron main window event
 *  
 * ========================================== */
-
+import  { triggerNativeEvent } from './utility-function/eventTrigger';
 const electron = window.require('electron');
 const {ipcRenderer} = electron;
 
@@ -13,7 +13,7 @@ const {ipcRenderer} = electron;
 *  1. handle expand button click event
 * ----------------------------------------------------- */
 
-const ipcRendererInit=()=>{
+const ipcRendererInit=(timerControl)=>{
     let bodyele=document.getElementsByTagName("body")[0];
 
     const toggleExpand_handle=(e)=>{
@@ -38,8 +38,15 @@ const ipcRendererInit=()=>{
     *  2. response to electron main window timer:blur event
     * ----------------------------------------------------- */
     ipcRenderer.on('timer:blur', ()=>{
+        if(timerControl.status==='stop'){
+            triggerNativeEvent(document.getElementById("btn-start"),'click');
+        }
+        if(timerControl.status==='pause'){
+            triggerNativeEvent(document.getElementById("btn-resume"),'click');
+        }
         //console.log('timer:blur');
         //bodyele.className="";
+        //triggerNativeEvent(document.getElementById("btn-start"),'click');
         bodyele.classList.remove("expand");
     });
     ipcRenderer.on('timer:max', ()=>{
