@@ -1,4 +1,4 @@
-import  { triggerNativeEvent } from './utility-function/eventTrigger';
+import  { triggerNativeEvent } from '../utility-function/eventTrigger';
 import  { soundControl } from './menuSoundControl';
 
 const electron = window.require('electron');

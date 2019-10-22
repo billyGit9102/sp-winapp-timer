@@ -5,7 +5,7 @@ import {titleContentInit} from './title-content';
 import {base_url,type} from './globalVar_html';
 import {ipcRendererInit} from './electron';
 import {soundEventHandleInit} from './soundEventHandle';
-import {menuInit} from './menu';
+import {menuInit} from './menu/menu';
 
 (()=>{
     showPreloader()

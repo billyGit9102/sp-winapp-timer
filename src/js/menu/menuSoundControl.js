@@ -1,4 +1,4 @@
-import { soundProcess,sound1Min,sound2Min,sound5Min, defaultVolume} from './sound';
+import { soundProcess,sound1Min,sound2Min,sound5Min, defaultVolume} from '../sound';
 
 const volumnSetting={};
 const setVolume=()=>{
