@@ -2,7 +2,7 @@ import  { base_url,type } from './globalVar_html.js';
 import  { triggerNativeEvent } from './_utility-function/eventTrigger';
 
 
-const titleContentInit=()=>{
+const titleContentInit=(timerControl)=>{
     const ele_doingNote=document.getElementById("txa-doingNote");
     const update_curDoing=(str)=>{
         document.getElementById("ipt-curDoing").value=str.match(/.*/)[0];
@@ -53,6 +53,31 @@ const titleContentInit=()=>{
         .catch((error)=>{
             console.log('There has been a problem with your fetch operation: ', error.message);
         });
+    })
+
+    document.getElementById("ipt-endTime").addEventListener("change", (e)=>{
+        //console.log( this,'end time',);
+        let v = e.target.value;
+        if (v == "") {
+            e.target.value=0;
+        }
+
+        let formData = new FormData();
+        formData.append('ticks', timerControl.getTicks());
+        formData.append('endTime', e.target.value);
+        fetch(base_url+'doing_timer/set_ticks/'+type, { method:'POST', body:formData })
+        .then(response=>{
+            if (!response.ok) throw new Error(response.statusText)
+            return response.text()
+        })
+        .then(()=>{
+            //console.log(response)
+        })
+        .catch((error)=>{
+            console.log('There has been a problem with your fetch operation: ', error.message);
+        });
+
+        timerControl.setEndTime(e.target.value)
     })
 }
 

@@ -30,10 +30,10 @@ import {menuInit} from './menu/menu';
       });
       soundEventHandleInit(timerControl);
 
-      titleContentInit();
+      titleContentInit(timerControl);
       buttonActionInit(timerControl);
       ipcRendererInit(timerControl);    
-      menuInit();      
+      menuInit();
     })
     .catch((error)=>{
           console.log('There has been a problem with your fetch operation: ', error.message);
