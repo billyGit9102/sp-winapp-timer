@@ -1,6 +1,6 @@
-import {soundProcess,sound1Min,sound2Min,sound5Min} from './sound/sound';
-import  { base_url,type } from './globalVar_html.js';
-import  { triggerNativeEvent } from './_utility-function/eventTrigger';
+import {soundProcess,sound1Min,sound2Min,sound5Min} from './sound';
+import  { base_url,type } from '../globalVar_html.js';
+import  { triggerNativeEvent } from '../_utility-function/eventTrigger';
 
 const soundEventHandleInit=(timerControl)=>{
     document.addEventListener("sound:start", ()=>{
