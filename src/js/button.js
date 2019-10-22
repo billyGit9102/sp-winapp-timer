@@ -25,25 +25,19 @@ const buttonActionInit=(timerControl)=>{
             activeSound();
             soundIsActive=true        
         }        
-        timerControl.startTimer();        
-        //$("#start").addClass("hide");
+        timerControl.startTimer();
         document.getElementById("btn-start").className = "hide";
-        //$("#pause").addClass("show");
         document.getElementById("btn-pause").className = "show";
         doingStTimer = ">" + currentTime() + "-";
     })
     document.getElementById("btn-pause").addEventListener("click", ()=>{
         timerControl.pauseTimer();
-        //$("#pause").addClass("hide");
         document.getElementById("btn-pause").className = "hide";
-        //$("#resume").addClass("show");
         document.getElementById("btn-resume").className = "show";
     })
     document.getElementById("btn-resume").addEventListener("click", ()=>{
         timerControl.resumeTimer();
-        //$("#resume").addClass("hide");
         document.getElementById("btn-resume").className = "hide";
-        //$("#pause").addClass("show");
         document.getElementById("btn-pause").className = "show";
     })
 
