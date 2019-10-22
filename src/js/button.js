@@ -1,4 +1,4 @@
-import { activeSound } from './sound';
+import { activeSound } from './sound/sound';
 import { currentTime } from './_utility-function/currentTime';
 import { base_url,type } from './globalVar_html.js';
 

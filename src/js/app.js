@@ -4,7 +4,7 @@ import {buttonActionInit} from './button';
 import {titleContentInit} from './title-content';
 import {base_url,type} from './globalVar_html';
 import {ipcRendererInit} from './electron';
-import {soundEventHandleInit} from './soundEventHandle';
+import {soundEventHandleInit} from './sound/soundEventHandle';
 import {menuInit} from './menu/menu';
 
 (()=>{

@@ -1,5 +1,5 @@
 import {extend} from './_utility-function/extend';
-import {SoundEventDispatch} from './SoundEventDispatch';
+import {SoundEventDispatch} from './sound/SoundEventDispatch';
 
 class DoingTimer{
 	setting;
