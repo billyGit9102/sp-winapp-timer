@@ -1,5 +1,5 @@
 import { activeSound } from './sound';
-import { currentTime } from './utility-function/currentTime';
+import { currentTime } from './_utility-function/currentTime';
 import { base_url,type } from './globalVar_html.js';
 
 const electron = window.require('electron');

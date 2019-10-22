@@ -1,5 +1,5 @@
 import  { base_url,type } from './globalVar_html.js';
-import  { triggerNativeEvent } from './utility-function/eventTrigger';
+import  { triggerNativeEvent } from './_utility-function/eventTrigger';
 
 
 const titleContentInit=()=>{

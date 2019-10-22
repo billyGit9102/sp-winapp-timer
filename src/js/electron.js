@@ -4,7 +4,7 @@
 *  2. response to electron main window event
 *  
 * ========================================== */
-import  { triggerNativeEvent } from './utility-function/eventTrigger';
+import  { triggerNativeEvent } from './_utility-function/eventTrigger';
 const electron = window.require('electron');
 const {ipcRenderer} = electron;
 

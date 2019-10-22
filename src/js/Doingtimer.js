@@ -1,4 +1,4 @@
-import {extend} from './utility-function/extend';
+import {extend} from './_utility-function/extend';
 import {SoundEventDispatch} from './SoundEventDispatch';
 
 class DoingTimer{
