@@ -2,7 +2,8 @@
 
 const {winW, winH, winW_mini, winH_mini} = require('../../globalVars');
 
-const {saveSize} = require('../saveLoadData');
+//const {saveSize} = require('../saveLoadData');
+const {saveData} = require('../saveLoadData');
 
 let mainWindow;
 let set_reizeMainWindowVar=(mW)=>{
@@ -19,7 +20,7 @@ const saveMinSize=()=>{
     let data={}
     data.minWidth=mainWindow.getSize()[0];
     data.minHeight=mainWindow.getSize()[1];
-    //saveSize(data);
+    saveData(data);
     console.log('min',mainWindow.getSize())
 }
 let set_sizeExpand=(mainWindow)=>{    

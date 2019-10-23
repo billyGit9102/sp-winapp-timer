@@ -28,7 +28,7 @@ import {menuInit} from './menu/menu';
       const timerControl=new DoingTimer({
         target: document.getElementById("timer"),
         startTime: 0 //1000 = 1s
-      });
+      }); 
       soundEventHandleInit(timerControl);
 
       titleContentInit(timerControl);
