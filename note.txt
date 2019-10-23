@@ -1,3 +1,4 @@
+saveData too fast problem
 doing minimize resixe restrict
 why start 150 60
 
