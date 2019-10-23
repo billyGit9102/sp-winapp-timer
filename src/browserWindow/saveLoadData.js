@@ -7,6 +7,18 @@ data.height=600;
 data.minWidth=150;        
 data.minHeight=60;
 
+const saveData=(sdata)=>{
+    let loadedData=loadData();
+    let output={};
+    output = {...loadedData,...sdata}; 
+    let data = JSON.stringify(output, null, 2);
+    console.log('saveData')
+    console.log(data);
+    fs.writeFile(dataSizePath, data, (err) => {
+        if (err) throw err;
+        //console.log('Data written to file');
+    });
+}
 const loadData=()=>{
     let output={...data};
 
@@ -23,5 +35,5 @@ const loadData=()=>{
 }
 
 module.exports = {
-    loadData
+    loadData,saveData
 }

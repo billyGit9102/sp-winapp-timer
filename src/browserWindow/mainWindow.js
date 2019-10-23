@@ -17,8 +17,9 @@ let createWindow=()=>{
     minimizable:false,
     webPreferences: {
       nodeIntegration: true
-    } 
+    }
   })
+
   mainWindow.loadFile("./index.html");
   console.log(mainWindow.webContents.getURL());
   //http://bf2c.info/sp/project/ci-doing-timer-v4/doing_timer/start/home?abc
