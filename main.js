@@ -5,10 +5,13 @@
 const {app} = require('electron');
 const  {createWindow}=require('./src/browserWindow/mainWindow');
 
+const  {loadData}=require('./src/browserWindow/saveLoadData');
+
 app.on('ready', () => setTimeout(()=>{
   //console.log("createWindow");
   //create mainWindow
-  createWindow();
+  loadData();
+  //createWindow();
 }, 3000));
 
 // Quit when all windows are closed.

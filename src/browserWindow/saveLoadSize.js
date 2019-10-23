@@ -6,7 +6,6 @@ const minExpandWidth=200;
 const minExpandHeight=350;
 
 let saveSize=(e)=>{
-    console.log("window resize");
     //console.log(e.sender.getSize());
     let winSize = { 
         width: e.getSize()[0],
@@ -14,6 +13,7 @@ let saveSize=(e)=>{
     };
     let data = JSON.stringify(winSize, null, 2);
     
+    console.log("window save resize");
     console.log(data);
     fs.writeFile(dataSizePath, data, (err) => {
         if (err) throw err;
