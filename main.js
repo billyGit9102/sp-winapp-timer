@@ -11,7 +11,7 @@ app.on('ready', () => setTimeout(()=>{
   //console.log("createWindow");
   //create mainWindow
   loadData();
-  //createWindow();
+  createWindow();
 }, 3000));
 
 // Quit when all windows are closed.
