@@ -1,6 +1,6 @@
 //const {set_sizeExpand, set_sizeMini} = require('./winResizefunc');
 
-const {winW, winH, winW_mini, winH_mini} = require('../../globalVars');
+const {winW, winH, winW_mini, winH_mini,minWinW,minWinH} = require('../../globalVars');
 
 //const {saveSize} = require('../saveLoadData');
 const {saveData} = require('../saveLoadData');
@@ -9,6 +9,7 @@ let mainWindow;
 let set_reizeMainWindowVar=(mW)=>{
     mainWindow=mW;
 }
+let expandTimer;
 let saveExpandSize=()=>{
     let data={}
     data.width=mainWindow.getSize()[0];
@@ -16,6 +17,7 @@ let saveExpandSize=()=>{
     saveData(data);
     console.log('max in saveExpandSize',mainWindow.getSize())
 }
+let minTimer;
 const saveMinSize=()=>{
     let data={}
     data.minWidth=mainWindow.getSize()[0];
@@ -23,6 +25,8 @@ const saveMinSize=()=>{
     saveData(data);
     console.log('min in saveMinSize',mainWindow.getSize())
 }
+
+
 let set_sizeExpand=(mainWindow)=>{    
     //saveMinSize();
 
@@ -60,7 +64,7 @@ let set_sizeMini=(mainWindow)=>{
 
     //console.log("set_sizeMini");
     mainWindow.setResizable(true);
-    mainWindow.setSize(winW_mini,winH_mini);
+    mainWindow.setSize(minWinW(),minWinH());
 
     //
     

@@ -42,11 +42,11 @@ const ipcRendererInit=(timerControl)=>{
     ipcRenderer.on('timer:blur', ()=>{
         if(timerControl.status==='stop'){
             triggerNativeEvent(document.getElementById("btn-start"),'click');
-        }
+        } 
         if(timerControl.status==='pause'){
             triggerNativeEvent(document.getElementById("btn-resume"),'click');
         }
-        //console.log('timer:blur');
+        console.log('timer:blur');
         //bodyele.className="";
         //triggerNativeEvent(document.getElementById("btn-start"),'click');
         bodyele.classList.remove("expand");

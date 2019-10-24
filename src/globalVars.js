@@ -14,6 +14,16 @@ let winH=()=>{
     sizeH=loadData().height;
     return sizeH;
 }
+let minWinW=()=>{
+    let sizeW;
+    sizeW=loadData().minWidth; 
+    return sizeW;
+}
+let minWinH=()=>{
+    let sizeH;
+    sizeH=loadData().minHeight;
+    return sizeH;
+}
 const winW_mini=150;
 const winH_mini=60;
 
@@ -21,5 +31,7 @@ module.exports = {
     winW, 
     winH,
     winW_mini,
-    winH_mini
+    winH_mini,
+    minWinW,
+    minWinH
 };
