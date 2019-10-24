@@ -13,23 +13,24 @@ let saveExpandSize=()=>{
     let data={}
     data.width=mainWindow.getSize()[0];
     data.height=mainWindow.getSize()[1];
-    //saveSize(data);
-    console.log('max',mainWindow.getSize())
+    saveData(data);
+    console.log('max in saveExpandSize',mainWindow.getSize())
 }
 const saveMinSize=()=>{
     let data={}
     data.minWidth=mainWindow.getSize()[0];
     data.minHeight=mainWindow.getSize()[1];
     saveData(data);
-    console.log('min',mainWindow.getSize())
+    console.log('min in saveMinSize',mainWindow.getSize())
 }
 let set_sizeExpand=(mainWindow)=>{    
+    saveMinSize();
     //remove min size save listener
-    mainWindow.removeListener('resize', saveMinSize);
+    //--mainWindow.removeListener('resize', saveMinSize);
     //prevent multiple expand size listener
-    mainWindow.removeListener('resize', saveExpandSize);
+    //--mainWindow.removeListener('resize', saveExpandSize);
     //save expand size listener
-    mainWindow.addListener('resize', saveExpandSize);
+    //--mainWindow.addListener('resize', saveExpandSize);
 
     mainWindow.setMaximizable(true)
     mainWindow.setMinimumSize(200, 400);
@@ -41,11 +42,12 @@ let set_sizeExpand=(mainWindow)=>{
     mainWindow.setSize(winW(),winH());      
 }
 let set_sizeMini=(mainWindow)=>{
+    saveExpandSize()
     //remove big size save listener
-    mainWindow.removeListener('resize', saveExpandSize);
+    //--mainWindow.removeListener('resize', saveExpandSize);
     //prevent multiple min size listener
-    mainWindow.removeListener('resize', saveMinSize);    
-    mainWindow.addListener('resize', saveMinSize);
+    //--mainWindow.removeListener('resize', saveMinSize);    
+    //--mainWindow.addListener('resize', saveMinSize);
 
     //can't maximize in min mode
     mainWindow.setMaximizable(false)

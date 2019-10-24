@@ -10,7 +10,7 @@ const  {loadData}=require('./src/browserWindow/saveLoadData');
 app.on('ready', () => setTimeout(()=>{
   //console.log("createWindow");
   //create mainWindow
-  loadData();
+  //loadData();
   createWindow();
 }, 3000));
 

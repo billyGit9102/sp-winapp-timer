@@ -8,7 +8,7 @@ import {soundEventHandleInit} from './sound/soundEventHandle';
 import {menuInit} from './menu/menu';
 
 (()=>{
-    ipcRendererInit();
+    //ipcRendererInit();
     showPreloader()
     //activeSound();
 
@@ -33,7 +33,7 @@ import {menuInit} from './menu/menu';
 
       titleContentInit(timerControl);
       buttonActionInit(timerControl);
-      //ipcRendererInit(timerControl);    
+      ipcRendererInit(timerControl);    
       menuInit();
     })
     .catch((error)=>{

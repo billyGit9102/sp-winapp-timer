@@ -1,3 +1,5 @@
+min, on blur save file is a error
+when min, blur save min as expand size
 saveData too fast problem
 doing minimize resixe restrict
 why start 150 60
