@@ -31,7 +31,7 @@ const ipcRendererInit=(timerControl)=>{
             ipcRenderer.send('timer:expand',true);
         }        
        //console.log("expand btn click");
-    }
+    } 
     document.getElementById('btn-expander').addEventListener('click', toggleExpand_handle);
 
     //document.getElementById('curDoing').addEventListener('focus', toggleExpand_handle);

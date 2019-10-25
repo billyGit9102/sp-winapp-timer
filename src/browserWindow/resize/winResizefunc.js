@@ -1,6 +1,6 @@
 //const {set_sizeExpand, set_sizeMini} = require('./winResizefunc');
 
-const {winW, winH, winW_mini, winH_mini,minWinW,minWinH} = require('../../globalVars');
+const {winW, winH, minWinW, minWinH} = require('../../globalVars');
 
 //const {saveSize} = require('../saveLoadData');
 const {saveData} = require('../saveLoadData');
@@ -9,23 +9,29 @@ let mainWindow;
 let set_reizeMainWindowVar=(mW)=>{
     mainWindow=mW;
 }
-let expandTimer;
+let et;
 let saveExpandSize=()=>{
-    let data={}
-    data.width=mainWindow.getSize()[0];
-    data.height=mainWindow.getSize()[1];
-    saveData(data);
-    console.log('max in saveExpandSize',mainWindow.getSize())
+    clearTimeout(et);
+    et=setTimeout(function(){
+        let data={}
+        data.width=mainWindow.getSize()[0];
+        data.height=mainWindow.getSize()[1];
+        saveData(data);
+        console.log('max in saveExpandSize',mainWindow.getSize())
+    },500)
 }
-let minTimer;
+let mt;
 const saveMinSize=()=>{
-    let data={}
-    data.minWidth=mainWindow.getSize()[0];
-    data.minHeight=mainWindow.getSize()[1];
-    saveData(data);
-    console.log('min in saveMinSize',mainWindow.getSize())
+    clearTimeout(mt);
+    //settimeout prevent each pixel save
+    mt=setTimeout(()=>{
+        let data={}
+        data.minWidth=mainWindow.getSize()[0];
+        data.minHeight=mainWindow.getSize()[1];
+        saveData(data);
+        console.log('min in saveMinSize',mainWindow.getSize())
+    },500)
 }
-
 
 let set_sizeExpand=(mainWindow)=>{    
     //saveMinSize();

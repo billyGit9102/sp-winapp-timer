@@ -1,3 +1,8 @@
+sq note:
+main window blur, html electron response, remove expand class
+
+not listener size change when init,no listener attached
+
 delay save needed
 min, on blur save file is a error
 when min, blur save min as expand size
