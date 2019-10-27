@@ -25,10 +25,11 @@ const resizeHandlerInit=(mainWindow)=>{
     }
     //handle html event
     ipcMain.on('htmlLoadDataDone',()=>{
-        console.log('htmlLoadDataDone');  
+        console.log('htmlLoadDataDone');
         mainWindow.on('blur', winBlur);
         ipcMain.on('timer:expand', expandHandler);   
     }) 
+
 }
 
 module.exports = {

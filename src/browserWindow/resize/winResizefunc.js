@@ -18,7 +18,7 @@ let saveExpandSize=()=>{
         data.height=mainWindow.getSize()[1];
         saveData(data);
         console.log('max in saveExpandSize',mainWindow.getSize())
-    },500)
+    },300)
 }
 let mt;
 const saveMinSize=()=>{
@@ -30,7 +30,7 @@ const saveMinSize=()=>{
         data.minHeight=mainWindow.getSize()[1];
         saveData(data);
         console.log('min in saveMinSize',mainWindow.getSize())
-    },500)
+    },300)
 }
 
 let set_sizeExpand=(mainWindow)=>{    
@@ -49,7 +49,7 @@ let set_sizeExpand=(mainWindow)=>{
 
     console.log("set_sizeExpand");
     console.log(winW(),winH());
-    mainWindow.setResizable(true);
+    //mainWindow.setResizable(true);
     mainWindow.setSize(winW(),winH());      
 }
 let set_sizeMini=(mainWindow)=>{
@@ -69,7 +69,7 @@ let set_sizeMini=(mainWindow)=>{
     mainWindow.setMaximumSize(800, 60)
 
     //console.log("set_sizeMini");
-    mainWindow.setResizable(true);
+    //mainWindow.setResizable(true);
     mainWindow.setSize(minWinW(),minWinH());
 
     //

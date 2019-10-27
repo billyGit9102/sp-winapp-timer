@@ -9,12 +9,6 @@ let soundIsActive=false;
 
 
 const buttonActionInit=(timerControl)=>{
-    
-    ipcRenderer.on('timer:blur', ()=>{
-        
-        //console.log('timerControl.status',timerControl.status);
-    });
-
    
 
     //button action
