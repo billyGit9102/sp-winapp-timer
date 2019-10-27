@@ -18,7 +18,7 @@ const buttonActionInit=(timerControl)=>{
         if(!soundIsActive){
             activeSound();
             soundIsActive=true        
-        }        
+        }
         timerControl.startTimer();
         document.getElementById("btn-start").className = "hide";
         document.getElementById("btn-pause").className = "show";

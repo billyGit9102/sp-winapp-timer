@@ -1,7 +1,5 @@
 //const {winW, winH, winW_mini, winH_mini} = require('./globalVars');
 
-//const {loadSize} = require('./browserWindow/saveLoadSize');
-
 const {loadData} = require('./browserWindow/saveLoadData');
 
 let winW=()=>{

@@ -1,5 +1,3 @@
-//const {loadSize,saveSize} = require('./browserWindow/saveLoadSize');
-
 const fs = require('fs');
 const dataSizePath="./data-winLargeSize.json";
 const minExpandWidth=200;

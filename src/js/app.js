@@ -33,7 +33,7 @@ import {menuInit} from './menu/menu';
 
       titleContentInit(timerControl);
       buttonActionInit(timerControl);
-      ipcRendererInit(timerControl);    
+      ipcRendererInit(timerControl);
       menuInit();
     })
     .catch((error)=>{

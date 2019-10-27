@@ -1,5 +1,9 @@
+need function 
+if not stop can't blur
+
 sq note:
 main window blur, html electron response, remove expand class
+
 
 not listener size change when init,no listener attached
 
