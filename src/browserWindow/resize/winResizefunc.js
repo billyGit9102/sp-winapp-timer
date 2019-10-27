@@ -6,6 +6,10 @@ const {winW, winH, minWinW, minWinH} = require('../../globalVars');
 const {saveData} = require('../saveLoadData');
 
 let mainWindow;
+let initWinResizefunc=(mW)=>{
+    mainWindow=mW;
+    mainWindow.addListener('resize', saveExpandSize);
+}
 let set_reizeMainWindowVar=(mW)=>{
     mainWindow=mW;
 }
@@ -80,5 +84,5 @@ let set_sizeMini=(mainWindow)=>{
 
 module.exports = {
     set_sizeExpand,set_sizeMini,
-    set_reizeMainWindowVar
+    set_reizeMainWindowVar,initWinResizefunc
 }
