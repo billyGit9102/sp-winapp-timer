@@ -29,9 +29,9 @@ import {menuInit} from './menu/menu';
         target: document.getElementById("timer"),
         startTime: 0 //1000 = 1s
       }); 
-      soundEventHandleInit(timerControl);
 
       titleContentInit(timerControl);
+      soundEventHandleInit(timerControl);
       buttonActionInit(timerControl);
       ipcRendererInit(timerControl);
       menuInit();
