@@ -3,7 +3,7 @@ import { currentTime } from './_utility-function/currentTime';
 import { triggerNativeEvent } from './_utility-function/eventTrigger';
 import { base_url,type } from './globalVar_html.js';
 
-const electron = window.require('electron');
+//const electron = window.require('electron');
 //const {ipcRenderer} = electron;
 
 let soundIsActive=false;
