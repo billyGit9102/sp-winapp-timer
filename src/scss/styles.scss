@@ -30,6 +30,9 @@ textarea{width: 100%; box-sizing: border-box; padding: 4px 5px; height: 110px;re
 
 
 #button{ text-align: center }
+#buttonInnerWrapper{width: 140px;display: inline-block !important;position: relative;}
+#autoRestartWrapper{position: absolute; right: -90px;width: 90px;top: 5px;font-size: 11px;}
+#autoRestartWrapper input{vertical-align: middle; width: auto; margin-right: 3px;}
 
 .hide{display: none !important}
 .show{display: inline-block !important;}

@@ -1,13 +1,15 @@
 import { activeSound } from './sound/sound';
 import { currentTime } from './_utility-function/currentTime';
+import { triggerNativeEvent } from './_utility-function/eventTrigger';
 import { base_url,type } from './globalVar_html.js';
 
 const electron = window.require('electron');
-const {ipcRenderer} = electron;
+//const {ipcRenderer} = electron;
 
 let soundIsActive=false;
-
-
+const isAutoRestart=()=>{
+    return document.getElementById("ipt-autoRestart").checked;
+}
 const buttonActionInit=(timerControl)=>{
    
 
@@ -19,6 +21,9 @@ const buttonActionInit=(timerControl)=>{
             activeSound();
             soundIsActive=true        
         }
+        
+        //console.log('isAutoRestart',isAutoRestart());
+
         timerControl.startTimer();
         document.getElementById("btn-start").className = "hide";
         document.getElementById("btn-pause").className = "show";
@@ -71,7 +76,10 @@ const buttonActionInit=(timerControl)=>{
                 document.getElementById("btn-resume").className = "hide";   
                 document.getElementById("btn-start").className = "show";
                 document.getElementById("btn-pause").className = "hide";
-                
+
+                if(isAutoRestart()){
+                    triggerNativeEvent(document.getElementById("btn-start"),'click')
+                }
                 //console.log("done");
                 done_timer();
             }
