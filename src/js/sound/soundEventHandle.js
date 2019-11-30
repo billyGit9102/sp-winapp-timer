@@ -1,6 +1,6 @@
-import {soundProcess,sound1Min,sound2Min,sound5Min} from './sound';
-import  { base_url,type } from '../globalVar_html.js';
-import  { triggerNativeEvent } from '../_utility-function/eventTrigger';
+import {soundProcess,sound1Min,sound2Min,sound5Min,soundEnd} from './sound';
+import { base_url,type } from '../globalVar_html.js';
+import { triggerNativeEvent } from '../_utility-function/eventTrigger';
 
 const soundEventHandleInit=(timerControl)=>{
     document.addEventListener("sound:start", ()=>{
@@ -55,15 +55,15 @@ const soundEventHandleInit=(timerControl)=>{
         triggerNativeEvent(document.getElementById("btn-expander"),'click')
         //console.log("triggerNativeEvent(document.getElementById(expander)");
         
-        sound2Min.loop = true;
-        sound2Min.play();
+        soundEnd.loop = true;
+        soundEnd.play();
     });
     document.addEventListener("sound:stop", ()=>{
         console.log("sound:stop");
         document.getElementsByTagName('body')[0].classList.remove('timerAlert');
-        sound2Min.loop = false;
-        sound2Min.pause();
-        sound2Min.currentTime = 0;
+        soundEnd.loop = false;
+        soundEnd.pause();
+        soundEnd.currentTime = 0;
     })
 }
 
