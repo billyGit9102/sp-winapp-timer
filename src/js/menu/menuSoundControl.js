@@ -11,6 +11,7 @@ const setVolume=()=>{
     sound1Min.volume=document.getElementById('sc-play1m').value
     sound2Min.volume=document.getElementById('sc-play2m').value
     sound5Min.volume=document.getElementById('sc-play5m').value
+    console.log('[menuSoundControl js - setVolume ]',defaultVolume)
     soundEnd.volume=document.getElementById('sc-playEnd').value
 }
 const saveVolume=()=>{
@@ -19,7 +20,7 @@ const saveVolume=()=>{
     volumnSetting.sound1Min=sound1Min.volume
     volumnSetting.sound2Min=sound2Min.volume
     volumnSetting.sound5Min=sound5Min.volume
-    volumnSetting.soundEnd=sound5Min.soundEnd
+    volumnSetting.soundEnd=soundEnd.volume
 }
 const resetDefaultVolume=()=>{
     //set default volume to input
@@ -27,6 +28,7 @@ const resetDefaultVolume=()=>{
     document.getElementById('sc-play1m').value=defaultVolume[1];
     document.getElementById('sc-play2m').value=defaultVolume[2];
     document.getElementById('sc-play5m').value=defaultVolume[3];
+    console.log('[menuSoundControl js]',defaultVolume)
     document.getElementById('sc-playEnd').value=defaultVolume[4];
 }
 
@@ -77,6 +79,7 @@ const soundControl=()=>{
         document.getElementById('sc-play2m').value=volumnSetting.sound2Min;
         document.getElementById('sc-play5m').value=volumnSetting.sound5Min;
         document.getElementById('sc-playEnd').value=volumnSetting.soundEnd;
+        console.log('[menuSoundControl js (btn-resetSound,click)]',volumnSetting.sound5Min)
         setVolume();
         saveVolume(); 
     })    
