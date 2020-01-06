@@ -12,7 +12,7 @@ let createWindow=()=>{
     width: winW(),
     height: winH(),
     frame: false,
-    alwaysOnTop: true,
+    //alwaysOnTop: true,
     skipTaskbar:true,
     minimizable:false,
     webPreferences: {
