@@ -12,8 +12,8 @@ let createWindow=()=>{
     width: winW(),
     height: winH(),
     frame: false,
-    //alwaysOnTop: true,
-    skipTaskbar:true,
+    alwaysOnTop: true,
+    //skipTaskbar:true,
     minimizable:false,
     webPreferences: {
       nodeIntegration: true
@@ -23,7 +23,7 @@ let createWindow=()=>{
   mainWindow.loadFile("./index.html");
   console.log(mainWindow.webContents.getURL());
   //http://bf2c.info/sp/project/ci-doing-timer-v4/doing_timer/start/home?abc
-  trayInit(mainWindow);
+  //trayInit(mainWindow);
   resizeHandlerInit(mainWindow);
   //mainWindow.webContents.openDevTools();
 
