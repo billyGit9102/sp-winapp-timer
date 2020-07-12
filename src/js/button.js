@@ -41,12 +41,16 @@ const buttonActionInit=(timerControl)=>{
     })
 
     document.getElementById("btn-stop").addEventListener("click", ()=>{
+        document.getElementById("upload-status").className = "show"
+        
+
         let formData = new FormData();
         formData.append('no var', "");
         fetch(base_url+'doing_timer/done/'+type, { method:'POST', body:formData })
         .then(response=>{
             if (!response.ok) throw new Error(response.statusText)
             console.log("add content success")
+            document.getElementById("upload-status").className = "hide"
             return response.text()
         })
         .catch((error)=>{

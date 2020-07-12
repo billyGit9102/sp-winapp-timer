@@ -17,7 +17,8 @@ const titleContentInit=(timerControl)=>{
         update_DoingNote(e.target.value);
     });
     document.getElementById("txa-doingNote").addEventListener("change",(e)=>{
-        //console.log('doingNote change');
+        console.log('doingNote change');
+        document.getElementById("upload-status").className = "show"
         let title=e.target.value;
         update_curDoing(title);
 
@@ -26,6 +27,7 @@ const titleContentInit=(timerControl)=>{
         fetch(base_url+'doing_timer/set_title/'+type, { method:'POST', body:formData })
         .then(response=>{
             if (!response.ok) throw new Error(response.statusText)
+            document.getElementById("upload-status").className = "hide"
             return response.text()
         })
         .then(()=>{
@@ -38,13 +40,16 @@ const titleContentInit=(timerControl)=>{
     })
     document.getElementById("txa-timeMark").addEventListener("change",(e)=>{
         let content=e.target.value;
+        console.log('txa-timeMark change');
         //console.log("content-change="+content)
+        document.getElementById("upload-status").className = "show"
 
         let formData = new FormData();
         formData.append('content', content);
         fetch(base_url+'doing_timer/set_content/'+type, { method:'POST', body:formData })
         .then(response=>{
-            if (!response.ok) throw new Error(response.statusText)
+            if (!response.ok) throw new Error(response.statusText);
+            document.getElementById("upload-status").className = "hide"
             return response.text()
         })
         .then(()=>{
