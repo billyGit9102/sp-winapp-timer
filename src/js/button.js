@@ -46,48 +46,48 @@ const buttonActionInit=(timerControl)=>{
         fetch(base_url+'doing_timer/done/'+type, { method:'POST', body:formData })
         .then(response=>{
             if (!response.ok) throw new Error(response.statusText)
+            console.log("add content success")
             return response.text()
-        })
-        .then(()=>{
-            //console.log(response);
- 
-            let ct = timerControl.getCurrentTime();
-            if (ct != "0s") {
-                //get current time, + cur doing task
-                doingEndTimer = "-" + currentTime() + "| " + document.getElementById("ipt-curDoing").value  + " \n"; 
-                
-                //get timemark textare text, change to array
-                let currentDoingTxtContent = document.getElementById("txa-timeMark").value;
-                currentDoingTxtContent = currentDoingTxtContent.split(" ");
-                //console.log("currentDoingTxtContent"+currentDoingTxtContent)
-
-                //add current done time in front
-                currentDoingTxtContent.unshift(doingStTimer + ct + doingEndTimer);
-                let output = currentDoingTxtContent
-                output = output.join(" ");
-
-                //remove first row space
-                output = output.replace(" >", ">");
-                document.getElementById("txa-timeMark").value=output;
-
-                //timerControl.pauseTimer()
-                timerControl.stopTimer();
-                
-                document.getElementById("btn-resume").className = "hide";   
-                document.getElementById("btn-start").className = "show";
-                document.getElementById("btn-pause").className = "hide";
-
-                if(isAutoRestart()){
-                    triggerNativeEvent(document.getElementById("btn-start"),'click')
-                }
-                //console.log("done");
-                done_timer();
-            }
-
         })
         .catch((error)=>{
             console.log('There has been a problem with your fetch operation: stop not success ', error.message);
         });
+
+        //console.log(response);
+ 
+        let ct = timerControl.getCurrentTime();
+        if (ct != "0s") {
+            //get current time, + cur doing task
+            doingEndTimer = "-" + currentTime() + "| " + document.getElementById("ipt-curDoing").value  + " \n"; 
+            
+            //get timemark textare text, change to array
+            let currentDoingTxtContent = document.getElementById("txa-timeMark").value;
+            currentDoingTxtContent = currentDoingTxtContent.split(" ");
+            //console.log("currentDoingTxtContent"+currentDoingTxtContent)
+
+            //add current done time in front
+            currentDoingTxtContent.unshift(doingStTimer + ct + doingEndTimer);
+            let output = currentDoingTxtContent
+            output = output.join(" ");
+
+            //remove first row space
+            output = output.replace(" >", ">");
+            document.getElementById("txa-timeMark").value=output;
+
+            //timerControl.pauseTimer()
+            timerControl.stopTimer();
+            
+            document.getElementById("btn-resume").className = "hide";   
+            document.getElementById("btn-start").className = "show";
+            document.getElementById("btn-pause").className = "hide";
+
+            if(isAutoRestart()){
+                triggerNativeEvent(document.getElementById("btn-start"),'click')
+            }
+            //console.log("done");
+            done_timer();
+        }
+
     })
 }
 const done_timer=()=>{
