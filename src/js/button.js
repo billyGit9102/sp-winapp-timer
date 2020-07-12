@@ -86,7 +86,7 @@ const buttonActionInit=(timerControl)=>{
 
         })
         .catch((error)=>{
-            console.log('There has been a problem with your fetch operation: ', error.message);
+            console.log('There has been a problem with your fetch operation: stop not success ', error.message);
         });
     })
 }
