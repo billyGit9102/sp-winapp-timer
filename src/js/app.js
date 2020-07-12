@@ -9,7 +9,7 @@ import {menuInit} from './menu/menu';
 
 (()=>{
     //ipcRendererInit();
-    showPreloader()
+    showPreloader() 
     //activeSound();
 
     let formData = new FormData();

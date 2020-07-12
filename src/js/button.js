@@ -50,7 +50,7 @@ const buttonActionInit=(timerControl)=>{
         })
         .then(()=>{
             //console.log(response);
-
+ 
             let ct = timerControl.getCurrentTime();
             if (ct != "0s") {
                 //get current time, + cur doing task
