@@ -37,7 +37,7 @@
     "gulp-sass": "^4.0.2",
     "gulp-sftp-up4": "^0.1.8",
     "gulp-uglify": "^3.0.2",
-    "node-sass": "^4.12.0"
+    "node-sass": "^7.0.0"
   },
   "dependencies": {
     "gulp-file-include": "^2.1.0",
